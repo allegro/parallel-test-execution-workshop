@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'groovy'
+    id 'io.github.platan.tests-execution-chart'
+    id 'net.rdrei.android.buildtimetracker' version "0.11.0"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    testImplementation platform('org.spockframework:spock-bom:2.4-M1-groovy-4.0')
+    testImplementation 'org.spockframework:spock-core'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        info.events = ["passed", "failed", "skipped"]
+    }
+}
+
+
+createTestsExecutionReport {
+    formats {
+        json {
+            enabled = false
+        }
+        mermaid {
+            enabled = false
+        }
+    }
+}
+
+buildtimetracker {
+    reporters {
+        csv {
+            append true
+            header true
+            output ".build-time.csv"
+        }
+        summary {
+            barstyle "none"
+        }
+    }
+}
