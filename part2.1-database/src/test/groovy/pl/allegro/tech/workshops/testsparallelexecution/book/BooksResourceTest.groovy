@@ -1,16 +1,12 @@
 package pl.allegro.tech.workshops.testsparallelexecution.book
 
-import org.spockframework.runtime.model.parallel.ExecutionMode
+
 import org.springframework.http.ProblemDetail
 import pl.allegro.tech.workshops.testsparallelexecution.BaseResourceTest
 import pl.allegro.tech.workshops.testsparallelexecution.books.Book
-import spock.lang.Execution
 
-import static org.springframework.http.HttpStatus.NOT_FOUND
-import static org.springframework.http.HttpStatus.OK
-import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY
+import static org.springframework.http.HttpStatus.*
 
-@Execution(ExecutionMode.SAME_THREAD)
 class BooksResourceTest extends BaseResourceTest {
 
     def cleanup() {
@@ -18,15 +14,9 @@ class BooksResourceTest extends BaseResourceTest {
     }
 
     private String title = "C++ for dummies"
-//    private String title
-
-    def setup() {
-//        title = "title: ${generator.next()}"
-    }
 
     def "return not found when book does not exist"() {
         given:
-//        assert !databaseHelper.exists(Book, 'not-found-book-id')
         assert databaseHelper.count(Book) == 0
 
         when:
@@ -105,7 +95,6 @@ class BooksResourceTest extends BaseResourceTest {
         given:
         def updatedBook = Book.of(title, "Davis Stephen R.")
         assert databaseHelper.count(Book) == 0
-//        assert databaseHelper.countBy(Book, 'title', updatedBook.title()) == 0
 
         when:
         def result = restClient.put("/books/not-found-book-id", updatedBook, Book)
@@ -113,7 +102,6 @@ class BooksResourceTest extends BaseResourceTest {
         then:
         result.statusCode == NOT_FOUND
         databaseHelper.count(Book) == 0
-//        databaseHelper.countBy(Book, 'title', updatedBook.title()) == 0
     }
 
     def "delete existing book"() {
@@ -127,7 +115,6 @@ class BooksResourceTest extends BaseResourceTest {
         then:
         result.statusCode == OK
         databaseHelper.count(Book) == 0
-//        !databaseHelper.exists(Book, createdBook.id())
     }
 
     def "delete does not remove other books"() {
@@ -143,13 +130,11 @@ class BooksResourceTest extends BaseResourceTest {
         then:
         result.statusCode == OK
         databaseHelper.count(Book) == 1
-//        databaseHelper.exists(Book, otherCreatedBook.id())
     }
 
     def "delete return not found for non-existent book"() {
         given:
         assert databaseHelper.count(Book) == 0
-//        !databaseHelper.exists(Book, 'not-found-book-id')
 
         when:
         def result = restClient.delete("/books/not-found-book-id")

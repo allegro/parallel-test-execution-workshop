@@ -10,26 +10,10 @@ import static pl.allegro.tech.hermes.mock.exchange.Response.Builder.aResponse
 
 class EmailsResourceTest extends BaseResourceTest {
 
-//    @Shared
-//    @ClassRule
     @Rule
     HermesMockRule hermesMock = new HermesMockRule(8089)
 
     private String subject = "New workshops!"
-
-    def setup() {
-//        hermesMock.resetReceivedRequest()
-//        subject = "New workshops! ${generator.next()}"
-    }
-
-    def setupSpec() {
-    }
-
-    def cleanupSpec() {
-    }
-
-    def cleanup() {
-    }
 
     def "send e-mail"() {
         given:
@@ -48,7 +32,6 @@ class EmailsResourceTest extends BaseResourceTest {
         given:
         def email = Email.of(subject, sender, "to@example.com")
         hermesMock.define().jsonTopic('pl.allegro.tech.workshops.testsparallelexecution.email')
-//        stubPostJson("/external-api-service/emails", [subject: subject, from: sender, to: "to@example.com"], [sent: true])
 
         when:
         def result = restClient.post("/emails", email, Email)
@@ -56,7 +39,6 @@ class EmailsResourceTest extends BaseResourceTest {
         then:
         result.statusCode == BAD_REQUEST
         hermesMock.expect().jsonMessagesOnTopicAs('pl.allegro.tech.workshops.testsparallelexecution.email', 0, EmailServiceEvent.class)
-//        verifyNoPostJson("/external-api-service/emails", [subject: subject, from: "from@example.com", to: "to@example.com"])
 
         where:
         sender << [null, '', ' ']
@@ -65,7 +47,6 @@ class EmailsResourceTest extends BaseResourceTest {
     def "handle email service errors"() {
         def email = Email.of(subject, "from@example.com", "to@example.com")
         hermesMock.define().jsonTopic('pl.allegro.tech.workshops.testsparallelexecution.email', errorResponse)
-//        stubPostJson("/external-api-service/emails", new Request(body: [subject: subject, from: "from@example.com", to: "to@example.com"]), errorResponse)
 
         when:
         def result = restClient.post("/emails", email, Email)
