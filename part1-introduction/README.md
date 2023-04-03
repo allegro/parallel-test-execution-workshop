@@ -72,11 +72,11 @@ runner {
 
 ```groovy
 runner {
-  parallel {
-    enabled true
-    defaultSpecificationExecutionMode ExecutionMode.CONCURRENT
-    defaultExecutionMode ExecutionMode.CONCURRENT
-  }
+    parallel {
+        enabled true
+        defaultSpecificationExecutionMode ExecutionMode.CONCURRENT
+        defaultExecutionMode ExecutionMode.CONCURRENT
+    }
 }
 ```
 
@@ -86,11 +86,11 @@ runner {
 
 ```groovy
 runner {
-  parallel {
-    enabled true
-    defaultSpecificationExecutionMode ExecutionMode.CONCURRENT
-    defaultExecutionMode ExecutionMode.SAME_THREAD
-  }
+    parallel {
+        enabled true
+        defaultSpecificationExecutionMode ExecutionMode.CONCURRENT
+        defaultExecutionMode ExecutionMode.SAME_THREAD
+    }
 }
 ```
 
@@ -100,17 +100,17 @@ runner {
 
 ```groovy
 runner {
-  parallel {
-    enabled true
-    defaultSpecificationExecutionMode ExecutionMode.SAME_THREAD
-    defaultExecutionMode ExecutionMode.CONCURRENT
-  }
+    parallel {
+        enabled true
+        defaultSpecificationExecutionMode ExecutionMode.SAME_THREAD
+        defaultExecutionMode ExecutionMode.CONCURRENT
+    }
 }
 ```
 
 ## Isolated execution
 
-[//]: # (TODO: add chart with an isolated test)
+![diagram](.readme/README-Isolated.svg)
 
 - Enable parallel execution
 - Create a copy of class `A` and name it `C`
