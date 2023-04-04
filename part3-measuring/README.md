@@ -136,6 +136,8 @@ min  max   mean
 ```
 
 ```
+min: 993
+max: 1001
 mean: 997
 ```
 
