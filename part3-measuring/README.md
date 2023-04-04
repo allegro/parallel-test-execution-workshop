@@ -132,7 +132,7 @@ min  max   mean
 (requires Python 3)
 
 ```shell
-./stats.py
+./stats.py ../.build-time.csv :part3-measuring:test
 ```
 
 ```
