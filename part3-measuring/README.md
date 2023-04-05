@@ -107,28 +107,6 @@ cat .build-time.csv
 for i in {1..3}; do ./gradlew :part3-measuring:test --rerun 2>&1; done
 ```
 
-(run this command in terminal, requires [xsv](https://github.com/BurntSushi/xsv))
-
-```shell
-cat .build-time.csv | xsv search --select task ":part3-measuring:test$" | xsv search --select success true | xsv search --select did_work true | xsv search --select skipped false | xsv select ms | xsv stats | xsv select min,max,mean | xsv table
-```
-
-```
-min  max   mean
-993  1001  997
-```
-
-(requires R lang)
-
-```shell
-./stats.r
-```
-
-```
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    993     995     997     997     999    1001 
-```
-
 (requires Python 3)
 
 ```shell
