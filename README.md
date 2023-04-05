@@ -17,5 +17,13 @@ non-JVM).
 
 ## [3. Measuring test execution time](part3-measuring/README.md)
 
-[//]: # (TODO: add requirements - required tools)
+### Requirements (to build/run this project)
+
+- JDK 17
+- Docker
+
+#### Optional
+
+- Python 3
+
 [//]: # (TODO: describe tools used in this project)
