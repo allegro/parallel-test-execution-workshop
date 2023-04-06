@@ -5,6 +5,15 @@ on [parallel execution](https://spockframework.org/spock/docs/2.3/parallel_execu
 for [Spock](https://spockframework.org), but concepts shown here can be used with other testing frameworks (JVM or
 non-JVM).
 
+Sample applications and tests are written using:
+
+- Spring + Spring Boot
+- MongoDB
+- Testcontainers
+- [Java Client for Hermes](https://hermes-pubsub.readthedocs.io/en/latest/user/java-client/)
+  and [Hermes Mock](https://hermes-pubsub.readthedocs.io/en/latest/user/hermes-mock/)
+- Spock
+
 ## [1. Introduction to parallel execution in Spock](part1-introduction/README.md)
 
 ## 2. Refactoring integration tests in an example service
@@ -25,5 +34,3 @@ non-JVM).
 #### Optional
 
 - Python 3
-
-[//]: # (TODO: describe tools used in this project)
