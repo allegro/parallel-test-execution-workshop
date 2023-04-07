@@ -8,29 +8,18 @@ class DatabaseHelper {
 
     MongoOperations mongoOperations
 
-//    /**
-//     * @deprecated
-//     * Use {@link DatabaseHelper#exists(java.lang.Class, java.lang.Object)}
-//     * or {@link DatabaseHelper#countBy(java.lang.Class, java.lang.String, java.lang.String)} instead.
-//     */
-//    @Deprecated
     int count(Class<?> entityClass) {
         mongoOperations.count(new Query(), entityClass)
     }
 
-    int countBy(Class<?> entityClass, String field, String title) {
-        mongoOperations.count(Query.query(Criteria.where(field).is(title)), entityClass)
+    int countBy(Class<?> entityClass, String field, String value) {
+        mongoOperations.count(Query.query(Criteria.where(field).is(value)), entityClass)
     }
 
     <T> boolean exists(Class<T> entityClass, Object id) {
         mongoOperations.findById(id, entityClass) != null
     }
 
-//    /**
-//     * @deprecated
-//     * Not for use in parallel execution.
-//     */
-//    @Deprecated
     <T> void removeAll(Class<T> entityClass) {
         mongoOperations.findAllAndRemove(new Query(), entityClass)
     }

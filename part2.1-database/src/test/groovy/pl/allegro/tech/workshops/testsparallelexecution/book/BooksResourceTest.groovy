@@ -9,11 +9,11 @@ import static org.springframework.http.HttpStatus.*
 
 class BooksResourceTest extends BaseResourceTest {
 
+    private String title = "C++ for dummies"
+
     def cleanup() {
         databaseHelper.removeAll(Book)
     }
-
-    private String title = "C++ for dummies"
 
     def "return not found when book does not exist"() {
         given:
