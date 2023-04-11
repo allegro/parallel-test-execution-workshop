@@ -15,12 +15,11 @@ trait EmailServerStub {
 
     abstract WireMockServer getWiremockServer()
 
-    void stubPostJson(String path, Object responseBody) {
-        def responseBodyString = new ObjectMapper().writeValueAsString(responseBody)
+    void stubPostJson(String path, int responseStatus) {
         wiremockServer.stubFor(post(urlEqualTo(path))
                 .willReturn(aResponse()
                         .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
-                        .withBody(responseBodyString)))
+                        .withStatus(responseStatus)))
     }
 
     void stubPostJson(String path, List<Response> responses) {
