@@ -8,7 +8,7 @@ import static java.time.Duration.ofMillis
 import static org.springframework.http.HttpStatus.*
 import static pl.allegro.tech.hermes.mock.exchange.Response.Builder.aResponse
 
-class EmailsResourceTest extends BaseResourceTest {
+class EmailsByMessageBrokerResourceTest extends BaseResourceTest {
 
     @Rule
     HermesMockRule hermesMock = new HermesMockRule(8089)

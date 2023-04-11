@@ -10,7 +10,7 @@ import static com.github.tomakehurst.wiremock.http.Fault.EMPTY_RESPONSE
 import static java.time.Duration.ofMillis
 import static org.springframework.http.HttpStatus.*
 
-class EmailsResourceTest extends BaseResourceTest implements EmailServerStub {
+class EmailsByRestResourceTest extends BaseResourceTest implements EmailServerStub {
 
     @Shared
     WireMockServer wiremockServer
