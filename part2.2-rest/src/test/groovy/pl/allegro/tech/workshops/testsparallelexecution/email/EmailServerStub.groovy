@@ -15,25 +15,14 @@ trait EmailServerStub {
 
     abstract WireMockServer getWiremockServer()
 
-    void stubPostJson(String path, int responseStatus) {
-        wiremockServer.stubFor(post(urlEqualTo(path))
-                .willReturn(aResponse()
-                        .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
-                        .withStatus(responseStatus)))
-    }
-
-    void stubPostJson(String path, List<Response> responses) {
-        stubPostJson(path, new Request(scenario: new Request.RequestScenario(name: 'test', inState: Scenario.STARTED, toState: "after request 0")), responses.first())
+    void stubPostJson(Request request, List<Response> responses) {
+        stubPostJson(new Request(path: request.path, scenario: new Request.RequestScenario(name: 'test', inState: Scenario.STARTED, toState: "after request 0")), responses.first())
         responses.drop(1).eachWithIndex { response, index ->
-            stubPostJson(path, new Request(scenario: new Request.RequestScenario(name: 'test', inState: "after request ${index}", toState: "after request ${index + 1}")), response)
+            stubPostJson(new Request(path: request.path, scenario: new Request.RequestScenario(name: 'test', inState: "after request ${index}", toState: "after request ${index + 1}")), response)
         }
     }
 
-    void stubPostJson(String path, Response response) {
-        stubPostJson(path, null as Request, response)
-    }
-
-    void stubPostJson(String path, Request request, Response response) {
+    void stubPostJson(Request request, Response response) {
         def responseDefinitionBuilder = aResponse()
                 .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
         if (response.fault != null) {
@@ -45,7 +34,7 @@ trait EmailServerStub {
             responseDefinitionBuilder.withFixedDelay(response.delay.toMillis().intValue())
         }
 
-        def mappingBuilder = post(urlEqualTo(path))
+        def mappingBuilder = post(urlEqualTo(request.path))
         if (request?.scenario) {
             mappingBuilder
                     .inScenario(request.scenario.name)
@@ -60,9 +49,9 @@ trait EmailServerStub {
                 .willReturn(responseDefinitionBuilder))
     }
 
-    void verifyPostJson(String path, Object response) {
+    void verifyPostJson(Request request, Object response) {
         def body = new ObjectMapper().writeValueAsString(response)
-        wiremockServer.verify(postRequestedFor(urlEqualTo(path))
+        wiremockServer.verify(postRequestedFor(urlEqualTo(request.path))
                 .withHeader(ACCEPT, equalTo("application/json, application/*+json"))
                 .withRequestBody(equalToJson(body)))
     }
@@ -71,5 +60,6 @@ trait EmailServerStub {
         wiremockServer.verify(0, postRequestedFor(urlEqualTo(path))
                 .withHeader(ACCEPT, equalTo("application/json, application/*+json")))
     }
+
 
 }

@@ -5,6 +5,7 @@ import groovy.transform.ToString
 
 @ToString(includePackage = false, includeNames = true, ignoreNulls = true)
 class Request {
+    String path
     Object body
     RequestScenario scenario
 

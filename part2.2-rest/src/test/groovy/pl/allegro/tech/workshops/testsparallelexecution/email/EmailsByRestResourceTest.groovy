@@ -2,6 +2,7 @@ package pl.allegro.tech.workshops.testsparallelexecution.email
 
 import com.github.tomakehurst.wiremock.WireMockServer
 import pl.allegro.tech.workshops.testsparallelexecution.BaseResourceTest
+import pl.allegro.tech.workshops.testsparallelexecution.support.Request
 import pl.allegro.tech.workshops.testsparallelexecution.support.Response
 import spock.lang.Shared
 
@@ -34,20 +35,20 @@ class EmailsByRestResourceTest extends BaseResourceTest implements EmailServerSt
     def "send e-mail"() {
         given:
         def email = Email.of(subject, "from@example.com", "to@example.com")
-        stubPostJson("/external-api-service/emails", 200)
+        stubPostJson(new Request(path: "/external-api-service/emails"), new Response(status: 200))
 
         when:
         def result = restClient.post("/emails", email, Email)
 
         then:
         result.statusCode == OK
-        verifyPostJson("/external-api-service/emails", [subject: subject, from: "from@example.com", to: "to@example.com"])
+        verifyPostJson(new Request(path: "/external-api-service/emails"), [subject: subject, from: "from@example.com", to: "to@example.com"])
     }
 
     def "do not sent email without sender"() {
         given:
         def email = Email.of(subject, sender, "to@example.com")
-        stubPostJson("/external-api-service/emails", 200)
+        stubPostJson(new Request(path: "/external-api-service/emails"), new Response(status: 200))
 
         when:
         def result = restClient.post("/emails", email, Email)
@@ -62,7 +63,7 @@ class EmailsByRestResourceTest extends BaseResourceTest implements EmailServerSt
 
     def "handle email service errors"() {
         def email = Email.of(subject, "from@example.com", "to@example.com")
-        stubPostJson("/external-api-service/emails", errorResponse)
+        stubPostJson(new Request(path: "/external-api-service/emails"), errorResponse)
 
         when:
         def result = restClient.post("/emails", email, Email)
@@ -82,7 +83,7 @@ class EmailsByRestResourceTest extends BaseResourceTest implements EmailServerSt
 
     def "retry email sending"() {
         def email = Email.of(subject, "from@example.com", "to@example.com")
-        stubPostJson("/external-api-service/emails", [errorResponse, Response.OK])
+        stubPostJson(new Request(path: "/external-api-service/emails"), [errorResponse, Response.OK])
 
         when:
         def result = restClient.post("/emails", email, Email)
