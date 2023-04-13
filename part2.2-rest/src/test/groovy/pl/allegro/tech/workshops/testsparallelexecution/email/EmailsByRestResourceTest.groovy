@@ -35,7 +35,7 @@ class EmailsByRestResourceTest extends BaseResourceTest implements EmailServerSt
     def "send e-mail"() {
         given:
         def email = Email.of(subject, "from@example.com", "to@example.com")
-        stubPostJson(new Request(path: "/external-api-service/emails"), new Response(status: 200))
+        stubPostJson(new Request(path: "/external-api-service/emails"), Response.OK)
 
         when:
         def result = restClient.post("/emails", email, Email)
@@ -48,7 +48,7 @@ class EmailsByRestResourceTest extends BaseResourceTest implements EmailServerSt
     def "do not sent email without sender"() {
         given:
         def email = Email.of(subject, sender, "to@example.com")
-        stubPostJson(new Request(path: "/external-api-service/emails"), new Response(status: 200))
+        stubPostJson(new Request(path: "/external-api-service/emails"), Response.OK)
 
         when:
         def result = restClient.post("/emails", email, Email)
