@@ -11,4 +11,5 @@ class Response {
     Integer status
     Fault fault
     Duration delay
+    Object body
 }

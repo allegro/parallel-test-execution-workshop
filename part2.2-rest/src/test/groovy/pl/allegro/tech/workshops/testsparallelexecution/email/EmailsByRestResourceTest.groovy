@@ -42,7 +42,7 @@ class EmailsByRestResourceTest extends BaseResourceTest implements EmailServerSt
 
         then:
         result.statusCode == OK
-        verifyPostJson(new Request(path: "/external-api-service/emails"), [subject: subject, from: "from@example.com", to: "to@example.com"])
+        verifyPostJson(new Request(path: "/external-api-service/emails"), new Response(body: [subject: subject, from: "from@example.com", to: "to@example.com"]))
     }
 
     def "do not sent email without sender"() {
@@ -55,7 +55,7 @@ class EmailsByRestResourceTest extends BaseResourceTest implements EmailServerSt
 
         then:
         result.statusCode == BAD_REQUEST
-        verifyNoPostJson("/external-api-service/emails")
+        verifyNoPostJson(new Request(path: "/external-api-service/emails"))
 
         where:
         sender << [null, '', ' ']

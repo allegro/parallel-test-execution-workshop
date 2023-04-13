@@ -49,17 +49,16 @@ trait EmailServerStub {
                 .willReturn(responseDefinitionBuilder))
     }
 
-    void verifyPostJson(Request request, Object response) {
-        def body = new ObjectMapper().writeValueAsString(response)
+    void verifyPostJson(Request request, Response response) {
+        def body = new ObjectMapper().writeValueAsString(response.body)
         wiremockServer.verify(postRequestedFor(urlEqualTo(request.path))
                 .withHeader(ACCEPT, equalTo("application/json, application/*+json"))
                 .withRequestBody(equalToJson(body)))
     }
 
-    void verifyNoPostJson(String path) {
-        wiremockServer.verify(0, postRequestedFor(urlEqualTo(path))
+    void verifyNoPostJson(Request request) {
+        wiremockServer.verify(0, postRequestedFor(urlEqualTo(request.path))
                 .withHeader(ACCEPT, equalTo("application/json, application/*+json")))
     }
-
 
 }
