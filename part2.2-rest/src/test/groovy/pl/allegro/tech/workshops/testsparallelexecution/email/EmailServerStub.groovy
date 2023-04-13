@@ -5,6 +5,7 @@ import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.stubbing.Scenario
 import pl.allegro.tech.workshops.testsparallelexecution.support.Request
 import pl.allegro.tech.workshops.testsparallelexecution.support.Response
+import pl.allegro.tech.workshops.testsparallelexecution.support.ScenarioRequest
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*
 import static org.springframework.http.HttpHeaders.ACCEPT
@@ -16,13 +17,17 @@ trait EmailServerStub {
     abstract WireMockServer getWiremockServer()
 
     void stubPostJson(Request request, List<Response> responses) {
-        stubPostJson(new Request(path: request.path, scenario: new Request.RequestScenario(name: 'test', inState: Scenario.STARTED, toState: "after request 0")), responses.first())
+        stubPostJson(new ScenarioRequest(request: request, scenario: new ScenarioRequest.RequestScenario(name: 'test', inState: Scenario.STARTED, toState: "after request 0")), responses.first())
         responses.drop(1).eachWithIndex { response, index ->
-            stubPostJson(new Request(path: request.path, scenario: new Request.RequestScenario(name: 'test', inState: "after request ${index}", toState: "after request ${index + 1}")), response)
+            stubPostJson(new ScenarioRequest(request: request, scenario: new ScenarioRequest.RequestScenario(name: 'test', inState: "after request ${index}", toState: "after request ${index + 1}")), response)
         }
     }
 
     void stubPostJson(Request request, Response response) {
+        stubPostJson(new ScenarioRequest(request: request), response)
+    }
+
+    void stubPostJson(ScenarioRequest request, Response response) {
         def responseDefinitionBuilder = aResponse()
                 .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
         if (response.fault != null) {
@@ -34,15 +39,15 @@ trait EmailServerStub {
             responseDefinitionBuilder.withFixedDelay(response.delay.toMillis().intValue())
         }
 
-        def mappingBuilder = post(urlEqualTo(request.path))
+        def mappingBuilder = post(urlEqualTo(request.request.path))
         if (request?.scenario) {
             mappingBuilder
                     .inScenario(request.scenario.name)
                     .whenScenarioStateIs(request.scenario.inState)
                     .willSetStateTo(request.scenario.toState)
         }
-        if (request?.body) {
-            def requestBody = new ObjectMapper().writeValueAsString(request.body)
+        if (request.request?.body) {
+            def requestBody = new ObjectMapper().writeValueAsString(request.request.body)
             mappingBuilder.withRequestBody(equalToJson(requestBody))
         }
         wiremockServer.stubFor(mappingBuilder

@@ -7,10 +7,4 @@ import groovy.transform.ToString
 class Request {
     String path
     Object body
-    RequestScenario scenario
-
-    @ToString(includePackage = false, includeNames = true, ignoreNulls = true)
-    static class RequestScenario {
-        String name, inState, toState
-    }
 }
