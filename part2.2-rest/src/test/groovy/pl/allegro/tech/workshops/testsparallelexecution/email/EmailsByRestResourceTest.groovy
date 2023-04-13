@@ -2,6 +2,7 @@ package pl.allegro.tech.workshops.testsparallelexecution.email
 
 import com.github.tomakehurst.wiremock.WireMockServer
 import pl.allegro.tech.workshops.testsparallelexecution.BaseResourceTest
+import pl.allegro.tech.workshops.testsparallelexecution.support.FaultResponse
 import pl.allegro.tech.workshops.testsparallelexecution.support.Request
 import pl.allegro.tech.workshops.testsparallelexecution.support.Response
 import spock.lang.Shared
@@ -75,8 +76,8 @@ class EmailsByRestResourceTest extends BaseResourceTest implements EmailServerSt
         errorResponse << [
                 new Response(status: 400),
                 new Response(status: 500),
-                new Response(fault: EMPTY_RESPONSE),
-                new Response(fault: CONNECTION_RESET_BY_PEER),
+                new FaultResponse(fault: EMPTY_RESPONSE),
+                new FaultResponse(fault: CONNECTION_RESET_BY_PEER),
                 new Response(delay: ofMillis(1000)),
         ]
     }
@@ -95,8 +96,8 @@ class EmailsByRestResourceTest extends BaseResourceTest implements EmailServerSt
         errorResponse << [
                 new Response(status: 400),
                 new Response(status: 500),
-                new Response(fault: EMPTY_RESPONSE),
-                new Response(fault: CONNECTION_RESET_BY_PEER),
+                new FaultResponse(fault: EMPTY_RESPONSE),
+                new FaultResponse(fault: CONNECTION_RESET_BY_PEER),
                 new Response(delay: ofMillis(1000)),
         ]
     }

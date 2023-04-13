@@ -3,9 +3,7 @@ package pl.allegro.tech.workshops.testsparallelexecution.email
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.stubbing.Scenario
-import pl.allegro.tech.workshops.testsparallelexecution.support.Request
-import pl.allegro.tech.workshops.testsparallelexecution.support.Response
-import pl.allegro.tech.workshops.testsparallelexecution.support.ScenarioRequest
+import pl.allegro.tech.workshops.testsparallelexecution.support.*
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*
 import static org.springframework.http.HttpHeaders.ACCEPT
@@ -16,27 +14,27 @@ trait EmailServerStub {
 
     abstract WireMockServer getWiremockServer()
 
-    void stubPostJson(Request request, List<Response> responses) {
+    void stubPostJson(Request request, List<AbstractResponse> responses) {
         stubPostJson(new ScenarioRequest(request: request, scenario: new ScenarioRequest.RequestScenario(name: 'test', inState: Scenario.STARTED, toState: "after request 0")), responses.first())
         responses.drop(1).eachWithIndex { response, index ->
             stubPostJson(new ScenarioRequest(request: request, scenario: new ScenarioRequest.RequestScenario(name: 'test', inState: "after request ${index}", toState: "after request ${index + 1}")), response)
         }
     }
 
-    void stubPostJson(Request request, Response response) {
+    void stubPostJson(Request request, AbstractResponse response) {
         stubPostJson(new ScenarioRequest(request: request), response)
     }
 
-    void stubPostJson(ScenarioRequest request, Response response) {
+    void stubPostJson(ScenarioRequest request, AbstractResponse response) {
         def responseDefinitionBuilder = aResponse()
-                .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
-        if (response.fault != null) {
+        if (response instanceof FaultResponse && response.fault != null) {
             responseDefinitionBuilder.withFault(response.fault)
-        } else if (response.status > 0) {
+        } else if (response instanceof Response && response.status > 0) {
+            responseDefinitionBuilder.withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
             responseDefinitionBuilder.withStatus(response.status)
-        }
-        if (response.delay != null) {
-            responseDefinitionBuilder.withFixedDelay(response.delay.toMillis().intValue())
+            if (response.delay != null) {
+                responseDefinitionBuilder.withFixedDelay(response.delay.toMillis().intValue())
+            }
         }
 
         def mappingBuilder = post(urlEqualTo(request.request.path))

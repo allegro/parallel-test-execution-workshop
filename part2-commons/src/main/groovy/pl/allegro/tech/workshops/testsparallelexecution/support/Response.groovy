@@ -5,11 +5,18 @@ import groovy.transform.ToString
 
 import java.time.Duration
 
+class AbstractResponse {
+}
+
 @ToString(includePackage = false, includeNames = true, ignoreNulls = true)
-class Response {
-    static final OK = new Response(status: 200)
-    Integer status
+class FaultResponse extends AbstractResponse {
     Fault fault
-    Duration delay
-    Object body
+}
+
+@ToString(includePackage = false, includeNames = true, ignoreNulls = true)
+class Response extends AbstractResponse {
+    static final OK = new Response(status: 200)
+    Integer status = 200
+    Duration delay = Duration.ZERO
+    Object body = null
 }
