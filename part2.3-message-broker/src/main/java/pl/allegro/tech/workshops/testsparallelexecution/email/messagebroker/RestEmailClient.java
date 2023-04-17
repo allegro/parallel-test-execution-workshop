@@ -1,4 +1,4 @@
-package pl.allegro.tech.workshops.testsparallelexecution.email;
+package pl.allegro.tech.workshops.testsparallelexecution.email.messagebroker;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,4 +1,4 @@
-package pl.allegro.tech.workshops.testsparallelexecution.email;
+package pl.allegro.tech.workshops.testsparallelexecution.email.rest;
 
 
 import jakarta.validation.constraints.NotBlank;

@@ -1,4 +1,4 @@
-package pl.allegro.tech.workshops.testsparallelexecution.email
+package pl.allegro.tech.workshops.testsparallelexecution.email.rest
 
 import com.github.tomakehurst.wiremock.WireMockServer
 import pl.allegro.tech.workshops.testsparallelexecution.BaseResourceTest

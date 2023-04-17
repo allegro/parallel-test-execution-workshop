@@ -1,4 +1,4 @@
-package pl.allegro.tech.workshops.testsparallelexecution.email;
+package pl.allegro.tech.workshops.testsparallelexecution.email.messagebroker;
 
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;

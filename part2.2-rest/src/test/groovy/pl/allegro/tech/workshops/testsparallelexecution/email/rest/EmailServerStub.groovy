@@ -1,4 +1,4 @@
-package pl.allegro.tech.workshops.testsparallelexecution.email
+package pl.allegro.tech.workshops.testsparallelexecution.email.rest
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.github.tomakehurst.wiremock.WireMockServer

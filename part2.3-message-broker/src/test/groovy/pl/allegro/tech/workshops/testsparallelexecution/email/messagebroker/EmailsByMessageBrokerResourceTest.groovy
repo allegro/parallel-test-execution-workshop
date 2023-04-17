@@ -1,4 +1,4 @@
-package pl.allegro.tech.workshops.testsparallelexecution.email
+package pl.allegro.tech.workshops.testsparallelexecution.email.messagebroker
 
 import org.junit.Rule
 import pl.allegro.tech.hermes.mock.HermesMockRule
