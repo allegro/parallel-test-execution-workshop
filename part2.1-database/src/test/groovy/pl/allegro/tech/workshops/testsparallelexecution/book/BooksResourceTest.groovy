@@ -41,7 +41,7 @@ class BooksResourceTest extends BaseResourceTest {
             it.author() == "Davis Stephen R."
         }
         def documentWithCreatedBook = databaseHelper.findById(result.body.id(), Book)
-        assert documentWithCreatedBook != null, 'updated document was not found'
+        assert documentWithCreatedBook != null, 'created document was not found'
         with(documentWithCreatedBook) {
             it.id() == result.body.id()
             it.title() == this.title
