@@ -17,11 +17,11 @@ import java.time.Duration;
 import java.util.concurrent.ExecutionException;
 
 @Component
-public class RestEmailClient implements EmailClient {
+public class MessageBrokerEmailClient implements EmailClient {
 
     private final HermesClient client;
 
-    public RestEmailClient(@Value("${application.services.message-broker.url}") String serviceUrl) {
+    public MessageBrokerEmailClient(@Value("${application.services.message-broker.url}") String serviceUrl) {
         HttpClient httpClient = HttpClient.create()
                 .responseTimeout(Duration.ofMillis(500));
         client = HermesClientBuilder.hermesClient(new WebClientHermesSender(WebClient.builder()
