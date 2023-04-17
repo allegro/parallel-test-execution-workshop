@@ -38,7 +38,7 @@ public class RestEmailClient implements EmailClient {
             String message = new ObjectMapper().writeValueAsString(EmailServiceEvent.from(email));
             HermesResponse hermesResponse = client.publishJSON("pl.allegro.tech.workshops.testsparallelexecution.email", message).get();
             if (hermesResponse.isFailure()) {
-                throw new RuntimeException(hermesResponse.getFailureCause().get());
+                throw new RuntimeException(hermesResponse.getDebugLog());
             }
         } catch (JsonProcessingException | InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
