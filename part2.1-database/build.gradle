@@ -46,4 +46,5 @@ createTestsExecutionReport {
             enabled = false
         }
     }
+    shiftTimestampsToStartOfDay = true
 }
