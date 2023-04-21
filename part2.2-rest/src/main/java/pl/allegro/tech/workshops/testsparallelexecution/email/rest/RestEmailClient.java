@@ -27,12 +27,12 @@ public class RestEmailClient implements EmailClient {
     }
 
     @Override
-    public void send(Email email) {
+    public void send(EmailRequest email) {
         retryTemplate.execute(context -> restTemplate.postForEntity("/external-api-service/emails", EmailServiceRequest.from(email), Void.class));
     }
 
     private record EmailServiceRequest(String from, String to, String subject) {
-        public static EmailServiceRequest from(Email email) {
+        public static EmailServiceRequest from(EmailRequest email) {
             return new EmailServiceRequest(email.sender(), email.recipient(), email.subject());
         }
     }

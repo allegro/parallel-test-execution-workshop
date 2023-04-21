@@ -33,7 +33,7 @@ public class MessageBrokerEmailClient implements EmailClient {
     }
 
     @Override
-    public void send(Email email) {
+    public void send(EmailRequest email) {
         try {
             String message = new ObjectMapper().writeValueAsString(EmailServiceEvent.from(email));
             HermesResponse hermesResponse = client.publishJSON("pl.allegro.tech.workshops.testsparallelexecution.email", message).get();
@@ -47,7 +47,7 @@ public class MessageBrokerEmailClient implements EmailClient {
 }
 
 record EmailServiceEvent(String from, String to, String subject) {
-    public static EmailServiceEvent from(Email email) {
+    public static EmailServiceEvent from(EmailRequest email) {
         return new EmailServiceEvent(email.sender(), email.recipient(), email.subject());
     }
 }

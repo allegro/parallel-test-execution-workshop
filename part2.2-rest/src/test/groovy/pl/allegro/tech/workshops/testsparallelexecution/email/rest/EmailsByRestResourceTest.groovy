@@ -35,11 +35,11 @@ class EmailsByRestResourceTest extends BaseResourceTest implements EmailServerSt
 
     def "send e-mail"() {
         given:
-        def email = Email.of(subject, "from@example.com", "to@example.com")
+        def email = EmailRequest.of(subject, "from@example.com", "to@example.com")
         stubPostJson(new Request(path: "/external-api-service/emails"), Response.OK)
 
         when:
-        def result = restClient.post("/emails", email, Email)
+        def result = restClient.post("/emails", email, EmailRequest)
 
         then:
         result.statusCode == OK
@@ -48,11 +48,11 @@ class EmailsByRestResourceTest extends BaseResourceTest implements EmailServerSt
 
     def "do not sent email without sender"() {
         given:
-        def email = Email.of(subject, sender, "to@example.com")
+        def email = EmailRequest.of(subject, sender, "to@example.com")
         stubPostJson(new Request(path: "/external-api-service/emails"), Response.OK)
 
         when:
-        def result = restClient.post("/emails", email, Email)
+        def result = restClient.post("/emails", email, EmailRequest)
 
         then:
         result.statusCode == BAD_REQUEST
@@ -63,11 +63,11 @@ class EmailsByRestResourceTest extends BaseResourceTest implements EmailServerSt
     }
 
     def "handle email service errors"() {
-        def email = Email.of(subject, "from@example.com", "to@example.com")
+        def email = EmailRequest.of(subject, "from@example.com", "to@example.com")
         stubPostJson(new Request(path: "/external-api-service/emails"), errorResponse)
 
         when:
-        def result = restClient.post("/emails", email, Email)
+        def result = restClient.post("/emails", email, EmailRequest)
 
         then:
         result.statusCode == INTERNAL_SERVER_ERROR
@@ -83,11 +83,11 @@ class EmailsByRestResourceTest extends BaseResourceTest implements EmailServerSt
     }
 
     def "retry email sending"() {
-        def email = Email.of(subject, "from@example.com", "to@example.com")
+        def email = EmailRequest.of(subject, "from@example.com", "to@example.com")
         stubPostJson(new Request(path: "/external-api-service/emails"), [errorResponse, Response.OK])
 
         when:
-        def result = restClient.post("/emails", email, Email)
+        def result = restClient.post("/emails", email, EmailRequest)
 
         then:
         result.statusCode == OK

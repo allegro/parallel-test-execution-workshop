@@ -17,11 +17,11 @@ class EmailsByMessageBrokerResourceTest extends BaseResourceTest {
 
     def "send e-mail"() {
         given:
-        def email = Email.of(subject, "from@example.com", "to@example.com")
+        def email = EmailRequest.of(subject, "from@example.com", "to@example.com")
         hermesMock.define().jsonTopic('pl.allegro.tech.workshops.testsparallelexecution.email')
 
         when:
-        def result = restClient.post("/emails", email, Email)
+        def result = restClient.post("/emails", email, EmailRequest)
 
         then:
         result.statusCode == OK
@@ -30,11 +30,11 @@ class EmailsByMessageBrokerResourceTest extends BaseResourceTest {
 
     def "do not sent email without sender"() {
         given:
-        def email = Email.of(subject, sender, "to@example.com")
+        def email = EmailRequest.of(subject, sender, "to@example.com")
         hermesMock.define().jsonTopic('pl.allegro.tech.workshops.testsparallelexecution.email')
 
         when:
-        def result = restClient.post("/emails", email, Email)
+        def result = restClient.post("/emails", email, EmailRequest)
 
         then:
         result.statusCode == BAD_REQUEST
@@ -45,11 +45,11 @@ class EmailsByMessageBrokerResourceTest extends BaseResourceTest {
     }
 
     def "handle email service errors"() {
-        def email = Email.of(subject, "from@example.com", "to@example.com")
+        def email = EmailRequest.of(subject, "from@example.com", "to@example.com")
         hermesMock.define().jsonTopic('pl.allegro.tech.workshops.testsparallelexecution.email', errorResponse)
 
         when:
-        def result = restClient.post("/emails", email, Email)
+        def result = restClient.post("/emails", email, EmailRequest)
 
         then:
         result.statusCode == INTERNAL_SERVER_ERROR
