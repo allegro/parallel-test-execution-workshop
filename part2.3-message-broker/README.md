@@ -19,8 +19,7 @@ Run service locally and check documentation.
 
 #### Shared state
 
-- stubs regarding resource used in many tests
-- HermesMock state
+- stubs regarding message broker (HermesMock state)
 
 What to check?
 

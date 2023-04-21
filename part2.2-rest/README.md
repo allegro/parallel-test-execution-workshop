@@ -19,8 +19,7 @@ Run service locally and check documentation.
 
 #### Shared state
 
-- stubs regarding resource used in many tests
-- Wiremock state
+- stubs regarding REST dependency used in many tests (Wiremock state)
 
 What to check?
 
