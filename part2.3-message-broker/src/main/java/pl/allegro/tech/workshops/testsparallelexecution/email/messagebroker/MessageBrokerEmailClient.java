@@ -20,8 +20,11 @@ import java.util.concurrent.ExecutionException;
 public class MessageBrokerEmailClient implements EmailClient {
 
     private final HermesClient client;
+    private final String topic;
 
-    public MessageBrokerEmailClient(@Value("${application.services.message-broker.url}") String serviceUrl) {
+    public MessageBrokerEmailClient(@Value("${application.services.message-broker.url}") String serviceUrl,
+                                    @Value("${application.services.message-broker.topic}") String topic) {
+        this.topic = topic;
         HttpClient httpClient = HttpClient.create()
                 .responseTimeout(Duration.ofMillis(500));
         client = HermesClientBuilder.hermesClient(new WebClientHermesSender(WebClient.builder()
@@ -36,7 +39,7 @@ public class MessageBrokerEmailClient implements EmailClient {
     public void send(EmailRequest email) {
         try {
             String message = new ObjectMapper().writeValueAsString(EmailServiceEvent.from(email));
-            HermesResponse hermesResponse = client.publishJSON("pl.allegro.tech.workshops.testsparallelexecution.email", message).get();
+            HermesResponse hermesResponse = client.publishJSON(topic, message).get();
             if (hermesResponse.isFailure()) {
                 throw new RuntimeException(hermesResponse.getDebugLog());
             }

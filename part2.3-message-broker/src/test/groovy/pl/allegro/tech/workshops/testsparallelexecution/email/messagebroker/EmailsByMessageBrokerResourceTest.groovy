@@ -1,6 +1,7 @@
 package pl.allegro.tech.workshops.testsparallelexecution.email.messagebroker
 
 import org.junit.Rule
+import org.springframework.beans.factory.annotation.Value
 import pl.allegro.tech.hermes.mock.HermesMockRule
 import pl.allegro.tech.workshops.testsparallelexecution.BaseResourceTest
 
@@ -10,35 +11,38 @@ import static pl.allegro.tech.hermes.mock.exchange.Response.Builder.aResponse
 
 class EmailsByMessageBrokerResourceTest extends BaseResourceTest {
 
+    @Value('${application.services.message-broker.topic}')
+    private String topic
+
     @Rule
-    HermesMockRule hermesMock = new HermesMockRule(8089)
+    private HermesMockRule hermesMock = new HermesMockRule(8089)
 
     private String subject = "New workshops!"
 
     def "send e-mail"() {
         given:
         def email = EmailRequest.of(subject, "from@example.com", "to@example.com")
-        hermesMock.define().jsonTopic('pl.allegro.tech.workshops.testsparallelexecution.email')
+        hermesMock.define().jsonTopic(topic)
 
         when:
         def result = restClient.post("/emails", email, EmailRequest)
 
         then:
         result.statusCode == OK
-        hermesMock.expect().singleJsonMessageOnTopicAs('pl.allegro.tech.workshops.testsparallelexecution.email', EmailServiceEvent.class)
+        hermesMock.expect().singleJsonMessageOnTopicAs(topic, EmailServiceEvent)
     }
 
     def "do not sent email without sender"() {
         given:
         def email = EmailRequest.of(subject, sender, "to@example.com")
-        hermesMock.define().jsonTopic('pl.allegro.tech.workshops.testsparallelexecution.email')
+        hermesMock.define().jsonTopic(topic)
 
         when:
         def result = restClient.post("/emails", email, EmailRequest)
 
         then:
         result.statusCode == BAD_REQUEST
-        hermesMock.expect().jsonMessagesOnTopicAs('pl.allegro.tech.workshops.testsparallelexecution.email', 0, EmailServiceEvent.class)
+        hermesMock.expect().jsonMessagesOnTopicAs(topic, 0, EmailServiceEvent)
 
         where:
         sender << [null, '', ' ']
@@ -46,7 +50,7 @@ class EmailsByMessageBrokerResourceTest extends BaseResourceTest {
 
     def "handle email service errors"() {
         def email = EmailRequest.of(subject, "from@example.com", "to@example.com")
-        hermesMock.define().jsonTopic('pl.allegro.tech.workshops.testsparallelexecution.email', errorResponse)
+        hermesMock.define().jsonTopic(topic, errorResponse)
 
         when:
         def result = restClient.post("/emails", email, EmailRequest)

@@ -1,1 +1,2 @@
 application.services.message-broker.url: https://emails.example.com
+application.services.message-broker.topic: pl.allegro.tech.workshops.testsparallelexecution.email
