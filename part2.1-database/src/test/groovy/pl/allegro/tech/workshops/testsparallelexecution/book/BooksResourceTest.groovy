@@ -9,7 +9,11 @@ import static org.springframework.http.HttpStatus.*
 
 class BooksResourceTest extends BaseResourceTest {
 
-    private String title = "C++ for dummies"
+    private String title
+
+    def setup() {
+        title = "C++ for dummies"
+    }
 
     def cleanup() {
         databaseHelper.removeAll(Book)
