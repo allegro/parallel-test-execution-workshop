@@ -6,6 +6,6 @@ class RandomUniqueValueGenerator implements UniqueValueGenerator {
 
     @Override
     String next() {
-        return RandomStringUtils.random(5)
+        return RandomStringUtils.randomAlphanumeric(5)
     }
 }
