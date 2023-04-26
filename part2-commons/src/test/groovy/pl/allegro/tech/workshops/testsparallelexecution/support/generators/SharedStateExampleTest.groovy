@@ -1,39 +1,46 @@
 package pl.allegro.tech.workshops.testsparallelexecution.support.generators
 
-
+import spock.lang.Shared
 import spock.lang.Specification
+import spock.lang.TempDir
 
-class GeneratorsExampleTest extends Specification {
+class SharedStateExampleTest extends Specification {
 
-//    @Shared
-//    def generator = new NextIntValueGenerator()
-    // or
-//    def generator = new RandomUniqueValueGenerator()
-    //or
-//    def generator = new TestNameUniqueValueGenerator(this.specificationContext)
+    @Shared
+    @TempDir
+    File tempDir
 
     private String id = "2"
 
     def setup() {
-//        id = generator.next()
+    }
+
+    def cleanup() {
+        new File(tempDir, id).delete()
     }
 
     def "test case a"() {
+        given:
         println "id = $id"
+
         expect:
-        true
+        new File(tempDir, id).createNewFile()
     }
 
     def "test case b"() {
+        given:
         println "id = $id"
+
         expect:
-        true
+        new File(tempDir, id).createNewFile()
     }
 
     def "test case #name"() {
+        given:
         println "id = $id"
+
         expect:
-        true
+        new File(tempDir, id).createNewFile()
 
         where:
         name | _
