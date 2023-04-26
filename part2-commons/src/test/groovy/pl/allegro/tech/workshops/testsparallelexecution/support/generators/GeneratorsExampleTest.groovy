@@ -1,7 +1,6 @@
 package pl.allegro.tech.workshops.testsparallelexecution.support.generators
 
 
-import spock.lang.Shared
 import spock.lang.Specification
 
 class GeneratorsExampleTest extends Specification {
@@ -31,10 +30,15 @@ class GeneratorsExampleTest extends Specification {
         true
     }
 
-    def "test case c"() {
+    def "test case #name"() {
         println "id = $id"
         expect:
         true
+
+        where:
+        name | _
+        "c"  | _
+        "d"  | _
     }
 
 }
