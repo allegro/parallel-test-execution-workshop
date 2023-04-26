@@ -6,17 +6,17 @@ import spock.lang.Specification
 
 class GeneratorsExampleTest extends Specification {
 
-    @Shared
-    def generator = new NextIntValueGenerator()
+//    @Shared
+//    def generator = new NextIntValueGenerator()
     // or
 //    def generator = new RandomUniqueValueGenerator()
     //or
 //    def generator = new TestNameUniqueValueGenerator(this.specificationContext)
 
-    private String id
+    private String id = "2"
 
     def setup() {
-        id = generator.next()
+//        id = generator.next()
     }
 
     def "test case a"() {
