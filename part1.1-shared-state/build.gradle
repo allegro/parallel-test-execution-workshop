@@ -2,7 +2,6 @@ plugins {
     id 'java'
     id 'groovy'
     id 'io.github.platan.tests-execution-chart'
-//    id 'net.rdrei.android.buildtimetracker' version "0.11.0"
 }
 
 repositories {
@@ -18,11 +17,7 @@ dependencies {
 
 test {
     useJUnitPlatform()
-    testLogging {
-        info.events = ["passed", "failed", "skipped"]
-    }
 }
-
 
 createTestsExecutionReport {
     formats {
@@ -33,17 +28,5 @@ createTestsExecutionReport {
             enabled = false
         }
     }
+    shiftTimestampsToStartOfDay = true
 }
-
-//buildtimetracker {
-//    reporters {
-//        csv {
-//            append true
-//            header true
-//            output ".build-time.csv"
-//        }
-//        summary {
-//            barstyle "none"
-//        }
-//    }
-//}

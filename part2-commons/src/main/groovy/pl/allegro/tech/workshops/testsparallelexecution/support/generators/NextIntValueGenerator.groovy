@@ -1,19 +1,21 @@
 package pl.allegro.tech.workshops.testsparallelexecution.support.generators
 
+import java.util.concurrent.atomic.AtomicInteger
+
 class NextIntValueGenerator implements UniqueValueGenerator {
 
-    private int value = 0
+    private AtomicInteger value
 
     NextIntValueGenerator() {
         this(1)
     }
 
     NextIntValueGenerator(int initialValue) {
-        this.value = initialValue
+        this.value = new AtomicInteger(initialValue)
     }
 
     @Override
     String next() {
-        return value++
+        return value.getAndIncrement()
     }
 }
