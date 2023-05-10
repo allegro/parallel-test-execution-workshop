@@ -18,4 +18,4 @@ with args.stats_file as csvfile:
     if test_times:
         print("min:", min(test_times))
         print("max:", max(test_times))
-        print("mean:", statistics.mean(test_times))
+        print("mean:", round(statistics.mean(test_times)))
