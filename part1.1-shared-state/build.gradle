@@ -1,11 +1,19 @@
 plugins {
     id 'java'
     id 'groovy'
+    id 'org.springframework.boot' version '3.0.0'
+    id 'io.spring.dependency-management' version '1.1.0'
     id 'io.github.platan.tests-execution-chart'
 }
 
+sourceCompatibility = '17'
+
 repositories {
     mavenCentral()
+}
+
+ext {
+    set('testcontainersVersion', "1.17.6")
 }
 
 dependencies {
@@ -13,10 +21,24 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
     testImplementation platform('org.spockframework:spock-bom:2.4-M1-groovy-4.0')
     testImplementation 'org.spockframework:spock-core'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.retry:spring-retry'
+    implementation 'org.springframework:spring-webflux'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
+
+    testImplementation project(':part2-commons')
 }
 
 test {
     useJUnitPlatform()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
+    }
 }
 
 createTestsExecutionReport {
@@ -29,4 +51,8 @@ createTestsExecutionReport {
         }
     }
     shiftTimestampsToStartOfDay = true
+}
+
+bootJar {
+    enabled = false
 }
