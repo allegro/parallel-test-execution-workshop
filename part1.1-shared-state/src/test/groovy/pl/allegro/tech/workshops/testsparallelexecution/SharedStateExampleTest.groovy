@@ -11,7 +11,6 @@ class SharedStateExampleTest extends Specification {
     File tempDir
 
     private File file
-    private String id = "2"
 
     def setup() {
     }
@@ -22,8 +21,10 @@ class SharedStateExampleTest extends Specification {
 
     def "should create file"() {
         given:
+        String id = "2"
         file = new File(tempDir, id)
         println "id = $id"
+        assert !file.exists()
 
         when:
         def result = file.createNewFile()
@@ -35,8 +36,10 @@ class SharedStateExampleTest extends Specification {
 
     def "should create dir"() {
         given:
+        String id = "2"
         file = new File(tempDir, id)
         println "id = $id"
+        assert !file.exists()
 
         when:
         def result = file.mkdir()
@@ -48,9 +51,11 @@ class SharedStateExampleTest extends Specification {
 
     def "should create readable/non-readable file"() {
         given:
+        String id = "2"
         file = new File(tempDir, id)
         file.setReadable(readable)
         println "id = $id"
+        assert !file.exists()
 
         when:
         def result = file.createNewFile()
