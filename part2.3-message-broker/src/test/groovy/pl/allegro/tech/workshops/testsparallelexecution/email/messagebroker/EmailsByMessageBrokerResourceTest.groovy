@@ -3,13 +3,13 @@ package pl.allegro.tech.workshops.testsparallelexecution.email.messagebroker
 import org.junit.Rule
 import org.springframework.beans.factory.annotation.Value
 import pl.allegro.tech.hermes.mock.HermesMockRule
-import pl.allegro.tech.workshops.testsparallelexecution.BaseResourceTest
+import pl.allegro.tech.workshops.testsparallelexecution.BaseTestWithRest
 
 import static java.time.Duration.ofMillis
 import static org.springframework.http.HttpStatus.*
 import static pl.allegro.tech.hermes.mock.exchange.Response.Builder.aResponse
 
-class EmailsByMessageBrokerResourceTest extends BaseResourceTest {
+class EmailsByMessageBrokerResourceTest extends BaseTestWithRest {
 
     @Value('${application.services.message-broker.topic}')
     private String topic

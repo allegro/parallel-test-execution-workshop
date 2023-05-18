@@ -2,12 +2,12 @@ package pl.allegro.tech.workshops.testsparallelexecution.book
 
 
 import org.springframework.http.ProblemDetail
-import pl.allegro.tech.workshops.testsparallelexecution.BaseResourceTest
+import pl.allegro.tech.workshops.testsparallelexecution.BaseTestWithRestAndDatabase
 import pl.allegro.tech.workshops.testsparallelexecution.books.Book
 
 import static org.springframework.http.HttpStatus.*
 
-class BooksResourceTest extends BaseResourceTest {
+class BooksResourceTest extends BaseTestWithRestAndDatabase {
 
     private String title
 

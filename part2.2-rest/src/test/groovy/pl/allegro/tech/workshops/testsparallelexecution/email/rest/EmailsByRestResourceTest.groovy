@@ -1,7 +1,7 @@
 package pl.allegro.tech.workshops.testsparallelexecution.email.rest
 
 import com.github.tomakehurst.wiremock.WireMockServer
-import pl.allegro.tech.workshops.testsparallelexecution.BaseResourceTest
+import pl.allegro.tech.workshops.testsparallelexecution.BaseTestWithRest
 import pl.allegro.tech.workshops.testsparallelexecution.support.FaultResponse
 import pl.allegro.tech.workshops.testsparallelexecution.support.Request
 import pl.allegro.tech.workshops.testsparallelexecution.support.Response
@@ -12,7 +12,7 @@ import static com.github.tomakehurst.wiremock.http.Fault.EMPTY_RESPONSE
 import static java.time.Duration.ofMillis
 import static org.springframework.http.HttpStatus.*
 
-class EmailsByRestResourceTest extends BaseResourceTest implements EmailServerStub {
+class EmailsByRestResourceTest extends BaseTestWithRest implements EmailServerStub {
 
     @Shared
     WireMockServer wiremockServer
