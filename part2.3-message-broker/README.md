@@ -22,8 +22,10 @@ Run service locally and check documentation.
 What to check?
 
 - test setup/cleanup
-- stubs
-- assertions
+- stubs (
+  check [Hermes Mock documentation](https://hermes-pubsub.readthedocs.io/en/latest/user/hermes-mock/#hermesmockdefine))
+- assertions (
+  check [Hermes Mock documentation](https://hermes-pubsub.readthedocs.io/en/latest/user/hermes-mock/#hermesmockexpect))
 
 ---
 [home](../README.md)
