@@ -9,6 +9,8 @@ First, familiarize yourself with [tests](src/test/groovy) in this module.
   in [`SpockConfig.groovy`](src/test/resources/SpockConfig.groovy)
 - Run tests again `./gradlew --rerun-tasks :part1.1-shared-state:test`
 
+Some tests failed. Eliminate shared state by using different `name` in test cases.
+
 ---
 
 [home](../README.md)
