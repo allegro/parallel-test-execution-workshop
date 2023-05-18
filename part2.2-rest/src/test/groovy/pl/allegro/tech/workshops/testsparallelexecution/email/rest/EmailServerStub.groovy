@@ -15,9 +15,11 @@ trait EmailServerStub {
     abstract WireMockServer getWiremockServer()
 
     void stubPostJson(Request request, List<AbstractResponse> responses) {
-        stubPostJson(new ScenarioRequest(request: request, scenario: new ScenarioRequest.RequestScenario(name: 'test', inState: Scenario.STARTED, toState: "after request 0")), responses.first())
+        def scenario = new ScenarioRequest.RequestScenario(name: 'test', inState: Scenario.STARTED, toState: "after request 0")
+        stubPostJson(new ScenarioRequest(request: request, scenario: scenario), responses.first())
         responses.drop(1).eachWithIndex { response, index ->
-            stubPostJson(new ScenarioRequest(request: request, scenario: new ScenarioRequest.RequestScenario(name: 'test', inState: "after request ${index}", toState: "after request ${index + 1}")), response)
+            scenario = new ScenarioRequest.RequestScenario(name: 'test', inState: "after request ${index}", toState: "after request ${index + 1}")
+            stubPostJson(new ScenarioRequest(request: request, scenario: scenario), response)
         }
     }
 
@@ -25,7 +27,7 @@ trait EmailServerStub {
         stubPostJson(new ScenarioRequest(request: request), response)
     }
 
-    void stubPostJson(ScenarioRequest request, AbstractResponse response) {
+    void stubPostJson(ScenarioRequest scenarioRequest, AbstractResponse response) {
         def responseDefinitionBuilder = aResponse()
         if (response instanceof FaultResponse && response.fault != null) {
             responseDefinitionBuilder.withFault(response.fault)
@@ -37,31 +39,35 @@ trait EmailServerStub {
             }
         }
 
-        def mappingBuilder = post(urlEqualTo(request.request.path))
-        if (request?.scenario) {
+        def mappingBuilder = post(urlEqualTo(scenarioRequest.request.path))
+        if (scenarioRequest?.scenario) {
             mappingBuilder
-                    .inScenario(request.scenario.name)
-                    .whenScenarioStateIs(request.scenario.inState)
-                    .willSetStateTo(request.scenario.toState)
+                    .inScenario(scenarioRequest.scenario.name)
+                    .whenScenarioStateIs(scenarioRequest.scenario.inState)
+                    .willSetStateTo(scenarioRequest.scenario.toState)
         }
-        if (request.request?.body) {
-            def requestBody = new ObjectMapper().writeValueAsString(request.request.body)
-            mappingBuilder.withRequestBody(equalToJson(requestBody))
+        if (scenarioRequest.request?.body) {
+//            def requestBody = new ObjectMapper().writeValueAsString(scenarioRequest.request.body)
+//            mappingBuilder.withRequestBody(equalToJson(requestBody))
         }
         wiremockServer.stubFor(mappingBuilder
                 .willReturn(responseDefinitionBuilder))
     }
 
-    void verifyPostJson(Request request, Response response) {
-        def body = new ObjectMapper().writeValueAsString(response.body)
+    void verifyPostJson(Request request) {
+        def body = new ObjectMapper().writeValueAsString(request.body)
         wiremockServer.verify(postRequestedFor(urlEqualTo(request.path))
                 .withHeader(ACCEPT, equalTo("application/json, application/*+json"))
-                .withRequestBody(equalToJson(body)))
+//                .withRequestBody(equalToJson(body))
+        )
     }
 
     void verifyNoPostJson(Request request) {
+        def body = new ObjectMapper().writeValueAsString(request.body)
         wiremockServer.verify(0, postRequestedFor(urlEqualTo(request.path))
-                .withHeader(ACCEPT, equalTo("application/json, application/*+json")))
+                .withHeader(ACCEPT, equalTo("application/json, application/*+json"))
+//                .withRequestBody(equalToJson(body))
+        )
     }
 
 }

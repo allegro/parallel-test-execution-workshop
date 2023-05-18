@@ -18,5 +18,4 @@ class Response extends AbstractResponse {
     static final OK = new Response(status: 200)
     Integer status = 200
     Duration delay = Duration.ZERO
-    Object body = null
 }
