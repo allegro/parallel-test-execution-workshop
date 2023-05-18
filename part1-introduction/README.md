@@ -127,7 +127,7 @@ Supported options:
 - `dynamic(BigDecimal factor)`
 - `dynamicWithReservedProcessors(BigDecimal factor, int reservedProcessors)`
 - `fixed(int parallelism)`
-- `custom(int parallelism, int minimumRunnable, int maxPoolSize, int corePoolSize, int keepAliveSeconds)`
+- `custom(int parallelism, int minimumRunnable, int maxPoolSize, int corePoolSize, int keepAliveSeconds)` ([docs](https://spockframework.org/spock/javadoc/2.3/spock/config/ParallelConfiguration.html#custom(int,int,int,int,int)))
 
 Default: `dynamicWithReservedProcessors(1.0, 2)`
 
