@@ -10,13 +10,13 @@ import org.springframework.web.client.RestTemplate;
 import java.time.Duration;
 
 @Component
-public class RestEmailClient implements EmailClient {
+public class ExternalEmailClient implements EmailClient {
 
     private final RestTemplate restTemplate;
 
     private final RetryTemplate retryTemplate;
 
-    public RestEmailClient(RestTemplateBuilder builder, @Value("${application.services.email.url}") String serviceUrl) {
+    public ExternalEmailClient(RestTemplateBuilder builder, @Value("${application.services.email.url}") String serviceUrl) {
         this.restTemplate = builder
                 .rootUri(serviceUrl)
                 .setConnectTimeout(Duration.ofMillis(100))
@@ -28,12 +28,13 @@ public class RestEmailClient implements EmailClient {
 
     @Override
     public void send(EmailRequest email) {
-        retryTemplate.execute(context -> restTemplate.postForEntity("/external-api-service/emails", EmailServiceRequest.from(email), Void.class));
+        retryTemplate.execute(context -> restTemplate.postForEntity("/external-api-service/emails", ExternalEmailRequest.from(email), Void.class));
     }
 
-    private record EmailServiceRequest(String from, String to, String subject) {
-        public static EmailServiceRequest from(EmailRequest email) {
-            return new EmailServiceRequest(email.sender(), email.recipient(), email.subject());
-        }
+}
+
+record ExternalEmailRequest(String subject, String from, String to) {
+    public static ExternalEmailRequest from(EmailRequest email) {
+        return new ExternalEmailRequest(email.subject(), email.sender(), email.recipient());
     }
 }

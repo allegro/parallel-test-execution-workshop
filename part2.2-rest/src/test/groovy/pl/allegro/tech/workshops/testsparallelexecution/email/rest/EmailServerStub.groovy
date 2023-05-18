@@ -14,11 +14,11 @@ trait EmailServerStub {
 
     abstract WireMockServer getWiremockServer()
 
-    void stubPostJson(Request request, List<AbstractResponse> responses) {
-        def scenario = new ScenarioRequest.RequestScenario(name: 'test', inState: Scenario.STARTED, toState: "after request 0")
+    void stubPostJson(Request request, List<AbstractResponse> responses, scenarioName = 'test') {
+        def scenario = new ScenarioRequest.RequestScenario(name: scenarioName, inState: Scenario.STARTED, toState: "after request 0")
         stubPostJson(new ScenarioRequest(request: request, scenario: scenario), responses.first())
         responses.drop(1).eachWithIndex { response, index ->
-            scenario = new ScenarioRequest.RequestScenario(name: 'test', inState: "after request ${index}", toState: "after request ${index + 1}")
+            scenario = new ScenarioRequest.RequestScenario(name: scenarioName, inState: "after request ${index}", toState: "after request ${index + 1}")
             stubPostJson(new ScenarioRequest(request: request, scenario: scenario), response)
         }
     }
