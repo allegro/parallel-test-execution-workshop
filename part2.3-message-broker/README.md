@@ -1,7 +1,5 @@
 # Refactoring integration tests in an example REST service with a message broker
 
-[//]: # (TODO: describe components [Hermes] used in this app)
-
 ### Familiarize yourself with this service
 
 Run service locally and check documentation.
