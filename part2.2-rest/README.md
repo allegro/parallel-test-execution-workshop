@@ -22,7 +22,8 @@ Run service locally and check documentation.
 What to check?
 
 - test setup/cleanup
-- stubs
+- stubs (check Wiremock docs for [simulating fault](https://wiremock.org/docs/simulating-faults/) and
+  for [stateful behaviour](https://wiremock.org/docs/stateful-behaviour/))
 - assertions
 
 ---
