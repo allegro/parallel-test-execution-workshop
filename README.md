@@ -1,6 +1,6 @@
 # Parallel test execution workshop
 
-[![CI](https://github.com/3750/parallel-test-execution-workshop/actions/workflows/ci.yml/badge.svg)](https://github.com/3750/parallel-test-execution-workshop/actions/workflows/ci.yml)
+[![CI](https://github.com/allegro-playground/parallel-test-execution-workshop/actions/workflows/ci.yml/badge.svg)](https://github.com/allegro-playground/parallel-test-execution-workshop/actions/workflows/ci.yml)
 
 This repository contains code and instructions used in parallel execution workshop. Examples are based
 on [parallel execution](https://spockframework.org/spock/docs/2.3/parallel_execution.html) feature
