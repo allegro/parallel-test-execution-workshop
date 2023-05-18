@@ -36,7 +36,7 @@ or (run this command in terminal)
 (run this command in terminal)
 
 ```bash
-./gradle :part3-measuring:test --rerun -i | grep "BUILD SUCCESSFUL"
+./gradlew :part3-measuring:test --rerun -i | grep "BUILD SUCCESSFUL"
 ```
 
 ```
