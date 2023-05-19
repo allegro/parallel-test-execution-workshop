@@ -27,7 +27,7 @@ dependencies {
     implementation 'io.projectreactor.netty:reactor-netty:1.1.5'
 
 
-    testImplementation project(':part2-commons')
+    testImplementation project(':part2.0-commons')
 }
 
 dependencyManagement {

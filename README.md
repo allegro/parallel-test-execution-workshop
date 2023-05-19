@@ -12,7 +12,7 @@ non-JVM).
 
 ## Table of contents
 
-### [1. Introduction to parallel execution in Spock](part1-introduction/README.md)
+### [1. Introduction to parallel execution in Spock](part1.0-introduction/README.md)
 
 #### [1.1 Shared state](part1.1-shared-state/README.md)
 
@@ -24,7 +24,7 @@ non-JVM).
 
 #### [2.3 REST service with a message broker](part2.3-message-broker/README.md)
 
-### [3. Measuring test execution time](part3-measuring/README.md)
+### [3. Measuring test execution time](part3.0-measuring/README.md)
 
 ---
 

@@ -24,7 +24,7 @@ dependencies {
     implementation 'org.springframework:spring-webflux'
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
 
-    testImplementation project(':part2-commons')
+    testImplementation project(':part2.0-commons')
 }
 
 dependencyManagement {
