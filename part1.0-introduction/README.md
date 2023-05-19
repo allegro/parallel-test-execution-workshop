@@ -132,7 +132,7 @@ Supported options:
 Default: `dynamicWithReservedProcessors(1.0, 2)`
 
 ```sh
-./print-available-processors.jsh
+jshell print-available-processors.jsh
 ```
 
 - Add test case to class `A`
