@@ -24,13 +24,12 @@ class SharedStateExampleTest extends Specification {
         String name = "testName"
         file = new File(tempDir, name)
         println "name = $name"
-        assert !file.exists()
 
         when:
-        def result = file.createNewFile()
+        def fileCreated = file.createNewFile()
 
         then:
-        result
+        fileCreated
         file.exists()
     }
 
@@ -39,13 +38,12 @@ class SharedStateExampleTest extends Specification {
         String name = "testName"
         file = new File(tempDir, name)
         println "id = $name"
-        assert !file.exists()
 
         when:
-        def result = file.mkdir()
+        def fileCreated = file.mkdir()
 
         then:
-        result
+        fileCreated
         file.exists()
     }
 
@@ -55,13 +53,12 @@ class SharedStateExampleTest extends Specification {
         file = new File(tempDir, name)
         file.setReadable(readable)
         println "id = $name"
-        assert !file.exists()
 
         when:
-        def result = file.createNewFile()
+        def fileCreated = file.createNewFile()
 
         then:
-        result
+        fileCreated
         file.exists()
 
         where:
