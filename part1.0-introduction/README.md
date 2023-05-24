@@ -123,8 +123,8 @@ runner {
 - Run tests `./gradlew --rerun-tasks :part1.0-introduction:test :part1.0-introduction:createTestsExecutionReport`
 - Check [reports](build/reports/tests-execution/html/test.html)
 - Add `@Isolated` (`spock.lang.Isolated`) annotation to `C` class
-- Run test again `./gradlew --rerun-tasks :part1.0-introduction:test :part1.0-introduction:createTestsExecutionReport` and
-  check [reports](build/reports/tests-execution/html/test.html)
+- Run test again `./gradlew --rerun-tasks :part1.0-introduction:test :part1.0-introduction:createTestsExecutionReport`
+  and check [reports](build/reports/tests-execution/html/test.html)
 
 ## Parallel thread pool
 
@@ -144,20 +144,22 @@ jshell print-available-processors.jsh
 - Add test case to class `A`
 
 ```groovy
-def "test 3-#data"() {
+def "test 3"() {
     sleep SLEEP_DURATION
 
     expect:
     true
 
     where:
-    data << (1..50)
+    data << (1..20)
 }
 ```
 
 - Run tests `./gradlew --rerun-tasks :part1.0-introduction:test :part1.0-introduction:createTestsExecutionReport`
 - Check [reports](build/reports/tests-execution/html/test.html)
 - Configure a thread pool of your choice, run tests and check reports
+- Randomize duration of tests. In test `test 3` replace `SLEEP_DURATION`
+  with `org.apache.commons.lang3.RandomUtils.nextInt(50, 250)`. Run tests and check reports.
 
 ---
 
