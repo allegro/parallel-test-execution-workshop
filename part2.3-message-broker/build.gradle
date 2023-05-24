@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'groovy'
-    id 'org.springframework.boot' version '3.0.0'
+    id 'org.springframework.boot' version '3.1.0'
     id 'io.spring.dependency-management' version '1.1.0'
     id 'io.github.platan.tests-execution-chart'
 }
@@ -13,7 +13,7 @@ repositories {
 }
 
 ext {
-    set('testcontainersVersion', "1.17.6")
+    set('testcontainersVersion', "1.18.1")
 }
 
 dependencies {
@@ -24,7 +24,7 @@ dependencies {
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
     implementation 'pl.allegro.tech.hermes:hermes-client:2.2.9'
     implementation 'org.eclipse.jetty:jetty-reactive-httpclient:3.0.8'
-    implementation 'io.projectreactor.netty:reactor-netty:1.1.5'
+    implementation 'io.projectreactor.netty:reactor-netty:1.1.7'
 
 
     testImplementation project(':part2.0-commons')
