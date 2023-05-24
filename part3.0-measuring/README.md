@@ -10,7 +10,7 @@ allows to skip a task when the task not has to be run.
 
 Run build 2 times (run this command in terminal):
 
-`./gradlew :part3-measuring:test -i`
+`./gradlew :part3.0-measuring:test -i`
 
 Was there a difference between the execution time in each run?
 
@@ -19,15 +19,15 @@ Was there a difference between the execution time in each run?
 You can [force task to execute](https://docs.gradle.org/current/userguide/command_line_interface.html#sec:rerun_tasks)
 (run this command in terminal):
 
-`./gradlew :part3-measuring:clean :part3-measuring:test -i`
+`./gradlew :part3.0-measuring:clean :part3.0-measuring:test -i`
 
 or (run this command in terminal)
 
-`./gradlew :part3-measuring:test -i --rerun-tasks`
+`./gradlew :part3.0-measuring:test -i --rerun-tasks`
 
 or (run this command in terminal)
 
-`./gradlew :part3-measuring:test --rerun -i`
+`./gradlew :part3.0-measuring:test --rerun -i`
 
 ## Measuring options
 
@@ -36,7 +36,7 @@ or (run this command in terminal)
 (run this command in terminal)
 
 ```bash
-./gradlew :part3-measuring:test --rerun -i | grep "BUILD SUCCESSFUL"
+./gradlew :part3.0-measuring:test --rerun -i | grep "BUILD SUCCESSFUL"
 ```
 
 ```
@@ -48,7 +48,7 @@ BUILD SUCCESSFUL in 5s
 (run this command in terminal)
 
 ```shell
-./gradlew :part3-measuring:test --rerun -i --profile | grep "profiling report"
+./gradlew :part3.0-measuring:test --rerun -i --profile | grep "profiling report"
 ```
 
 ```
@@ -59,7 +59,7 @@ A sample output:
 > Task Execution\
 > \
 > Task Duration Result\
-:part3-measuring:test 5.145s
+:part3.0-measuring:test 5.145s
 
 ### Build Time Tracker
 
@@ -82,7 +82,7 @@ buildtimetracker {
 }
 ```
 
-`./gradlew :part3-measuring:test --rerun`
+`./gradlew :part3.0-measuring:test --rerun`
 
 ```shell
 cat .build-time.csv
@@ -90,27 +90,27 @@ cat .build-time.csv
 
 ```csv
 "timestamp","order","task","success","did_work","skipped","ms","date","cpu","memory","os"
-"1680249109103","0",":part3-measuring:compileJava","true","false","true","1","2023-03-31T07:51:49,103Z","Apple M1 Pro","34359738368","Mac OS X 13.3 aarch64"
-"1680249109103","1",":part3-measuring:compileGroovy","true","false","true","0","2023-03-31T07:51:49,103Z","Apple M1 Pro","34359738368","Mac OS X 13.3 aarch64"
-"1680249109103","2",":part3-measuring:processResources","true","false","true","0","2023-03-31T07:51:49,103Z","Apple M1 Pro","34359738368","Mac OS X 13.3 aarch64"
-"1680249109103","3",":part3-measuring:classes","true","false","true","0","2023-03-31T07:51:49,103Z","Apple M1 Pro","34359738368","Mac OS X 13.3 aarch64"
-"1680249109103","4",":part3-measuring:compileTestJava","true","false","true","0","2023-03-31T07:51:49,103Z","Apple M1 Pro","34359738368","Mac OS X 13.3 aarch64"
-"1680249109103","5",":part3-measuring:compileTestGroovy","true","false","true","12","2023-03-31T07:51:49,103Z","Apple M1 Pro","34359738368","Mac OS X 13.3 aarch64"
-"1680249109103","6",":part3-measuring:processTestResources","true","false","true","1","2023-03-31T07:51:49,103Z","Apple M1 Pro","34359738368","Mac OS X 13.3 aarch64"
-"1680249109103","7",":part3-measuring:testClasses","true","false","true","0","2023-03-31T07:51:49,103Z","Apple M1 Pro","34359738368","Mac OS X 13.3 aarch64"
-"1680249109103","8",":part3-measuring:test","true","true","false","1000","2023-03-31T07:51:49,103Z","Apple M1 Pro","34359738368","Mac OS X 13.3 aarch64"
+"1680249109103","0",":part3.0-measuring:compileJava","true","false","true","1","2023-03-31T07:51:49,103Z","Apple M1 Pro","34359738368","Mac OS X 13.3 aarch64"
+"1680249109103","1",":part3.0-measuring:compileGroovy","true","false","true","0","2023-03-31T07:51:49,103Z","Apple M1 Pro","34359738368","Mac OS X 13.3 aarch64"
+"1680249109103","2",":part3.0-measuring:processResources","true","false","true","0","2023-03-31T07:51:49,103Z","Apple M1 Pro","34359738368","Mac OS X 13.3 aarch64"
+"1680249109103","3",":part3.0-measuring:classes","true","false","true","0","2023-03-31T07:51:49,103Z","Apple M1 Pro","34359738368","Mac OS X 13.3 aarch64"
+"1680249109103","4",":part3.0-measuring:compileTestJava","true","false","true","0","2023-03-31T07:51:49,103Z","Apple M1 Pro","34359738368","Mac OS X 13.3 aarch64"
+"1680249109103","5",":part3.0-measuring:compileTestGroovy","true","false","true","12","2023-03-31T07:51:49,103Z","Apple M1 Pro","34359738368","Mac OS X 13.3 aarch64"
+"1680249109103","6",":part3.0-measuring:processTestResources","true","false","true","1","2023-03-31T07:51:49,103Z","Apple M1 Pro","34359738368","Mac OS X 13.3 aarch64"
+"1680249109103","7",":part3.0-measuring:testClasses","true","false","true","0","2023-03-31T07:51:49,103Z","Apple M1 Pro","34359738368","Mac OS X 13.3 aarch64"
+"1680249109103","8",":part3.0-measuring:test","true","true","false","1000","2023-03-31T07:51:49,103Z","Apple M1 Pro","34359738368","Mac OS X 13.3 aarch64"
 ```
 
 (run this command in terminal)
 
 ```shell
-for i in {1..3}; do ./gradlew :part3-measuring:test --rerun 2>&1; done
+for i in {1..3}; do ./gradlew :part3.0-measuring:test --rerun 2>&1; done
 ```
 
 (requires Python 3)
 
 ```shell
-./stats.py ../.build-time.csv :part3-measuring:test
+./stats.py ../.build-time.csv :part3.0-measuring:test
 ```
 
 ```

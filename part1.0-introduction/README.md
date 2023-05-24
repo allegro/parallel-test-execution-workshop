@@ -7,7 +7,7 @@ First, familiarize yourself with [tests](src/test/groovy) in this module.
 
 ## No parallelization
 
-- Run tests `./gradlew --rerun-tasks :part1-introduction:test :part1-introduction:createTestsExecutionReport`
+- Run tests `./gradlew --rerun-tasks :part1.0-introduction:test :part1.0-introduction:createTestsExecutionReport`
 - Check [reports](build/reports/tests-execution/html/test.html)
 
 ## Parallel execution
@@ -23,7 +23,7 @@ runner {
 }
 ```
 
-- Run tests `./gradlew --rerun-tasks :part1-introduction:test :part1-introduction:createTestsExecutionReport`
+- Run tests `./gradlew --rerun-tasks :part1.0-introduction:test :part1.0-introduction:createTestsExecutionReport`
 - Check [reports](build/reports/tests-execution/html/test.html)
 
 ## Execution modes
@@ -71,6 +71,8 @@ runner {
 ![diagram](.readme/README-CONCURRENT-Specifications-CONCURRENT-Features.svg)
 
 ```groovy
+import org.spockframework.runtime.model.parallel.ExecutionMode
+
 runner {
     parallel {
         enabled true
@@ -85,6 +87,8 @@ runner {
 ![diagram](.readme/README-CONCURRENT-Specifications-SAME_THREAD-Features.svg)
 
 ```groovy
+import org.spockframework.runtime.model.parallel.ExecutionMode
+
 runner {
     parallel {
         enabled true
@@ -99,6 +103,8 @@ runner {
 ![diagram](.readme/README-SAME_THREAD-Specifications-CONCURRENT-Features.svg)
 
 ```groovy
+import org.spockframework.runtime.model.parallel.ExecutionMode
+
 runner {
     parallel {
         enabled true
@@ -114,10 +120,10 @@ runner {
 
 - Enable parallel execution
 - Create a copy of class `A` and name it `C`
-- Run tests `./gradlew --rerun-tasks :part1-introduction:test :part1-introduction:createTestsExecutionReport`
+- Run tests `./gradlew --rerun-tasks :part1.0-introduction:test :part1.0-introduction:createTestsExecutionReport`
 - Check [reports](build/reports/tests-execution/html/test.html)
 - Add `@Isolated` (`spock.lang.Isolated`) annotation to `C` class
-- Run test again `./gradlew --rerun-tasks :part1-introduction:test :part1-introduction:createTestsExecutionReport` and
+- Run test again `./gradlew --rerun-tasks :part1.0-introduction:test :part1.0-introduction:createTestsExecutionReport` and
   check [reports](build/reports/tests-execution/html/test.html)
 
 ## Parallel thread pool
@@ -149,7 +155,7 @@ def "test 3-#data"() {
 }
 ```
 
-- Run tests `./gradlew --rerun-tasks :part1-introduction:test :part1-introduction:createTestsExecutionReport`
+- Run tests `./gradlew --rerun-tasks :part1.0-introduction:test :part1.0-introduction:createTestsExecutionReport`
 - Check [reports](build/reports/tests-execution/html/test.html)
 - Configure a thread pool of your choice, run tests and check reports
 
