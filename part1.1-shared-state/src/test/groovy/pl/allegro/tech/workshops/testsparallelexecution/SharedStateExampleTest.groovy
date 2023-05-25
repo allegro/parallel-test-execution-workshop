@@ -11,17 +11,18 @@ class SharedStateExampleTest extends Specification {
     File tempDir
 
     private File file
+    private String name
 
     def setup() {
     }
 
     def cleanup() {
-        file.delete()
+        file?.delete()
     }
 
     def "should create file"() {
         given:
-        String name = "testName"
+        name = "testName"
         file = new File(tempDir, name)
         println "name = $name"
 
@@ -35,9 +36,9 @@ class SharedStateExampleTest extends Specification {
 
     def "should create dir"() {
         given:
-        String name = "testName"
+        name = "testName"
         file = new File(tempDir, name)
-        println "id = $name"
+        println "name = $name"
 
         when:
         def fileCreated = file.mkdir()
@@ -49,10 +50,10 @@ class SharedStateExampleTest extends Specification {
 
     def "should create readable/non-readable file"() {
         given:
-        String name = "testName"
+        name = "testName"
         file = new File(tempDir, name)
         file.setReadable(readable)
-        println "id = $name"
+        println "name = $name"
 
         when:
         def fileCreated = file.createNewFile()
