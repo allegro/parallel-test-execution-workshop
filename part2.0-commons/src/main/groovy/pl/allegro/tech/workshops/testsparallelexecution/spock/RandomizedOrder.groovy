@@ -11,5 +11,5 @@ import java.lang.annotation.Target
 @Target(ElementType.TYPE)
 @ExtensionAnnotation(RandomizedOrderExtension)
 @interface RandomizedOrder {
-    String seed() default "";
+    long seed() default 0;
 }
