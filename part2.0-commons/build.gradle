@@ -33,7 +33,7 @@ dependencies {
     api 'org.spockframework:spock-junit4'
     api 'org.apache.commons:commons-lang3:3.12.0'
     api 'com.github.tomakehurst:wiremock:3.0.0-beta-8'
-    api 'pl.allegro.tech.hermes:hermes-mock:2.2.9'
+    api 'pl.allegro.tech.hermes:hermes-mock:2.2.11'
 }
 
 dependencyManagement {
