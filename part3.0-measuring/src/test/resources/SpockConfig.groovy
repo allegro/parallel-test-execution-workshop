@@ -1,5 +1,5 @@
 runner {
     parallel {
-        enabled true
+        enabled false
     }
 }
