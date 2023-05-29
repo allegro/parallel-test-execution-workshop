@@ -66,9 +66,11 @@ A sample output:
 [Build Time Tracker](https://github.com/passy/build-time-tracker-plugin) is a Gradle plugin to continuously track and
 report your build times.
 
-```gradle
+- uncomment plugin configuration in [build.gradle](build.gradle)
+
+```groovy
 plugins {
-	id "net.rdrei.android.buildtimetracker" version "0.11.0"
+    id "net.rdrei.android.buildtimetracker" version "0.11.0"
 }
 
 buildtimetracker {
@@ -82,7 +84,8 @@ buildtimetracker {
 }
 ```
 
-`./gradlew :part3.0-measuring:test --rerun`
+- run tests `./gradlew :part3.0-measuring:test --rerun`
+- show check results in [.build-time.csv](.build-time.csv)
 
 ```shell
 cat .build-time.csv
@@ -103,21 +106,30 @@ cat .build-time.csv
 
 (run this command in terminal)
 
-```shell
-for i in {1..3}; do ./gradlew :part3.0-measuring:test --rerun 2>&1; done
+```text
+cd part3.0-measuring
+for i in {1..3}; do ../gradlew test --rerun 2>&1; done
+cd -
 ```
 
 (requires Python 3)
 
 ```shell
-./stats.py ../.build-time.csv :part3.0-measuring:test
+./stats.py .build-time.csv :part3.0-measuring:test
 ```
 
 ```
-min: 993
-max: 1001
-mean: 997
+min: 1605
+max: 1808
+mean: 1686
 ```
+
+### Exercise
+
+1. Check execution time of `test` task with parallel execution disabled.
+2. Enable parallel execution in [SpockConfig.groovy](src/test/resources/SpockConfig.groovy) and remove `.build-time.csv`
+   file.
+3. Check execution time of `test` task with parallel execution enabled and compare results with previous results.
 
 ---
 
