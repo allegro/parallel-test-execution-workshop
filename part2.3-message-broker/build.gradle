@@ -12,14 +12,9 @@ repositories {
     mavenCentral()
 }
 
-ext {
-    set('testcontainersVersion', "1.18.1")
-}
-
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'org.springframework.retry:spring-retry'
     implementation 'org.springframework:spring-webflux'
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
     implementation 'pl.allegro.tech.hermes:hermes-client:2.2.11'
@@ -28,12 +23,8 @@ dependencies {
 
 
     testImplementation project(':part2.0-commons')
-}
-
-dependencyManagement {
-    imports {
-        mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
-    }
+    testImplementation 'pl.allegro.tech.hermes:hermes-mock:2.2.11'
+    testImplementation 'org.spockframework:spock-junit4'
 }
 
 test {

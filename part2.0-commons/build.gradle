@@ -11,34 +11,21 @@ repositories {
     mavenCentral()
 }
 
-ext {
-    set('testcontainersVersion', "1.18.1")
-}
-
 dependencies {
     api 'org.springframework.boot:spring-boot-starter-web'
     api 'org.springframework.boot:spring-boot-starter-data-mongodb'
-    api 'org.springframework.boot:spring-boot-starter-validation'
-    api 'org.springframework.retry:spring-retry'
-    api 'org.springframework:spring-webflux'
-    api 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
-    api 'pl.allegro.tech.hermes:hermes-client:2.2.11'
-    api 'org.eclipse.jetty:jetty-reactive-httpclient:3.0.8'
 
     api 'org.springframework.boot:spring-boot-starter-test'
-    api 'org.testcontainers:mongodb'
+    implementation 'org.testcontainers:mongodb'
     api platform('org.spockframework:spock-bom:2.4-M1-groovy-4.0')
     api 'org.spockframework:spock-core'
     api 'org.spockframework:spock-spring'
-    api 'org.spockframework:spock-junit4'
-    api 'org.apache.commons:commons-lang3:3.12.0'
     api 'com.github.tomakehurst:wiremock:3.0.0-beta-8'
-    api 'pl.allegro.tech.hermes:hermes-mock:2.2.11'
 }
 
 dependencyManagement {
     imports {
-        mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
+        mavenBom "org.testcontainers:testcontainers-bom:1.18.1"
     }
 }
 
