@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation project(':part2.0-commons')
+    testImplementation project(':commons')
 }
 
 test {
