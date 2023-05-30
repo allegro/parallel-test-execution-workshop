@@ -24,7 +24,8 @@ dependencies {
 
     testImplementation project(':part2.0-commons')
     testImplementation 'pl.allegro.tech.hermes:hermes-mock:2.2.11'
-    testImplementation 'org.spockframework:spock-junit4'
+    testImplementation 'org.spockframework:spock-junit4:2.4-M1-groovy-4.0'
+    testImplementation 'org.spockframework:spock-spring:2.4-M1-groovy-4.0'
 }
 
 test {

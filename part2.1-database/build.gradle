@@ -21,6 +21,7 @@ dependencies {
 
     testImplementation project(':part2.0-commons')
     testImplementation 'org.testcontainers:mongodb'
+    testImplementation 'org.spockframework:spock-spring:2.4-M1-groovy-4.0'
 }
 
 dependencyManagement {
