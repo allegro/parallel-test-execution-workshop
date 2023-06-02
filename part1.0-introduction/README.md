@@ -155,7 +155,7 @@ def "test 3"() {
 }
 ```
 
-- Run tests `./gradlew --rerun-tasks :part1.0-introduction:test :part1.0-introduction:createTestsExecutionReport`
+- Run tests `./gradlew --rerun-tasks :part1.0-introduction:test :part1.0-introduction:createTestsExecutionReport -PtotalTimeOfAllTests=false`
 - Check [reports](build/reports/tests-execution/html/test.html)
 - Configure a thread pool of your choice, run tests and check reports
 - Randomize duration of tests. In test `test 3` replace `SLEEP_DURATION`
