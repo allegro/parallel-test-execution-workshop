@@ -7,15 +7,12 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.data.mongodb.core.MongoOperations
 import pl.allegro.tech.workshops.testsparallelexecution.support.DatabaseHelper
 import pl.allegro.tech.workshops.testsparallelexecution.support.MongoTestContainerSupport
-import pl.allegro.tech.workshops.testsparallelexecution.support.generators.TestNameUniqueValueGenerator
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class BaseTestWithRestAndDatabase extends BaseTestWithRest implements MongoTestContainerSupport {
 
     @Autowired
     protected DatabaseHelper databaseHelper
-
-    def generator = new TestNameUniqueValueGenerator(this.specificationContext)
 
     @org.springframework.context.annotation.Lazy
     @Configuration
