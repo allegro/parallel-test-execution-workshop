@@ -16,6 +16,8 @@ non-JVM).
 
 #### [1.1 Shared state](part1.1-shared-state/README.md)
 
+#### [1.2 Migration](part1.2-migration/README.md)
+
 ### 2. Refactoring integration tests in an example service
 
 #### [2.1 REST service with a database](part2.1-database/README.md)

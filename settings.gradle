@@ -1,6 +1,7 @@
 rootProject.name = 'tests-parallel-execution'
 include 'part1.0-introduction'
 include 'part1.1-shared-state'
+include 'part1.2-migration'
 include 'commons'
 include 'part2.1-database'
 include 'part2.2-rest'
