@@ -2,7 +2,7 @@ import spock.lang.Specification
 
 class B extends Specification {
 
-    private static final int SLEEP_DURATION = 1
+    private static final int SLEEP_DURATION = 5
 
     def "test 1"() {
         sleep SLEEP_DURATION

@@ -66,7 +66,7 @@ A sample output:
 [Build Time Tracker](https://github.com/passy/build-time-tracker-plugin) is a Gradle plugin to continuously track and
 report your build times.
 
-- uncomment plugin configuration in [build.gradle](build.gradle)
+- uncomment plugin configuration in [build.gradle](build.gradle) (at the beginning and at the end of the file)
 
 ```groovy
 plugins {
@@ -108,7 +108,7 @@ cat .build-time.csv
 
 ```text
 cd part3.0-measuring
-for i in {1..3}; do ../gradlew test --rerun 2>&1; done
+for i in {1..5}; do ../gradlew test --rerun 2>&1; done
 cd -
 ```
 
