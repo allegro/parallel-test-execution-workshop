@@ -30,6 +30,7 @@ createTestsExecutionReport {
             enabled = false
         }
     }
+    shiftTimestampsToStartOfDay = true
 }
 
 //buildtimetracker {
