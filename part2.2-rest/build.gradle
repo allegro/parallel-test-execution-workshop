@@ -37,4 +37,9 @@ createTestsExecutionReport {
         }
     }
     shiftTimestampsToStartOfDay = true
+    marks {
+        totalTimeOfAllTests {
+            enabled = true
+        }
+    }
 }
