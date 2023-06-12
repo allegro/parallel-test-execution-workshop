@@ -18,7 +18,7 @@ dependencies {
     api 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.testcontainers:mongodb'
     api 'org.spockframework:spock-core:2.4-M1-groovy-4.0'
-    api 'com.github.tomakehurst:wiremock:3.0.0-beta-8'
+    api 'com.github.tomakehurst:wiremock:3.0.0-beta-9'
 }
 
 dependencyManagement {
