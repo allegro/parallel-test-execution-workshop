@@ -15,7 +15,7 @@ Some tests failed. Let's fix it step by step.
 - Run tests `./gradlew --rerun-tasks :part1.2-migration:test :part1.2-migration:createTestsExecutionReport`
 - Check [reports](build/reports/tests-execution/html/test.html)
 - Repeat:
-    - Remove `@Isolated` in one class (start with `AppendTextSpec`)
+    - Remove `@Isolated` in one class (start with `AppendTextSpec`, then `SetTextSpec` and `MetricsSpec`)
     - Fix tests
     - Run tests `./gradlew --rerun-tasks :part1.2-migration:test :part1.2-migration:createTestsExecutionReport`
     - Check [reports](build/reports/tests-execution/html/test.html)
