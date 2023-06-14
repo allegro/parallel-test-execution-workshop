@@ -11,10 +11,10 @@ Finally, you can stop and remove MongoDb container `docker stop parallel-tests-m
 
 ### Refactor tests
 
-1. Run tests `./gradlew --rerun-tasks :part2.1-database:test :part2.1-database:createTestsExecutionReport`
+1. Run tests `./gradlew --rerun-tasks :part2.1-database:test :part2.1-database:createTestsExecutionReport --continue`
 2. Check [reports](build/reports/tests-execution/html/test.html)
 3. Enable parallel execution (in [SpockConfig.groovy](src/test/resources/SpockConfig.groovy))
-4. Run tests `./gradlew --rerun-tasks :part2.1-database:test :part2.1-database:createTestsExecutionReport`
+4. Run tests `./gradlew --rerun-tasks :part2.1-database:test :part2.1-database:createTestsExecutionReport --continue`
 5. Determine and remove shared state.
 
 #### Shared state

@@ -9,10 +9,10 @@ Run service locally and check documentation.
 
 ### Refactor tests
 
-1. Run tests `./gradlew --rerun-tasks :part2.3-message-broker:test :part2.3-message-broker:createTestsExecutionReport`
+1. Run tests `./gradlew --rerun-tasks :part2.3-message-broker:test :part2.3-message-broker:createTestsExecutionReport --continue`
 2. Check [reports](build/reports/tests-execution/html/test.html)
 3. Enable parallel execution (in [SpockConfig.groovy](src/test/resources/SpockConfig.groovy))
-4. Run tests `./gradlew --rerun-tasks :part2.3-message-broker:test :part2.3-message-broker:createTestsExecutionReport`
+4. Run tests `./gradlew --rerun-tasks :part2.3-message-broker:test :part2.3-message-broker:createTestsExecutionReport --continue`
 5. Determine and remove shared state.
 
 #### Shared state
