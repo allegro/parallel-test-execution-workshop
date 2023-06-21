@@ -31,7 +31,10 @@ class EmailsByMessageBrokerResourceTest extends BaseTestWithRest {
         given:
         def email = EmailRequest.of(subject, "from@example.com", "to@example.com")
         /**
-         * Replace with {@link pl.allegro.tech.hermes.mock.HermesMockDefine#jsonTopic(java.lang.String, pl.allegro.tech.hermes.mock.exchange.Response, java.lang.Class, java.util.function.Predicate)}
+         * Hint:
+         * - Replace with {@link pl.allegro.tech.hermes.mock.HermesMockDefine#jsonTopic(java.lang.String, pl.allegro.tech.hermes.mock.exchange.Response, java.lang.Class, java.util.function.Predicate)}
+         * - Use {@link EmailServiceEvent} as a event class
+         * - Define predicate using Groovy closure e.g. { it.subject() == subject }
          */
         hermesMock.define().jsonTopic(topic, aResponse().build())
 
@@ -41,7 +44,8 @@ class EmailsByMessageBrokerResourceTest extends BaseTestWithRest {
         then:
         result.statusCode == OK
         /**
-         * Replace with {@link pl.allegro.tech.hermes.mock.HermesMockExpect#jsonMessagesOnTopicAs(java.lang.String, int, java.lang.Class, java.util.function.Predicate)}
+         * Hint:
+         * - Replace with {@link pl.allegro.tech.hermes.mock.HermesMockExpect#jsonMessagesOnTopicAs(java.lang.String, int, java.lang.Class, java.util.function.Predicate)}
          */
         hermesMock.expect().singleJsonMessageOnTopicAs(topic, EmailServiceEvent)
     }
