@@ -63,8 +63,6 @@ class EmailsByMessageBrokerResourceTest extends BaseTestWithRest {
                 aResponse().withStatusCode(400).build(),
                 aResponse().withStatusCode(500).build(),
                 aResponse().withFixedDelay(ofMillis(1000)).build()
-                // HermesMock does not allow to define response with fault (similar to com.github.tomakehurst.wiremock.http.Fault)
-                // Feel free to add such feature to https://hermes-pubsub.readthedocs.io/en/latest/user/hermes-mock/
         ]
     }
 
