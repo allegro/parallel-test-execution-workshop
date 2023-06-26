@@ -19,8 +19,8 @@ public class ExternalEmailClient implements EmailClient {
     public ExternalEmailClient(RestTemplateBuilder builder, @Value("${application.services.email.url}") String serviceUrl) {
         this.restTemplate = builder
                 .rootUri(serviceUrl)
-                .setConnectTimeout(Duration.ofMillis(100))
-                .setReadTimeout(Duration.ofMillis(100))
+                .setConnectTimeout(Duration.ofMillis(300))
+                .setReadTimeout(Duration.ofMillis(500))
                 .build();
         this.retryTemplate = new RetryTemplate();
         this.retryTemplate.setRetryPolicy(new MaxAttemptsRetryPolicy(2));
