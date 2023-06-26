@@ -3,6 +3,7 @@ package pl.allegro.tech.workshops.testsparallelexecution.email.rest
 import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.client.ResponseDefinitionBuilder
 import com.github.tomakehurst.wiremock.stubbing.Scenario
+import org.springframework.http.ProblemDetail
 import pl.allegro.tech.workshops.testsparallelexecution.BaseTestWithRest
 import spock.lang.Shared
 
@@ -56,7 +57,7 @@ class EmailsByRestResourceTest extends BaseTestWithRest {
 
         then:
         result.statusCode == OK
-        wiremockServer.verify(postRequestedFor(urlEqualTo("/external-api-service/emails"))
+        wiremockServer.verify(1, postRequestedFor(urlEqualTo("/external-api-service/emails"))
                 .withHeader(ACCEPT, equalTo("application/json, application/*+json"))
         )
     }
@@ -72,7 +73,7 @@ class EmailsByRestResourceTest extends BaseTestWithRest {
         )
 
         when:
-        def result = restClient.post("/emails", email, EmailRequest)
+        def result = restClient.post("/emails", email, ProblemDetail)
 
         then:
         result.statusCode == BAD_REQUEST
@@ -91,7 +92,7 @@ class EmailsByRestResourceTest extends BaseTestWithRest {
         )
 
         when:
-        def result = restClient.post("/emails", email, EmailRequest)
+        def result = restClient.post("/emails", email, ProblemDetail)
 
         then:
         result.statusCode == INTERNAL_SERVER_ERROR
@@ -113,15 +114,17 @@ class EmailsByRestResourceTest extends BaseTestWithRest {
     def "retry email sending"() {
         def email = EmailRequest.of(subject, "from@example.com", "to@example.com")
         wiremockServer.stubFor(post(urlEqualTo("/external-api-service/emails"))
-                .willReturn(aResponse()
-                        .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
-                        .withStatus(200)
-                ).inScenario('retry scenario')
+                .willReturn(aResponse().tap(errorResponseBuilder))
+                .inScenario("retry scenario")
                 .whenScenarioStateIs(Scenario.STARTED)
                 .willSetStateTo('after error')
         )
         wiremockServer.stubFor(post(urlEqualTo("/external-api-service/emails"))
-                .willReturn(aResponse().tap(errorResponseBuilder)).inScenario('retry scenario')
+                .willReturn(aResponse()
+                        .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
+                        .withStatus(200)
+                )
+                .inScenario("retry scenario")
                 .whenScenarioStateIs('after error')
                 .willSetStateTo('after ok')
         )
