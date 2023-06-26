@@ -21,6 +21,12 @@ import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import static org.springframework.http.HttpStatus.OK
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE
 
+/**
+ * Hint:
+ * - https://wiremock.org/docs/request-matching/#json-path
+ * and https://javadoc.io/doc/com.github.tomakehurst/wiremock/latest/com/github/tomakehurst/wiremock/client/WireMock.html#equalTo(java.lang.String)
+ * can be used to match request body in stubs and in verifications
+ */
 class EmailsByRestResourceTest extends BaseTestWithRest {
 
     @Shared

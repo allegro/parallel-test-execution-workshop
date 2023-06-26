@@ -28,13 +28,7 @@ public class ExternalEmailClient implements EmailClient {
 
     @Override
     public void send(EmailRequest email) {
-        retryTemplate.execute(context -> restTemplate.postForEntity("/external-api-service/emails", ExternalEmailRequest.from(email), Void.class));
+        retryTemplate.execute(context -> restTemplate.postForEntity("/external-api-service/emails", email, Void.class));
     }
 
-}
-
-record ExternalEmailRequest(String subject, String from, String to) {
-    public static ExternalEmailRequest from(EmailRequest email) {
-        return new ExternalEmailRequest(email.subject(), email.sender(), email.recipient());
-    }
 }
