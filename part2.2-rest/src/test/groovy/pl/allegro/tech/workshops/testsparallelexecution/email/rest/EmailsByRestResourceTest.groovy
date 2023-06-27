@@ -1,7 +1,6 @@
 package pl.allegro.tech.workshops.testsparallelexecution.email.rest
 
 import com.github.tomakehurst.wiremock.WireMockServer
-import com.github.tomakehurst.wiremock.client.ResponseDefinitionBuilder
 import com.github.tomakehurst.wiremock.stubbing.Scenario
 import org.springframework.http.ProblemDetail
 import pl.allegro.tech.workshops.testsparallelexecution.BaseTestWithRest
@@ -91,10 +90,10 @@ class EmailsByRestResourceTest extends BaseTestWithRest {
         sender << [null, '', ' ']
     }
 
-    def "handle email service errors"() {
+    def "handle email service errors (status=#errorResponse.status, fault=#errorResponse.fault, delay=#errorResponse.fixedDelayMilliseconds)"() {
         def email = EmailRequest.of(subject, "from@example.com", "to@example.com")
         wiremockServer.stubFor(post(urlEqualTo("/external-api-service/emails"))
-                .willReturn(aResponse().tap(errorResponseBuilder))
+                .willReturn(errorResponse)
         )
 
         when:
@@ -104,23 +103,21 @@ class EmailsByRestResourceTest extends BaseTestWithRest {
         result.statusCode == INTERNAL_SERVER_ERROR
 
         where:
-        errorResponseBuilder << [
-                { ResponseDefinitionBuilder builder -> builder.withStatus(400) },
-                { ResponseDefinitionBuilder builder -> builder.withStatus(500) },
-                { ResponseDefinitionBuilder builder -> builder.withFault(EMPTY_RESPONSE) },
-                { ResponseDefinitionBuilder builder -> builder.withFault(CONNECTION_RESET_BY_PEER) },
-                { ResponseDefinitionBuilder builder ->
-                    builder.withFixedDelay(1000)
-                            .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
-                            .withStatus(200)
-                }
+        errorResponse << [
+                aResponse().withStatus(400),
+                aResponse().withStatus(500),
+                aResponse().withFault(EMPTY_RESPONSE),
+                aResponse().withFault(CONNECTION_RESET_BY_PEER),
+                aResponse().withFixedDelay(1000)
+                        .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
+                        .withStatus(200)
         ]
     }
 
-    def "retry email sending"() {
+    def "retry email sending after error response (status=#errorResponse.status, fault=#errorResponse.fault, delay=#errorResponse.fixedDelayMilliseconds)"() {
         def email = EmailRequest.of(subject, "from@example.com", "to@example.com")
         wiremockServer.stubFor(post(urlEqualTo("/external-api-service/emails"))
-                .willReturn(aResponse().tap(errorResponseBuilder))
+                .willReturn(errorResponse)
                 .inScenario("retry scenario")
                 .whenScenarioStateIs(Scenario.STARTED)
                 .willSetStateTo('after error')
@@ -142,16 +139,14 @@ class EmailsByRestResourceTest extends BaseTestWithRest {
         result.statusCode == OK
 
         where:
-        errorResponseBuilder << [
-                { ResponseDefinitionBuilder builder -> builder.withStatus(400) },
-                { ResponseDefinitionBuilder builder -> builder.withStatus(500) },
-                { ResponseDefinitionBuilder builder -> builder.withFault(EMPTY_RESPONSE) },
-                { ResponseDefinitionBuilder builder -> builder.withFault(CONNECTION_RESET_BY_PEER) },
-                { ResponseDefinitionBuilder builder ->
-                    builder.withFixedDelay(1000)
-                            .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
-                            .withStatus(200)
-                }
+        errorResponse << [
+                aResponse().withStatus(400),
+                aResponse().withStatus(500),
+                aResponse().withFault(EMPTY_RESPONSE),
+                aResponse().withFault(CONNECTION_RESET_BY_PEER),
+                aResponse().withFixedDelay(1000)
+                        .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
+                        .withStatus(200)
         ]
     }
 }
