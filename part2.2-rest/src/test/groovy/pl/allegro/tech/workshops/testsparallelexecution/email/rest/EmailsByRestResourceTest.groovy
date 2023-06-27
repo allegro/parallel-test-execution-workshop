@@ -101,17 +101,17 @@ class EmailsByRestResourceTest extends BaseTestWithRest {
 
         then:
         result.statusCode == INTERNAL_SERVER_ERROR
+        result.body.detail.contains expectedDetail
 
         where:
-        errorResponse << [
-                aResponse().withStatus(400),
-                aResponse().withStatus(500),
-                aResponse().withFault(EMPTY_RESPONSE),
-                aResponse().withFault(CONNECTION_RESET_BY_PEER),
-                aResponse().withFixedDelay(1000)
-                        .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
-                        .withStatus(200)
-        ]
+        errorResponse                                             || expectedDetail
+        aResponse().withStatus(400)                               || "400 Bad Request"
+        aResponse().withStatus(500)                               || "500 Server Error"
+        aResponse().withFault(EMPTY_RESPONSE)                     || "failed to respond"
+        aResponse().withFault(CONNECTION_RESET_BY_PEER)           || "Connection reset"
+        aResponse().withFixedDelay(1000)
+                .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
+                .withStatus(200)                                  || "Read timed out"
     }
 
     def "retry email sending after error response (status=#errorResponse.status, fault=#errorResponse.fault, delay=#errorResponse.fixedDelayMilliseconds)"() {
