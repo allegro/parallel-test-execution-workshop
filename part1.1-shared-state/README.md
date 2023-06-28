@@ -2,6 +2,61 @@
 
 In this part you will learn and exercise techniques of eliminating shared state in tests.
 
+```text
+             time
+ ─────────────────────────────►
+ ┌───────────┐   ┌───────────┐
+ │  test 1   │   │  test 2   │
+ └─┬───┬───┬─┘   └─┬───┬───┬─┘
+   │   │   │       │   │   │
+   │+  │?  │-      │+  │?  │-
+   │a  │   │       │a  │   │
+   │   │   │       │   │   │
+   ▼   ▼   ▼       ▼   ▼   ▼
+   ✓   ✓   ✓       ✓   ✓   ✓
+
+
+  + add entity
+  ? verify
+  - remove entity
+```
+
+```text
+             time
+ ─────────────────────────────►
+ ┌───────────┐
+ │  test 1   │
+ └─┬─────────┘
+   │
+ ┌─┼─────────┐
+ │ │test 2   │
+ └─┼──┬──────┘
+   │  │
+   │+ │+
+   │a │a
+   │  │
+   ▼  ▼
+   ✓  !
+```
+
+```text
+             time
+ ─────────────────────────────►
+ ┌───────────┐
+ │  test 1   │
+ └─┬─┬───────┘
+   │ │
+ ┌─┼─┼───────┐
+ │ │test 2   │
+ └─┼─┼─┬─┬───┘
+   │ │ │ │
+   │+│?│+│?(count)
+   │a│ │b│
+   │ │ │ │
+   ▼ ▼ ▼ ▼
+   ✓ ✓ ✓ !
+```
+
 First, familiarize yourself with [tests](src/test/groovy) in this module.
 
 - Run tests `./gradlew --rerun-tasks :part1.1-shared-state:test`
