@@ -19,12 +19,12 @@ sequenceDiagram
     REST API -->>- User: response {"id": "abc", "title": "C++", "author": "Davis"}
     Note over User, Database: get book
     User ->>+ REST API: GET /books/[id]
-    REST API ->>+ Database: get [id]
+    REST API ->>+ Database: read [id]
     Database -->>- REST API: response {"id": "abc", "title": "C++", "author": "Davis"}
     REST API -->>- User: response {"id": "abc", "title": "C++", "author": "Davis"}
     Note over User, Database: delete book
     User ->>+ REST API: DELETE /books/[id]
-    REST API ->>+ Database: get [id]
+    REST API ->>+ Database: delete [id]
     Database -->>- REST API: response
     REST API -->>- User: response
 ```
