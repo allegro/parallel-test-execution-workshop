@@ -12,17 +12,21 @@ In this part you will learn and exercise techniques of eliminating shared state 
  └─┬───┬───┬─┘   └─┬───┬───┬─┘
    │   │   │       │   │   │
    │+  │?  │-      │+  │?  │-
-   │a  │   │       │a  │   │
+   │a  │a  │a      │a  │a  │a
    │   │   │       │   │   │
    ▼   ▼   ▼       ▼   ▼   ▼
    ✓   ✓   ✓       ✓   ✓   ✓
+```
 
-
+```text
   symbol | description
   +      | add entity
   ?      | verify
-  -      | remove entity
+  -      | remove entity/entities
   a      | entity id
+  *      | all entities
+  ✓      | operation succeeded
+  !      | operation failed
 ```
 
 ## Possible problems after switching from sequential to parallel execution
@@ -61,10 +65,31 @@ In this part you will learn and exercise techniques of eliminating shared state 
  └─┼─┼─┬─┬───┘
    │ │ │ │
    │+│?│+│?(count)
-   │a│ │b│
+   │a│a│b│*
    │ │ │ │
    ▼ ▼ ▼ ▼
    ✓ ✓ ✓ !
+```
+
+### Cleanup in one test affects other tests
+
+```text
+             time
+ ─────────────────────────────►
+ ┌───────────┐
+ │  test 1   │
+ └─┬───┬─┬───┘
+   │   │ │
+   │   │ │
+ ┌─┼───┴─┼───┐
+ │ │test 2   │
+ └─┼─┬─┬─┼─┬─┘
+   │ │ │ │ │
+   │+│+│?│-│?
+   │a│b│a│*│b
+   │ │ │ │ │
+   ▼ ▼ ▼ ▼ ▼
+   ✓ ✓ ✓ ✓ !
 ```
 
 ## Exercise
