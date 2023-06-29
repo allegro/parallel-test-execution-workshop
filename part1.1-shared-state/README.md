@@ -2,7 +2,7 @@
 
 In this part you will learn and exercise techniques of eliminating shared state in tests.
 
-## Sequential execution of test
+## Sequential execution of tests
 
 ```text
              time
