@@ -2,6 +2,8 @@
 
 In this part you will learn and exercise techniques of eliminating shared state in tests.
 
+## Sequential execution of test
+
 ```text
              time
  ─────────────────────────────►
@@ -16,10 +18,16 @@ In this part you will learn and exercise techniques of eliminating shared state 
    ✓   ✓   ✓       ✓   ✓   ✓
 
 
-  + add entity
-  ? verify
-  - remove entity
+  symbol | description
+  +      | add entity
+  ?      | verify
+  -      | remove entity
+  a      | entity id
 ```
+
+## Possible problems after switching from sequential to parallel execution
+
+### Cannot create two entities with same id/name in test setup
 
 ```text
              time
@@ -39,6 +47,8 @@ In this part you will learn and exercise techniques of eliminating shared state 
    ✓  !
 ```
 
+### Assertion is not precise enough
+
 ```text
              time
  ─────────────────────────────►
@@ -57,7 +67,9 @@ In this part you will learn and exercise techniques of eliminating shared state 
    ✓ ✓ ✓ !
 ```
 
-First, familiarize yourself with [tests](src/test/groovy) in this module.
+## Exercise
+
+Familiarize yourself with [tests](src/test/groovy) in this module.
 
 - Run tests `./gradlew --rerun-tasks :part1.1-shared-state:test`
 - Enable parallel execution
@@ -66,7 +78,7 @@ First, familiarize yourself with [tests](src/test/groovy) in this module.
 
 Some tests failed. Eliminate shared state by using different `name` in test cases.
 
-## Approach no. 1
+### Approach no. 1
 
 - Set a unique `name` value in each test.
 - Run tests again `./gradlew --rerun-tasks :part1.1-shared-state:test`
@@ -81,7 +93,7 @@ name = testName 1
 name = testName 2
 ```
 
-## Approach no. 2
+### Approach no. 2
 
 - Add `private UniqueValueGenerator generator = new RandomUniqueValueGenerator()` field.
 - Set `name` value in `setup` using `name = generator.next()`
@@ -98,7 +110,7 @@ name = boR1b
 name = 7Oc3i
 ```
 
-## Approach no. 3
+### Approach no. 3
 
 - Add `private UniqueValueGenerator generator = NextIntSingletonValueGenerator.instance` field.
 - Set `name` value in `setup` using `name = generator.next()`
@@ -114,7 +126,7 @@ name = 2
 name = 4
 ```
 
-## Approach no. 4
+### Approach no. 4
 
 - Add `private UniqueValueGenerator generator = new TestNameUniqueValueGenerator(specificationContext)` field.
 - Set `name` value in `setup` using `name = generator.next()`
