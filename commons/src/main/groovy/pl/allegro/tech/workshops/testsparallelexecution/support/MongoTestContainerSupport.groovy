@@ -7,7 +7,7 @@ import org.testcontainers.utility.DockerImageName
 
 trait MongoTestContainerSupport {
 
-    private static MongoDBContainer mongoDBContainer = new MongoDBContainer(DockerImageName.parse("mongo:6.0.3")).tap {
+    private static MongoDBContainer mongoDBContainer = new MongoDBContainer(DockerImageName.parse("mongo:6.0.6")).tap {
         it.start()
     }
 
