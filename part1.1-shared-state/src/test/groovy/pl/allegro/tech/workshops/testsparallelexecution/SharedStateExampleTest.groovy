@@ -48,7 +48,7 @@ class SharedStateExampleTest extends Specification {
         file.exists()
     }
 
-    def "should create readable/non-readable file"() {
+    def "should create readable or non-readable file"() {
         given:
         name = "testName"
         file = new File(tempDir, name)
