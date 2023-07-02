@@ -8,6 +8,9 @@ Gradle has a feature
 called [Incremental build](https://docs.gradle.org/current/userguide/incremental_build.html#incremental_build). It
 allows to skip a task when the task not has to be run.
 
+Clean project:
+`./gradlew :part3.0-measuring:clean`
+
 Run build 2 times (run this command in terminal):
 
 `./gradlew :part3.0-measuring:test -i`
@@ -36,7 +39,7 @@ or (run this command in terminal)
 (run this command in terminal)
 
 ```bash
-./gradlew :part3.0-measuring:test --rerun -i | grep "BUILD SUCCESSFUL"
+./gradlew :part3.0-measuring:test --rerun | grep "BUILD SUCCESSFUL"
 ```
 
 ```
