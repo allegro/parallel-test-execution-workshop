@@ -118,7 +118,7 @@ runner {
 
 ![diagram](.readme/README-Isolated.svg)
 
-- Enable parallel execution
+- Enable parallel execution (concurrent features, concurrent specifications)
 - Create a copy of class `A` and name it `C`
 - Run tests `./gradlew --rerun-tasks :part1.0-introduction:test :part1.0-introduction:createTestsExecutionReport`
 - Check [reports](build/reports/tests-execution/html/test.html)
@@ -142,6 +142,7 @@ jshell print-available-processors.jsh
 ```
 
 - Add test case to class `A`
+- Remove class `C`
 
 ```groovy
 def "test 3"() {

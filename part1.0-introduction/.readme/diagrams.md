@@ -66,10 +66,10 @@ gantt
     axisFormat %H
     tickInterval 1hour
 %%  start: milestone, 00, 0h
-    A.test 1: active, 00, 01
-    A.test 2: active, 00, 01
-    B.test 1: active, 01, 02
-    B.test 2: active, 01, 02
-    @Isolated C.test 1: active, 02, 03
-    @Isolated C.test 2: active, 03, 04
+    @Isolated C.test 1: active, 00, 01
+    @Isolated C.test 2: active, 01, 02
+    A.test 1: active, 02, 03
+    A.test 2: active, 02, 03
+    B.test 1: active, 02, 03
+    B.test 2: active, 02, 03
 ```
