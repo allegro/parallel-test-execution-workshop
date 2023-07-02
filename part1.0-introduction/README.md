@@ -137,12 +137,13 @@ Supported options:
 
 Default: `dynamicWithReservedProcessors(1.0, 2)`
 
+Check number of available processors:
+
 ```sh
 jshell print-available-processors.jsh
 ```
 
 - Add test case to class `A`
-- Remove class `C`
 
 ```groovy
 def "test 3"() {
@@ -156,7 +157,10 @@ def "test 3"() {
 }
 ```
 
-- Run tests `./gradlew --rerun-tasks :part1.0-introduction:test :part1.0-introduction:createTestsExecutionReport -PtotalTimeOfAllTests=false`
+- Remove class `C`
+
+- Run
+  tests `./gradlew --rerun-tasks :part1.0-introduction:test :part1.0-introduction:createTestsExecutionReport -PtotalTimeOfAllTests=false`
 - Check [reports](build/reports/tests-execution/html/test.html)
 - Configure a thread pool of your choice, run tests and check reports
 - Randomize duration of tests. In test `test 3` replace `SLEEP_DURATION`
