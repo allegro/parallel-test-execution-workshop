@@ -8,6 +8,7 @@ Run service locally and check documentation.
 
 1. Run the service `./gradlew :part2.2-rest:bootRun` and go
    to [documentation](http://localhost:8080/swagger-ui/index.html)
+2. Stop the service
 
 ### Refactor tests
 
