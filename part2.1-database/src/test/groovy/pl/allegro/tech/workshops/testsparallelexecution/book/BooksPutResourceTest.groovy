@@ -1,14 +1,13 @@
 package pl.allegro.tech.workshops.testsparallelexecution.book
 
 import org.springframework.http.ProblemDetail
-import pl.allegro.tech.workshops.testsparallelexecution.BaseTestWithRestAndDatabase
 import pl.allegro.tech.workshops.testsparallelexecution.books.Book
 
 import static org.springframework.http.HttpStatus.NOT_FOUND
 import static org.springframework.http.HttpStatus.OK
 import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY
 
-class BooksPutResourceTest extends BaseTestWithRestAndDatabase {
+class BooksPutResourceTest extends BaseBookResourceTest {
 
     private String title
 
@@ -17,7 +16,7 @@ class BooksPutResourceTest extends BaseTestWithRestAndDatabase {
     }
 
     def cleanup() {
-        databaseHelper.removeAll(Book)
+        bookDatabaseHelper.removeAll()
     }
 
     def "update book"() {
@@ -36,7 +35,7 @@ class BooksPutResourceTest extends BaseTestWithRestAndDatabase {
             it.title() == "C++"
             it.author() == "Davis Stephen R."
         }
-        def documentWithUpdatedBook = databaseHelper.findById(result.body.id(), Book)
+        def documentWithUpdatedBook = bookDatabaseHelper.findById(result.body.id())
         assert documentWithUpdatedBook != null, 'updated document was not found'
         with(documentWithUpdatedBook) {
             it.id() == result.body.id()
@@ -48,14 +47,14 @@ class BooksPutResourceTest extends BaseTestWithRestAndDatabase {
     def "update does not create book when updated book does not exist"() {
         given:
         def updatedBook = Book.of(title, "Davis Stephen R.")
-        assert databaseHelper.count(Book) == 0
+        assert bookDatabaseHelper.count() == 0
 
         when:
         def result = restClient.put("/books/not-found-book-id", updatedBook, Book)
 
         then:
         result.statusCode == NOT_FOUND
-        databaseHelper.count(Book) == 0
+        bookDatabaseHelper.count() == 0
     }
 
     def "return error on updating book with not-unique title"() {
@@ -72,13 +71,6 @@ class BooksPutResourceTest extends BaseTestWithRestAndDatabase {
         then:
         result.statusCode == UNPROCESSABLE_ENTITY
         result.body.title == 'Book with this title already exists'
-    }
-
-    private Book store(Book book) {
-        def response = restClient.post("/books", book, Book)
-        assert response.statusCode == OK
-        assert response.body != null
-        response.body
     }
 
 }

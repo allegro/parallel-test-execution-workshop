@@ -1,12 +1,11 @@
 package pl.allegro.tech.workshops.testsparallelexecution.book
 
 
-import pl.allegro.tech.workshops.testsparallelexecution.BaseTestWithRestAndDatabase
 import pl.allegro.tech.workshops.testsparallelexecution.books.Book
 
 import static org.springframework.http.HttpStatus.OK
 
-class BooksDeleteResourceTest extends BaseTestWithRestAndDatabase {
+class BooksDeleteResourceTest extends BaseBookResourceTest {
 
     private String title
 
@@ -15,7 +14,7 @@ class BooksDeleteResourceTest extends BaseTestWithRestAndDatabase {
     }
 
     def cleanup() {
-        databaseHelper.removeAll(Book)
+        bookDatabaseHelper.removeAll()
     }
 
     def "delete existing book"() {
@@ -28,7 +27,7 @@ class BooksDeleteResourceTest extends BaseTestWithRestAndDatabase {
 
         then:
         result.statusCode == OK
-        databaseHelper.count(Book) == 0
+        bookDatabaseHelper.count() == 0
     }
 
     def "delete does not remove other books"() {
@@ -44,25 +43,18 @@ class BooksDeleteResourceTest extends BaseTestWithRestAndDatabase {
         then:
         result.statusCode == OK
         // the "other" book exists
-        databaseHelper.count(Book) == 1
+        bookDatabaseHelper.count() == 1
     }
 
     def "delete return not found for non-existent book"() {
         given:
-        assert databaseHelper.count(Book) == 0
+        assert bookDatabaseHelper.count() == 0
 
         when:
         def result = restClient.delete("/books/not-found-book-id")
 
         then:
         result.statusCode == OK
-    }
-
-    private Book store(Book book) {
-        def response = restClient.post("/books", book, Book)
-        assert response.statusCode == OK
-        assert response.body != null
-        response.body
     }
 
 }
