@@ -13,7 +13,7 @@ import static org.springframework.http.HttpStatus.OK
 class BaseBookResourceTest extends BaseTestWithRest implements MongoTestContainerSupport {
 
     @Autowired
-    protected BookDatabaseHelper bookDatabaseHelper
+    BookDatabaseHelper bookDatabaseHelper
 
     @org.springframework.context.annotation.Lazy
     @Configuration
