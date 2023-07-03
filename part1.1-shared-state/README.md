@@ -81,9 +81,9 @@ In this part you will learn and exercise techniques of eliminating shared state 
  └─┬───┬─┬───┘
    │   │ │
    │   │ │
- ┌─┼───┴─┼───┐
+ ┌─┼───┼─┼───┐
  │ │test 2   │
- └─┼─┬─┬─┼─┬─┘
+ └─┼─┬─┼─┼─┬─┘
    │ │ │ │ │
    │+│+│?│-│?
    │a│b│a│*│b
