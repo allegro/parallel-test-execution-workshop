@@ -33,7 +33,7 @@ What to check?
 #### Final checks
 
 - modify parallel thread pool e.g. `fixed(4)`
-- add randomization using `@RandomizedOrder` class annotation (add it to `BooksResourceTest` class)
+- add randomization using `@RandomizedOrder` class annotation (add it to `*Test` class)
 
 ---
 [home](../README.md)
