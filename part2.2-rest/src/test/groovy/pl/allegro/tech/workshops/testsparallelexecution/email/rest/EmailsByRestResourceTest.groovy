@@ -58,7 +58,7 @@ class EmailsByRestResourceTest extends BaseTestWithRest {
         )
 
         when:
-        def result = restClient.post("/emails", email, EmailRequest)
+        def result = restClient.post("/emails", email, String)
 
         then:
         result.statusCode == OK
@@ -133,7 +133,7 @@ class EmailsByRestResourceTest extends BaseTestWithRest {
         )
 
         when:
-        def result = restClient.post("/emails", email, EmailRequest)
+        def result = restClient.post("/emails", email, String)
 
         then:
         result.statusCode == OK
