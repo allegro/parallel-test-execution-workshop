@@ -8,10 +8,9 @@ class DatabaseHelper {
 
     MongoOperations mongoOperations
 
-//    /**
-//     * @deprecated
-//     * Use {@link DatabaseHelper#countBy(java.lang.Class, java.lang.String, java.lang.String)} or {@link DatabaseHelper#exists(java.lang.Class, java.lang.Object)} instead.
-//     */
+    /**
+     * Use {@link DatabaseHelper#countBy(java.lang.Class, java.lang.String, java.lang.String)} or {@link DatabaseHelper#exists(java.lang.Class, java.lang.Object)} instead.
+     */
     int count(Class<?> entityClass) {
         mongoOperations.count(new Query(), entityClass)
     }
@@ -24,10 +23,9 @@ class DatabaseHelper {
         mongoOperations.findById(id, entityClass) != null
     }
 
-//    /**
-//     * @deprecated
-//     * Usually not for use in parallel execution.
-//     */
+    /**
+     * Usually not for use in parallel execution.
+     */
     <T> void removeAll(Class<T> entityClass) {
         mongoOperations.findAllAndRemove(new Query(), entityClass)
     }
