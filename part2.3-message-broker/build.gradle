@@ -26,7 +26,7 @@ dependencies {
     testImplementation 'org.spockframework:spock-junit4:2.4-M1-groovy-4.0'
     testImplementation 'org.spockframework:spock-spring:2.4-M1-groovy-4.0'
     // Since 2.2.13 hermes-mock does not provide this dependency, but 2.2.12 does
-    testImplementation 'org.apache.avro:avro:1.11.1'
+    testImplementation 'org.apache.avro:avro:1.11.2'
 }
 
 test {
