@@ -22,7 +22,7 @@ dependencies {
     implementation 'io.projectreactor.netty:reactor-netty:1.1.8'
 
     testImplementation project(':commons')
-    testImplementation 'pl.allegro.tech.hermes:hermes-mock:2.4.1'
+    testImplementation 'pl.allegro.tech.hermes:hermes-mock:2.4.2'
     testImplementation 'org.spockframework:spock-junit4:2.4-M1-groovy-4.0'
     testImplementation 'org.spockframework:spock-spring:2.4-M1-groovy-4.0'
     // Since 2.2.13 hermes-mock does not provide this dependency, but 2.2.12 does
