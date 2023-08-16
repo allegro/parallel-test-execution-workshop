@@ -15,6 +15,7 @@ repositories {
 }
 
 dependencies {
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation project(':commons')
 }
 
