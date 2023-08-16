@@ -43,8 +43,9 @@ Sample applications and tests are written using:
 
 - Spring + Spring Boot
 - MongoDB
-- Testcontainers
 - [Java Client for Hermes](https://hermes-pubsub.readthedocs.io/en/latest/user/java-client/)
-  and [Hermes Mock](https://hermes-pubsub.readthedocs.io/en/latest/user/hermes-mock/)
 - Spock
+- Testcontainers
+- WireMock
+- [Hermes Mock](https://hermes-pubsub.readthedocs.io/en/latest/user/hermes-mock/)
 - [tests-execution-chart Gradle plugin](https://github.com/platan/tests-execution-chart) (tests execution schedule visualization)
