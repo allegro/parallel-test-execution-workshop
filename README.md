@@ -28,6 +28,8 @@ non-JVM).
 
 ### [3. Measuring test execution time](part3.0-measuring/README.md)
 
+### [4. Summary](part4.0-summary/README.md)
+
 ---
 
 ### Requirements (to build/run this project)
@@ -48,4 +50,5 @@ Sample applications and tests are written using:
 - Testcontainers
 - WireMock
 - [Hermes Mock](https://hermes-pubsub.readthedocs.io/en/latest/user/hermes-mock/)
-- [tests-execution-chart Gradle plugin](https://github.com/platan/tests-execution-chart) (tests execution schedule visualization)
+- [tests-execution-chart Gradle plugin](https://github.com/platan/tests-execution-chart) (tests execution schedule
+  visualization)
