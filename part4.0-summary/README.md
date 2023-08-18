@@ -32,8 +32,8 @@ def setup() {
 ```
 
 ```diff
--   countEventPublished() == 1
-+   countEventPublished(id) == 1
+-   countPublishedEvents() == 1
++   countPublishedEvents(id) == 1
 ```
 
 ---
