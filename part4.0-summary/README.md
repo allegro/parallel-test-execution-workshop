@@ -13,7 +13,7 @@ def setup() {
 ```diff
 def setup() {
 -   wireMockServer.resetAll()
--   wireMockServer.resetScenarios(
+-   wireMockServer.resetScenarios()
 }
 ```
 
