@@ -24,11 +24,6 @@ def setup() {
 +   def id = getRandomId()
 ```
 
-```diff
--   stubEventSent()
-+   stubEventSent(id)
-```
-
 - Assertion is not precise enough
 
 ```diff
