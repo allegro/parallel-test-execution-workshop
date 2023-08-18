@@ -1,8 +1,8 @@
 # Summary
 
-Try to avoid:
+## Try to avoid
 
-- Cleanup in one test affects other tests
+- Cleanup of shared state
 
 ```diff
 def setup() {
@@ -17,14 +17,14 @@ def setup() {
 }
 ```
 
-- Cannot create two entities with same id/name in test setup
+- Creating entities with same id/name
 
 ```diff
 -   def id = '2'
 +   def id = getRandomId()
 ```
 
-- Assertion is not precise enough
+- Not precise enough assertions
 
 ```diff
 -   countDocuments() == 1
@@ -35,6 +35,8 @@ def setup() {
 -   countPublishedEvents() == 1
 +   countPublishedEvents(id) == 1
 ```
+
+## [Sample results](./results.md)
 
 ---
 
