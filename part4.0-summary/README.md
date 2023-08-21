@@ -17,14 +17,14 @@ def setup() {
 }
 ```
 
-- Creating entities with same id/name
+- Creating entities with same id/unique element
 
 ```diff
 -   def id = '2'
 +   def id = getRandomId()
 ```
 
-- Not precise enough assertions
+- Using not precise enough assertions
 
 ```diff
 -   countDocuments() == 1
