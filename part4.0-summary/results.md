@@ -14,6 +14,12 @@
 | unitTest        | 5.4s             | 3.9s               | -1.5s      | -28%         |
 | integrationTest | 45.6s            | 34.6s              | -11.0s     | -24%         |
 
+## Project C (REST API with REST dependencies)
+
+| Task     | Serial execution | Parallel execution | Difference | % Difference |
+|----------|------------------|--------------------|------------|--------------|
+| unitTest | 1.6s             | 1.3s               | -0.3s      | -19%         |
+
 ---
 
 [home](../README.md)
