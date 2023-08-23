@@ -23,7 +23,9 @@ dependencies {
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation project(':commons')
+    testImplementation project(':commons-rest')
     testImplementation 'org.spockframework:spock-spring:2.4-M1-groovy-4.0'
+    testImplementation 'com.github.tomakehurst:wiremock:3.0.0-beta-10'
 }
 
 test {

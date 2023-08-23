@@ -34,7 +34,7 @@ class EmailsByRestResourceTest extends BaseTestWithRest {
     private String subject = "New workshops!"
 
     def setupSpec() {
-        wiremockServer = new WireMockServer(8089)
+        wiremockServer = new WireMockServer(8099)
         wiremockServer.start()
     }
 

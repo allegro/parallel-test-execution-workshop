@@ -23,6 +23,8 @@ dependencies {
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation project(':commons')
+    testImplementation project(':commons-db')
+    testImplementation project(':commons-rest')
     testImplementation 'org.testcontainers:mongodb'
     testImplementation 'org.spockframework:spock-spring:2.4-M1-groovy-4.0'
 }
