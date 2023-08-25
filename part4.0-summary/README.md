@@ -4,6 +4,8 @@
 
 - Cleanup of shared state
 
+[//]: # (If you like colors in diff go to https://github.com/allegro-playground/parallel-test-execution-workshop/blob/main/part4.0-summary/README.md)
+
 ```diff
 def setup() {
 -   removeAllDocuments()
