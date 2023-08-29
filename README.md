@@ -16,7 +16,7 @@ non-JVM).
 
 #### [1.1 Shared state](part1.1-shared-state/README.md)
 
-#### [1.2 Migration](part1.2-migration/README.md)
+#### [1.2 From sequential to parallel execution](part1.2-from-sequential-to-parallel/README.md)
 
 ### 2. Refactoring integration tests in an example service
 
