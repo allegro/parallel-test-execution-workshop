@@ -14,4 +14,10 @@ class FileService {
         sleep text.length() * 5
     }
 
+    static void removeFile(File parent, String name) {
+        MetricService.incrementInvocationsCount()
+        new File(parent, name).delete()
+        sleep 100
+    }
+
 }

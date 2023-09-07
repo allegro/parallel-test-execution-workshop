@@ -29,7 +29,7 @@ In this part you will learn and exercise techniques of eliminating shared state 
   !      | operation failed
 ```
 
-## Possible problems after switching from sequential to parallel execution (part 1/3)
+## Possible problems after switching from sequential to parallel execution
 
 ### Cannot create two entities with same id/name in test setup
 
