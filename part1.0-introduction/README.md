@@ -35,6 +35,7 @@ runner {
     - for specifications (test classes) by `runner.parallel.defaultSpecificationExecutionMode`
     - for features (tests methods) by `runner.parallel.defaultExecutionMode`
 
+Sample configuration:
 ```groovy
 import org.spockframework.runtime.model.parallel.ExecutionMode
 
@@ -51,7 +52,15 @@ runner {
 
 ![diagram](.readme/README-SAME_THREAD-Specifications-SAME_THREAD-Features.svg)
 
-- `runner.parallel.enabled=false`
+- Set
+
+```groovy
+runner {
+    parallel {
+        enabled false
+    }
+}
+```
 - or
 
 ```groovy
@@ -66,9 +75,14 @@ runner {
 }
 ```
 
+- Run tests `./gradlew --rerun-tasks :part1.0-introduction:test :part1.0-introduction:createTestsExecutionReport`
+- Check [reports](build/reports/tests-execution/html/test.html)
+
 ### CONCURRENT Specifications, CONCURRENT Features
 
 ![diagram](.readme/README-CONCURRENT-Specifications-CONCURRENT-Features.svg)
+
+- Set
 
 ```groovy
 import org.spockframework.runtime.model.parallel.ExecutionMode
@@ -76,15 +90,20 @@ import org.spockframework.runtime.model.parallel.ExecutionMode
 runner {
     parallel {
         enabled true
-        defaultSpecificationExecutionMode ExecutionMode.CONCURRENT
-        defaultExecutionMode ExecutionMode.CONCURRENT
+//        defaultSpecificationExecutionMode ExecutionMode.CONCURRENT
+//        defaultExecutionMode ExecutionMode.CONCURRENT
     }
 }
 ```
 
+- Run tests `./gradlew --rerun-tasks :part1.0-introduction:test :part1.0-introduction:createTestsExecutionReport`
+- Check [reports](build/reports/tests-execution/html/test.html)
+
 ### CONCURRENT Specifications, SAME_THREAD Features
 
 ![diagram](.readme/README-CONCURRENT-Specifications-SAME_THREAD-Features.svg)
+
+- Set
 
 ```groovy
 import org.spockframework.runtime.model.parallel.ExecutionMode
@@ -98,9 +117,14 @@ runner {
 }
 ```
 
+- Run tests `./gradlew --rerun-tasks :part1.0-introduction:test :part1.0-introduction:createTestsExecutionReport`
+- Check [reports](build/reports/tests-execution/html/test.html)
+
 ### SAME_THREAD Specifications, CONCURRENT Features
 
 ![diagram](.readme/README-SAME_THREAD-Specifications-CONCURRENT-Features.svg)
+
+- Set
 
 ```groovy
 import org.spockframework.runtime.model.parallel.ExecutionMode
@@ -113,6 +137,9 @@ runner {
     }
 }
 ```
+
+- Run tests `./gradlew --rerun-tasks :part1.0-introduction:test :part1.0-introduction:createTestsExecutionReport`
+- Check [reports](build/reports/tests-execution/html/test.html)
 
 ## Isolated execution
 
