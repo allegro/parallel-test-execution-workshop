@@ -4,14 +4,14 @@ import java.util.concurrent.atomic.AtomicInteger
 
 class MetricService {
 
-    private static AtomicInteger invocations = new AtomicInteger()
+    private static AtomicInteger invocationsCount = new AtomicInteger()
 
-    static void increment() {
-        invocations.incrementAndGet()
+    static void incrementInvocationsCount() {
+        invocationsCount.incrementAndGet()
     }
 
-    static int getCount() {
-        invocations.get()
+    static int getInvocationsCount() {
+        invocationsCount.get()
     }
 
 }
