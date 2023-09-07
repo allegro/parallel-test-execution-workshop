@@ -2,28 +2,32 @@ package migration
 
 class SetTextSpec extends BaseSpec {
 
+    def cleanup() {
+        rootDir.listFiles().each {
+            it.delete()
+        }
+    }
+
     def "create file with text"() {
         given:
-        def name = "test"
+        def fileName = "test 1"
 
         when:
-        FileService.setText(tempDir, name, "some text")
-        sleep 200
+        FileService.setText(rootDir, fileName, "some text")
 
         then:
-        new File(tempDir, name).text == 'some text'
+        new File(rootDir, fileName).text == 'some text'
     }
 
     def "create empty file"() {
         given:
-        def name = "test"
+        def fileName = "test 2"
 
         when:
-        FileService.setText(tempDir, name, "")
-        sleep 200
+        FileService.setText(rootDir, fileName, "")
 
         then:
-        new File(tempDir, name).text == ''
+        new File(rootDir, fileName).text == ''
     }
 
 }

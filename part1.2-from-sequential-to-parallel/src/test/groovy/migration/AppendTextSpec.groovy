@@ -2,28 +2,26 @@ package migration
 
 class AppendTextSpec extends BaseSpec {
 
-    def "append text"() {
-        given:
-        def name = "test"
+    def fileName = "test"
 
+    def setup() {
+        new File(rootDir, fileName).text = "initial text"
+    }
+
+    def "append text"() {
         when:
-        FileService.appendText(tempDir, name, "some text")
-        sleep 100
+        FileService.appendText(rootDir, fileName, "additional text")
 
         then:
-        new File(tempDir, name).text == 'some text'
+        new File(rootDir, fileName).text == 'initial textadditional text'
     }
 
     def "append empty text"() {
-        given:
-        def name = "test"
-
         when:
-        FileService.appendText(tempDir, name, '')
-        sleep 100
+        FileService.appendText(rootDir, fileName, '')
 
         then:
-        new File(tempDir, name).text == ''
+        new File(rootDir, fileName).text == 'initial text'
     }
 
 }

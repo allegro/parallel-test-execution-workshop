@@ -7,8 +7,7 @@ class MetricsSpec extends BaseSpec {
         def count = MetricService.getInvocationsCount()
 
         when:
-        FileService.appendText(tempDir, "test", "some text")
-        sleep 100
+        FileService.appendText(rootDir, "test", "some text")
 
         then:
         MetricService.getInvocationsCount() == count + 1
@@ -19,8 +18,7 @@ class MetricsSpec extends BaseSpec {
         def count = MetricService.getInvocationsCount()
 
         when:
-        FileService.setText(tempDir, "test", "some text")
-        sleep 100
+        FileService.setText(rootDir, "test", "some text")
 
         then:
         MetricService.getInvocationsCount() == count + 1
