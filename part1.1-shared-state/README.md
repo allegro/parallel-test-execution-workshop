@@ -167,6 +167,8 @@ name = pl.allegro.tech.workshops.testsparallelexecution:SharedStateExampleTest:s
 name = pl.allegro.tech.workshops.testsparallelexecution:SharedStateExampleTest:should create file
 ```
 
+[//]: # (Diagrams in this section were created using https://asciiflow.com)
+
 ---
 
 [home](../README.md)
