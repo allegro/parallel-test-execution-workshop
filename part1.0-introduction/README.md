@@ -32,8 +32,8 @@ runner {
     - `SAME_THREAD`
     - `CONCURRENT`
 - defined
-    - for specifications by `runner.parallel.defaultSpecificationExecutionMode`
-    - for features by `runner.parallel.defaultExecutionMode`
+    - for specifications (test classes) by `runner.parallel.defaultSpecificationExecutionMode`
+    - for features (tests methods) by `runner.parallel.defaultExecutionMode`
 
 ```groovy
 import org.spockframework.runtime.model.parallel.ExecutionMode
