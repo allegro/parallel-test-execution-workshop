@@ -20,9 +20,9 @@ In this part you will learn and exercise techniques of eliminating shared state 
 
 ```text
   symbol | description
-  +      | add entity
-  ?      | verify
-  -      | remove entity/entities
+  +      | add entity (`given/when` block)
+  ?      | verify (`then` block)
+  -      | remove entity/entities (`cleanup` block)
   a      | entity id
   *      | all entities
   ✓      | operation succeeded
