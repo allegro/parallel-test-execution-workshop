@@ -13,7 +13,9 @@ Clean project:
 
 Run build 2 times (run this command in terminal):
 
-`./gradlew :part3.0-measuring:test -i`
+```
+./gradlew :part3.0-measuring:test -i
+```
 
 Was there a difference between the execution time in each run?
 
@@ -22,15 +24,21 @@ Was there a difference between the execution time in each run?
 You can [force task to execute](https://docs.gradle.org/current/userguide/command_line_interface.html#sec:rerun_tasks)
 (run this command in terminal):
 
-`./gradlew :part3.0-measuring:clean :part3.0-measuring:test -i`
+```
+./gradlew :part3.0-measuring:clean :part3.0-measuring:test -i
+```
 
 or (run this command in terminal)
 
-`./gradlew :part3.0-measuring:test -i --rerun-tasks`
+```
+./gradlew :part3.0-measuring:test -i --rerun-tasks
+```
 
 or (run this command in terminal)
 
-`./gradlew :part3.0-measuring:test --rerun -i`
+```
+./gradlew :part3.0-measuring:test --rerun -i
+```
 
 ## Measuring options
 
@@ -38,7 +46,7 @@ or (run this command in terminal)
 
 (run this command in terminal)
 
-```bash
+```
 ./gradlew :part3.0-measuring:test --rerun | grep "BUILD SUCCESSFUL"
 ```
 
@@ -50,7 +58,7 @@ BUILD SUCCESSFUL in 5s
 
 (run this command in terminal)
 
-```shell
+```
 ./gradlew :part3.0-measuring:test --rerun -i --profile | grep "profiling report"
 ```
 
@@ -109,7 +117,7 @@ cat .build-time.csv
 
 (run this command in terminal)
 
-```text
+```
 cd part3.0-measuring
 for i in {1..5}; do ../gradlew test --rerun 2>&1; done
 cd -
