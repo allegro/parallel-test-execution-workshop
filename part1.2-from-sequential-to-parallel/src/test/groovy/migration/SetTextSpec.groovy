@@ -8,6 +8,7 @@ class SetTextSpec extends BaseSpec {
 
         when:
         FileService.setText(tempDir, name, "some text")
+        sleep 200
 
         then:
         new File(tempDir, name).text == 'some text'
@@ -19,6 +20,7 @@ class SetTextSpec extends BaseSpec {
 
         when:
         FileService.setText(tempDir, name, "")
+        sleep 200
 
         then:
         new File(tempDir, name).text == ''

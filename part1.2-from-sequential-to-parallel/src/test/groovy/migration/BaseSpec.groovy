@@ -1,23 +1,19 @@
 package migration
 
-import spock.lang.Shared
+
 import spock.lang.Specification
-import spock.lang.TempDir
+
+import java.nio.file.Files
 
 class BaseSpec extends Specification {
 
-    protected static final int SLEEP_DURATION = 100
-
-    @Shared
-    @TempDir
-    File tempDir
-
-    def setup() {
-        sleep SLEEP_DURATION
-    }
+    static File tempDir = Files.createTempDirectory("parallel-test-execution").toFile()
 
     def cleanup() {
-        tempDir.listFiles().each { it.delete() }
+        tempDir.listFiles().each {
+            println "Removing $it"
+            it.delete()
+        }
     }
 
 }

@@ -29,7 +29,7 @@ In this part you will learn and exercise techniques of eliminating shared state 
   !      | operation failed
 ```
 
-## Possible problems after switching from sequential to parallel execution
+## Possible problems after switching from sequential to parallel execution (part 1/3)
 
 ### Cannot create two entities with same id/name in test setup
 
@@ -51,47 +51,6 @@ In this part you will learn and exercise techniques of eliminating shared state 
    ✓  !
 ```
 
-### Assertion is not precise enough
-
-```text
-             time
- ─────────────────────────────►
- ┌───────────┐
- │  test 1   │
- └─┬─┬───────┘
-   │ │
- ┌─┼─┼───────┐
- │ │test 2   │
- └─┼─┼─┬─┬───┘
-   │ │ │ │
-   │+│?│+│?(count)
-   │a│a│b│*
-   │ │ │ │
-   ▼ ▼ ▼ ▼
-   ✓ ✓ ✓ !
-```
-
-### Cleanup in one test affects other tests
-
-```text
-             time
- ─────────────────────────────►
- ┌───────────┐
- │  test 1   │
- └─┬───┬─┬───┘
-   │   │ │
-   │   │ │
- ┌─┼───┼─┼───┐
- │ │test 2   │
- └─┼─┬─┼─┼─┬─┘
-   │ │ │ │ │
-   │+│+│?│-│?
-   │a│b│a│*│b
-   │ │ │ │ │
-   ▼ ▼ ▼ ▼ ▼
-   ✓ ✓ ✓ ✓ !
-```
-
 ## Exercise
 
 Familiarize yourself with [tests](src/test/groovy) in this module.
@@ -100,14 +59,16 @@ Familiarize yourself with [tests](src/test/groovy) in this module.
 - Check [reports](build/reports/tests-execution/html/test.html)
 - Enable parallel execution
   in [`SpockConfig.groovy`](src/test/resources/SpockConfig.groovy)
-- Run tests again `./gradlew --rerun-tasks :part1.1-shared-state:test :part1.1-shared-state:createTestsExecutionReport --continue`
+- Run tests
+  again `./gradlew --rerun-tasks :part1.1-shared-state:test :part1.1-shared-state:createTestsExecutionReport --continue`
 
 Some tests failed. Eliminate shared state by using different `name` in test cases.
 
 ### Approach no. 1
 
 - Set a unique `name` value in each test.
-- Run tests again `./gradlew --rerun-tasks :part1.1-shared-state:test :part1.1-shared-state:createTestsExecutionReport --continue`
+- Run tests
+  again `./gradlew --rerun-tasks :part1.1-shared-state:test :part1.1-shared-state:createTestsExecutionReport --continue`
 - Check output
 
 Sample output:
@@ -124,7 +85,8 @@ name = testName 2
 - Add `private UniqueValueGenerator generator = RandomUniqueValueGenerator.instance` field.
 - Set `name` value in `setup` using `name = generator.next()`
 - Remove `name` assignments in tests.
-- Run tests again `./gradlew --rerun-tasks :part1.1-shared-state:test :part1.1-shared-state:createTestsExecutionReport --continue`
+- Run tests
+  again `./gradlew --rerun-tasks :part1.1-shared-state:test :part1.1-shared-state:createTestsExecutionReport --continue`
 - Check output
 
 Sample output:
@@ -140,7 +102,8 @@ name = 7Oc3i
 
 - Add `private UniqueValueGenerator generator = NextIntValueGenerator.instance` field.
 - Set `name` value in `setup` using `name = generator.next()`
-- Run tests again `./gradlew --rerun-tasks :part1.1-shared-state:test :part1.1-shared-state:createTestsExecutionReport --continue`
+- Run tests
+  again `./gradlew --rerun-tasks :part1.1-shared-state:test :part1.1-shared-state:createTestsExecutionReport --continue`
 - Check output
 
 Sample output:
@@ -156,7 +119,8 @@ name = 4
 
 - Add `private UniqueValueGenerator generator = new TestNameUniqueValueGenerator(specificationContext)` field.
 - Set `name` value in `setup` using `name = generator.next()`
-- Run tests again `./gradlew --rerun-tasks :part1.1-shared-state:test :part1.1-shared-state:createTestsExecutionReport --continue`
+- Run tests
+  again `./gradlew --rerun-tasks :part1.1-shared-state:test :part1.1-shared-state:createTestsExecutionReport --continue`
 - Check output
 
 Sample output:

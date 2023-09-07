@@ -8,6 +8,7 @@ class MetricsSpec extends BaseSpec {
 
         when:
         FileService.appendText(tempDir, "test", "some text")
+        sleep 100
 
         then:
         MetricService.getCount() == count + 1
@@ -19,6 +20,7 @@ class MetricsSpec extends BaseSpec {
 
         when:
         FileService.setText(tempDir, "test", "some text")
+        sleep 100
 
         then:
         MetricService.getCount() == count + 1

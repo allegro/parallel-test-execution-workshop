@@ -8,6 +8,7 @@ class AppendTextSpec extends BaseSpec {
 
         when:
         FileService.appendText(tempDir, name, "some text")
+        sleep 100
 
         then:
         new File(tempDir, name).text == 'some text'
@@ -19,6 +20,7 @@ class AppendTextSpec extends BaseSpec {
 
         when:
         FileService.appendText(tempDir, name, '')
+        sleep 100
 
         then:
         new File(tempDir, name).text == ''
