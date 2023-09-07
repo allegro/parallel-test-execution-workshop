@@ -120,7 +120,7 @@ name = testName 2
 
 ### Approach no. 2
 
-- Add `private UniqueValueGenerator generator = new RandomUniqueValueGenerator()` field.
+- Add `private UniqueValueGenerator generator = RandomUniqueValueGenerator.instance` field.
 - Set `name` value in `setup` using `name = generator.next()`
 - Remove `name` assignments in tests.
 - Run tests again `./gradlew --rerun-tasks :part1.1-shared-state:test`
@@ -137,7 +137,7 @@ name = 7Oc3i
 
 ### Approach no. 3
 
-- Add `private UniqueValueGenerator generator = NextIntSingletonValueGenerator.instance` field.
+- Add `private UniqueValueGenerator generator = NextIntSingletonGenerator.instance` field.
 - Set `name` value in `setup` using `name = generator.next()`
 - Run tests again `./gradlew --rerun-tasks :part1.1-shared-state:test`
 - Check output
