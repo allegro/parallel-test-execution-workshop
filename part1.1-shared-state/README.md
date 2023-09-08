@@ -1,6 +1,6 @@
 # Shared state
 
-In this part you will learn and exercise techniques of eliminating shared state in tests.
+In this part you will see examples of shared state modifications in tests.
 
 ## Sequential execution of tests
 
@@ -49,6 +49,47 @@ In this part you will learn and exercise techniques of eliminating shared state 
    │  │
    ▼  ▼
    ✓  !
+```
+
+### Cleanup in one test affects other tests
+
+```text
+             time
+ ─────────────────────────────►
+ ┌───────────┐
+ │  test 1   │
+ └─┬───┬─┬───┘
+   │   │ │
+   │   │ │
+ ┌─┼───┼─┼───┐
+ │ │test 2   │
+ └─┼─┬─┼─┼─┬─┘
+   │ │ │ │ │
+   │+│+│?│-│?
+   │a│b│a│*│b
+   │ │ │ │ │
+   ▼ ▼ ▼ ▼ ▼
+   ✓ ✓ ✓ ✓ !
+```
+
+### Assertion is not precise enough
+
+```text
+             time
+ ─────────────────────────────►
+ ┌───────────┐
+ │  test 1   │
+ └─┬─┬───────┘
+   │ │
+ ┌─┼─┼───────┐
+ │ │test 2   │
+ └─┼─┼─┬─┬───┘
+   │ │ │ │
+   │+│?│+│?(count)
+   │a│a│b│*
+   │ │ │ │
+   ▼ ▼ ▼ ▼
+   ✓ ✓ ✓ !
 ```
 
 ## Exercise
