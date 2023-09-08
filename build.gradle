@@ -5,3 +5,9 @@ plugins {
 
 group = 'pl.allegro.tech.workshops'
 version = '0.0.1-SNAPSHOT'
+
+allprojects {
+    tasks.withType(Test).configureEach {
+        jvmArgs = jvmArgs + ['--add-opens=java.base/java.lang=ALL-UNNAMED']
+    }
+}
