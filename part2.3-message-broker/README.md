@@ -4,10 +4,7 @@
 
 ![diagram](.readme/sequence.svg)
 
-Run service locally and check documentation.
-
-1. Run the service `./gradlew :part2.3-message-broker:bootRun` and go
-   to [documentation](http://localhost:8080/swagger-ui/index.html)
+Check [`tests`](src/test/groovy).
 
 ### Refactor tests
 
