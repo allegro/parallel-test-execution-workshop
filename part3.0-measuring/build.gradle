@@ -10,6 +10,9 @@ repositories {
 }
 
 dependencies {
+    implementation 'commons-cli:commons-cli:1.5.0'
+    implementation 'org.apache.commons:commons-csv:1.10.0'
+
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation 'org.spockframework:spock-core:2.4-M1-groovy-4.0'
 }
@@ -32,6 +35,17 @@ createTestsExecutionReport {
         }
     }
     shiftTimestampsToStartOfDay = true
+}
+
+
+tasks.register('stats', JavaExec) {
+    if (!project.hasProperty('args')) {
+        throw new RuntimeException("Missing property `args`. Set it using -Pargs='-stats_file myfile -task_name mytask'.")
+    }
+    description = "Show task stats based on data reported by buildtimetracker"
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'Stats'
+    argsString(project.property('args').toString())
 }
 
 //buildtimetracker {

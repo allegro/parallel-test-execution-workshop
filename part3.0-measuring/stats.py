@@ -19,3 +19,4 @@ with args.stats_file as csvfile:
         print("min:", min(test_times))
         print("max:", max(test_times))
         print("mean:", round(statistics.mean(test_times)))
+        print("count:", len(test_times))
