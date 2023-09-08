@@ -48,10 +48,11 @@ class BooksDeleteResourceTest extends BaseBookResourceTest {
 
     def "delete return not found for non-existent book"() {
         given:
+        def bookId = "not-found-book-id"
         assert bookDatabaseHelper.count() == 0
 
         when:
-        def result = restClient.delete("/books/not-found-book-id")
+        def result = restClient.delete("/books/$bookId")
 
         then:
         result.statusCode == OK

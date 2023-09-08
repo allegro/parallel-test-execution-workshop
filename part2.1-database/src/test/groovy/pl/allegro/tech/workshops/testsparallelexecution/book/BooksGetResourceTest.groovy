@@ -20,10 +20,11 @@ class BooksGetResourceTest extends BaseBookResourceTest {
 
     def "return not found when book does not exist"() {
         given:
+        def bookId = "not-found-book-id"
         assert bookDatabaseHelper.count() == 0
 
         when:
-        def result = restClient.get("/books/not-found-book-id", Book)
+        def result = restClient.get("/books/$bookId", Book)
 
         then:
         result.statusCode == NOT_FOUND

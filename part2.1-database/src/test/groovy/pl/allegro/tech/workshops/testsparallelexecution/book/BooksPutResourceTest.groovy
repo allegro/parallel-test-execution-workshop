@@ -46,11 +46,12 @@ class BooksPutResourceTest extends BaseBookResourceTest {
 
     def "update does not create book when updated book does not exist"() {
         given:
+        def bookId = "not-found-book-id"
         def updatedBook = Book.of(title, "Davis Stephen R.")
         assert bookDatabaseHelper.count() == 0
 
         when:
-        def result = restClient.put("/books/not-found-book-id", updatedBook, Book)
+        def result = restClient.put("/books/$bookId", updatedBook, Book)
 
         then:
         result.statusCode == NOT_FOUND
