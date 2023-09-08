@@ -34,7 +34,7 @@ class EmailsByMessageBrokerResourceTest extends BaseTestWithRest {
          * Hint:
          * - Replace with {@link pl.allegro.tech.hermes.mock.HermesMockDefine#jsonTopic(java.lang.String, pl.allegro.tech.hermes.mock.exchange.Response, java.lang.Class, java.util.function.Predicate)}
          * - Use {@link EmailServiceEvent} as an event class
-         * - Define predicate using Groovy closure e.g. { it.subject() == subject }
+         * - Define predicate using Groovy closure e.g. { it.name() == name }
          */
         hermesMock.define().jsonTopic(topic, aResponse().build())
 
