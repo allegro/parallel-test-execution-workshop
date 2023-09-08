@@ -21,20 +21,20 @@ class RemoveFileSpec extends BaseSpec {
         rootDir.list().length == 0
     }
 
-    def "remove file 2"() {
+    def "remove empty directory"() {
         given:
-        def fileName = "test 2"
-        def file = new File(rootDir, fileName)
-        file.createNewFile()
-        def numberOfFilesBeforeRemove = rootDir.list().length
+        def dirName = "test 2"
+        def file = new File(rootDir, dirName)
+        file.mkdir()
+        def filesBeforeRemove = rootDir.list()
 
         when:
-        FileService.removeFile(rootDir, fileName)
+        FileService.removeFile(rootDir, dirName)
 
 
         then:
-        def numberOfFilesAfterRemove = rootDir.list().length
-        numberOfFilesAfterRemove == numberOfFilesBeforeRemove - 1
+        def filesAfterRemove = rootDir.list()
+        filesAfterRemove.length == filesBeforeRemove.length - 1
     }
 
 }
