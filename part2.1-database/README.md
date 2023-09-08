@@ -4,13 +4,7 @@
 
 ![diagram](.readme/sequence.svg)
 
-
-### Run service locally and check documentation (optional)
-
-1. Run MongoDB `docker run --rm -d -p 27017:27017 --name parallel-tests-mongo mongo:6.0`
-2. Run the service `./gradlew bootRun` and go to [documentation](http://localhost:8080/swagger-ui/index.html)
-
-Finally, you can stop and remove MongoDb container `docker stop parallel-tests-mongo`
+Check [`tests`](src/test/groovy).
 
 ## Refactor tests
 
