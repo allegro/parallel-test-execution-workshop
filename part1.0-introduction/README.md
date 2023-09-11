@@ -90,6 +90,8 @@ import org.spockframework.runtime.model.parallel.ExecutionMode
 runner {
     parallel {
         enabled true
+      // ExecutionMode.CONCURRENT is a default value 
+      // of defaultSpecificationExecutionMode and defaultExecutionMode
 //        defaultSpecificationExecutionMode ExecutionMode.CONCURRENT
 //        defaultExecutionMode ExecutionMode.CONCURRENT
     }
