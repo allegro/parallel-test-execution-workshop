@@ -37,10 +37,6 @@ non-JVM).
 - JDK 17
 - Docker
 
-#### Optional
-
-- Python 3
-
 Sample applications and tests are written using:
 
 - Spring + Spring Boot
