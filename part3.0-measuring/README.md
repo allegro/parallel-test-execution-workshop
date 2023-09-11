@@ -123,16 +123,19 @@ for i in {1..5}; do ../gradlew test --rerun 2>&1; done
 cd -
 ```
 
-(requires Python 3)
+`./gradlew :part3.0-measuring:stats -Pargs='-stats_file .build-time.csv -task_name :part3.0-measuring:test'`
+
+or alternatively (requires Python 3)
 
 ```shell
 ./stats.py .build-time.csv :part3.0-measuring:test
 ```
 
 ```
-min: 1605
-max: 1808
-mean: 1686
+min: 960
+max: 1036
+mean: 999
+count: 5
 ```
 
 ### Exercise
