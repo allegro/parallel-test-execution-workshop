@@ -2,7 +2,7 @@
 
 ### Familiarize yourself with this service
 
-![diagram](.readme/sequence.svg)
+<img alt="sequence diagram" src=".readme/sequence.svg" width="65%">
 
 Check [`tests`](src/test/groovy).
 
