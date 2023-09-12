@@ -15,4 +15,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         problemDetail.setTitle("Book with this title already exists");
         return problemDetail;
     }
+
+    @ExceptionHandler(BookNotFoundException.class)
+    public ProblemDetail handleBookNotFoundException() {
+        ProblemDetail problemDetail = ProblemDetail.forStatus(HttpStatus.NOT_FOUND);
+        return problemDetail;
+    }
 }

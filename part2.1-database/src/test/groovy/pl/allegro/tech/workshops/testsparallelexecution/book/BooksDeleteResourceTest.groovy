@@ -3,6 +3,7 @@ package pl.allegro.tech.workshops.testsparallelexecution.book
 
 import pl.allegro.tech.workshops.testsparallelexecution.books.Book
 
+import static org.springframework.http.HttpStatus.NOT_FOUND
 import static org.springframework.http.HttpStatus.OK
 
 class BooksDeleteResourceTest extends BaseBookResourceTest {
@@ -55,7 +56,7 @@ class BooksDeleteResourceTest extends BaseBookResourceTest {
         def result = restClient.delete("/books/$bookId")
 
         then:
-        result.statusCode == OK
+        result.statusCode == NOT_FOUND
     }
 
 }

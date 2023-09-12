@@ -28,6 +28,9 @@ public class BookService {
     }
 
     public void deleteBook(String id) {
-        bookRepository.deleteById(id);
+        Integer numberOfRemovedBooks = bookRepository.deleteWithResultById(id);
+        if (numberOfRemovedBooks == 0) {
+            throw new BookNotFoundException();
+        }
     }
 }
