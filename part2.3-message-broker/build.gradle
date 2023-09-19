@@ -21,7 +21,7 @@ dependencies {
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
     implementation 'pl.allegro.tech.hermes:hermes-client:2.4.4'
     implementation 'org.eclipse.jetty:jetty-reactive-httpclient:4.0.0'
-    implementation 'io.projectreactor.netty:reactor-netty:1.1.10'
+    implementation 'io.projectreactor.netty:reactor-netty:1.1.11'
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation project(':commons')
