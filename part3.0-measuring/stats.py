@@ -16,6 +16,7 @@ class TableFormatter:
         for result in results:
             for entry_key, entry_value in result.items():
                 print(f"{entry_key}: {entry_value}")
+            print()
 
 
 class CsvFormatter:
@@ -24,11 +25,12 @@ class CsvFormatter:
 
     def format(self, results):
         with io.StringIO() as csv_output:
-            field_names = ['min', 'max', 'mean', 'count']
+            field_names = ['file', 'min', 'max', 'mean', 'count']
             writer = csv.DictWriter(csv_output, fieldnames=field_names)
             writer.writeheader()
             for result in results:
-                writer.writerow({'min': result['min'],
+                writer.writerow({'file': result['file'],
+                                 'min': result['min'],
                                  'max': result['max'],
                                  'mean': result['mean'],
                                  'count': result['count']})
@@ -40,14 +42,16 @@ class JsonFormatter:
         pass
 
     def format(self, results):
-        if results:
-            print(json.dumps(results[0]))
+        for result in results:
+            print(json.dumps(result))
 
 
 def main():
     args = parse_args()
-    test_times = filter_build_times(args)
-    results = gather_stats(test_times)
+    results = []
+    for file in args.stats_file:
+        test_times = filter_build_times(file, args.task_name)
+        results.append(gather_stats(test_times, file))
 
     if results:
         if args.format == 'csv':
@@ -62,34 +66,35 @@ def main():
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Show task stats based on data reported by buildtimetracker")
-    parser.add_argument('stats_file', type=argparse.FileType('r'), help="A CSV file created by buildtimetracker")
+    parser.add_argument('stats_file', type=argparse.FileType('r'), nargs='+',
+                        help="A CSV file created by buildtimetracker")
     parser.add_argument('task_name', type=str)
     parser.add_argument('--format', choices=['csv', 'json', 'table'], default='table')
     args = parser.parse_args()
     return args
 
 
-def filter_build_times(args):
-    with args.stats_file as csvfile:
+def filter_build_times(file, task_name):
+    with file as csvfile:
         builtimereader = csv.DictReader(csvfile)
         test_times = [int(row["ms"]) for row in list(builtimereader) if
-                      row["task"] == args.task_name and row["success"] == "true" and row["did_work"] == "true" and
+                      row["task"] == task_name and row["success"] == "true" and row["did_work"] == "true" and
                       row["skipped"] == "false"]
     return test_times
 
 
-def gather_stats(test_times):
-    results = []
+def gather_stats(test_times, file):
     if test_times:
         min_value = min(test_times)
         max_value = max(test_times)
         mean_value = round(statistics.mean(test_times))
         count_value = len(test_times)
-        results.append({'min': min_value,
-                        'max': max_value,
-                        'mean': mean_value,
-                        'count': count_value})
-    return results
+        return {'file': file.name,
+                'min': min_value,
+                'max': max_value,
+                'mean': mean_value,
+                'count': count_value}
+    return {}
 
 
 if __name__ == '__main__':
