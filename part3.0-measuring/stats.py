@@ -25,16 +25,13 @@ class CsvFormatter:
 
     def format(self, results):
         with io.StringIO() as csv_output:
-            field_names = ['file', 'min', 'max', 'mean', 'count']
-            writer = csv.DictWriter(csv_output, fieldnames=field_names)
-            writer.writeheader()
-            for result in results:
-                writer.writerow({'file': result['file'],
-                                 'min': result['min'],
-                                 'max': result['max'],
-                                 'mean': result['mean'],
-                                 'count': result['count']})
-            print(csv_output.getvalue())
+            if results:
+                field_names = results[0].keys()
+                writer = csv.DictWriter(csv_output, fieldnames=field_names)
+                writer.writeheader()
+                for result in results:
+                    writer.writerow(result)
+                print(csv_output.getvalue())
 
 
 class JsonFormatter:
@@ -51,7 +48,9 @@ def main():
     results = []
     for file in args.stats_file:
         test_times = filter_build_times(file, args.task_name)
-        results.append(gather_stats(test_times, file))
+        stats = gather_stats(test_times, file)
+        if stats:
+            results.append(stats)
 
     if results:
         if args.format == 'csv':
@@ -94,7 +93,7 @@ def gather_stats(test_times, file):
                 'max': max_value,
                 'mean': mean_value,
                 'count': count_value}
-    return {}
+    return None
 
 
 if __name__ == '__main__':
