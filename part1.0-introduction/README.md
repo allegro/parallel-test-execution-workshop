@@ -36,6 +36,7 @@ runner {
     - for features (tests methods) by `runner.parallel.defaultExecutionMode`
 
 Sample configuration:
+
 ```groovy
 import org.spockframework.runtime.model.parallel.ExecutionMode
 
@@ -61,6 +62,7 @@ runner {
     }
 }
 ```
+
 - or
 
 ```groovy
@@ -83,6 +85,18 @@ runner {
 ![diagram](.readme/README-CONCURRENT-Specifications-CONCURRENT-Features.svg)
 
 - Set
+
+```groovy
+import org.spockframework.runtime.model.parallel.ExecutionMode
+
+runner {
+    parallel {
+        enabled true
+    }
+}
+```
+
+- or
 
 ```groovy
 import org.spockframework.runtime.model.parallel.ExecutionMode
@@ -166,10 +180,27 @@ Supported options:
 
 Default: `dynamicWithReservedProcessors(1.0, 2)` (`Runtime.getRuntime().availableProcessors() * 1.0 - 2`)
 
+Example thread pool configuration:
+
+```groovy
+runner {
+    parallel {
+        enabled true
+        fixed(4)
+    }
+}
+```
+
 Check number of available processors:
 
 ```sh
 jshell print-available-processors.jsh
+```
+
+Sample output:
+
+```
+Runtime.getRuntime().availableProcessors() = 10
 ```
 
 - Add test case to class `A`
@@ -187,13 +218,12 @@ def "test 3"() {
 ```
 
 - Remove class `C`
-
 - Run
   tests `./gradlew --rerun-tasks :part1.0-introduction:test :part1.0-introduction:createTestsExecutionReport -PtotalTimeOfAllTests=false`
 - Check [reports](build/reports/tests-execution/html/test.html)
 - Configure a thread pool of your choice, run tests and check reports
 - Randomize duration of tests. In test `test 3` replace `SLEEP_DURATION`
-  with `org.apache.commons.lang3.RandomUtils.nextInt(50, 250)`. Run tests and check reports.
+  with `new Random().nextLong(50, 250)`. Run tests and check reports.
 
 ---
 
