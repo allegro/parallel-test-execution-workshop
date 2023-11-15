@@ -76,6 +76,8 @@ class EmailsByRestResourceTest extends BaseTestWithRest {
                         .withStatus(200)
                 )
         )
+        // sleep to simulate long response
+        sleep 1000
 
         when:
         def result = restClient.post("/emails", email, ProblemDetail)
