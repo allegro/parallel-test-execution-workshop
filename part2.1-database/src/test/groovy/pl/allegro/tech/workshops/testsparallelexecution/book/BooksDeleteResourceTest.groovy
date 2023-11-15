@@ -22,6 +22,7 @@ class BooksDeleteResourceTest extends BaseBookResourceTest {
         given:
         def book = Book.of(title, "Davis Stephen R.")
         def createdBook = store(book)
+        // you can access id by `createdBook.id()`
 
         when:
         def result = restClient.delete("/books/${createdBook.id()}")
@@ -37,6 +38,7 @@ class BooksDeleteResourceTest extends BaseBookResourceTest {
         def createdBook = store(book)
         def otherBook = Book.of("$title (other)", "Davis Stephen R.")
         def otherCreatedBook = store(otherBook)
+        // you can access id by `otherCreatedBook.id()`
 
         when:
         def result = restClient.delete("/books/${createdBook.id()}")
