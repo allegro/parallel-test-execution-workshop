@@ -26,7 +26,7 @@ class RemoveFileSpec extends BaseSpec {
         def dirName = "test 2"
         def file = new File(rootDir, dirName)
         file.mkdir()
-        def filesBeforeRemove = rootDir.list()
+        def numberOfFilesBeforeRemove = rootDir.list().length
 
         when:
         FileService.removeFile(rootDir, dirName)
@@ -34,7 +34,7 @@ class RemoveFileSpec extends BaseSpec {
 
         then:
         def filesAfterRemove = rootDir.list()
-        filesAfterRemove.length == filesBeforeRemove.length - 1
+        filesAfterRemove.length == numberOfFilesBeforeRemove - 1
     }
 
 }
