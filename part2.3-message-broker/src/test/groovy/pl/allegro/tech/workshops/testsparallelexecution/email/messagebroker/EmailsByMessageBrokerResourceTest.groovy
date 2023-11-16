@@ -54,6 +54,8 @@ class EmailsByMessageBrokerResourceTest extends BaseTestWithRest {
         given:
         def email = EmailRequest.of(subject, sender, "to@example.com")
         hermesMock.define().jsonTopic(topic, aResponse().build())
+        // sleep to simulate long response
+        sleep 500
 
         when:
         def result = restClient.post("/emails", email, EmailRequest)
