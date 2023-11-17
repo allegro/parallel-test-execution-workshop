@@ -2,7 +2,6 @@
 
 ## Familiarize yourself with this service
 
-
 <img alt="sequence diagram" src=".readme/sequence.svg" width="75%">
 
 Check [`tests`](src/test/groovy).
@@ -29,6 +28,10 @@ What to check?
 
 - modify parallel thread pool e.g. `fixed(4)`
 - add randomization using `@RandomizedOrder` class annotation (add it to `*Test` class)
+
+#### Result
+
+- there should be no usages of `removeAll()` and `count()` in tests.
 
 ---
 [home](../README.md)

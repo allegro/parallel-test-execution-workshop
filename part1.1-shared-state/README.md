@@ -115,8 +115,7 @@ Some tests failed. Eliminate shared state by using different `name` in test case
 Sample output:
 
 ```text
-name = testName 3 readable: false
-name = testName 3 readable: true
+name = testName 3
 name = testName 1
 name = testName 2
 ```
@@ -136,7 +135,6 @@ Sample output:
 name = BM8LX
 name = Kbc28
 name = boR1b
-name = 7Oc3i
 ```
 
 ### Approach no. 3
@@ -153,7 +151,6 @@ Sample output:
 name = 3
 name = 1
 name = 2
-name = 4
 ```
 
 ### Approach no. 4
@@ -167,8 +164,7 @@ name = 4
 Sample output:
 
 ```text
-name = pl.allegro.tech.workshops.testsparallelexecution:SharedStateExampleTest:should create readable - non-readable file [readable: true, #0]
-name = pl.allegro.tech.workshops.testsparallelexecution:SharedStateExampleTest:should create readable - non-readable file [readable: false, #1]
+name = pl.allegro.tech.workshops.testsparallelexecution:SharedStateExampleTest:should remove file
 name = pl.allegro.tech.workshops.testsparallelexecution:SharedStateExampleTest:should create dir
 name = pl.allegro.tech.workshops.testsparallelexecution:SharedStateExampleTest:should create file
 ```

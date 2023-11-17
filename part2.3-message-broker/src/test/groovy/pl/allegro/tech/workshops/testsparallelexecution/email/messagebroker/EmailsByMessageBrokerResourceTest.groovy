@@ -31,7 +31,7 @@ class EmailsByMessageBrokerResourceTest extends BaseTestWithRest {
         given:
         def email = EmailRequest.of(subject, "from@example.com", "to@example.com")
         /**
-         * Hint:
+         * Hints:
          * - Replace `jsonTopic` with {@link pl.allegro.tech.hermes.mock.HermesMockDefine#jsonTopic(java.lang.String, pl.allegro.tech.hermes.mock.exchange.Response, java.lang.Class, java.util.function.Predicate)}
          * - {@link EmailServiceEvent} is as an event class
          * - You can define predicate using Groovy closure e.g. { it.name() == name }
@@ -54,6 +54,8 @@ class EmailsByMessageBrokerResourceTest extends BaseTestWithRest {
         given:
         def email = EmailRequest.of(subject, sender, "to@example.com")
         hermesMock.define().jsonTopic(topic, aResponse().build())
+        // sleep to simulate long response
+        sleep 500
 
         when:
         def result = restClient.post("/emails", email, EmailRequest)

@@ -27,10 +27,10 @@ class SharedStateExampleTest extends Specification {
         println "name = $name"
 
         when:
-        def fileCreated = file.createNewFile()
+        def fileWasCreated = file.createNewFile()
 
         then:
-        fileCreated
+        fileWasCreated
         file.exists()
     }
 
@@ -41,31 +41,26 @@ class SharedStateExampleTest extends Specification {
         println "name = $name"
 
         when:
-        def fileCreated = file.mkdir()
+        def directoryWasCreated = file.mkdir()
 
         then:
-        fileCreated
+        directoryWasCreated
         file.exists()
     }
 
-    def "should create readable or non-readable file"() {
+    def "should remove file"() {
         given:
         name = "testName"
         file = new File(tempDir, name)
-        file.setReadable(readable)
+        assert file.createNewFile()
         println "name = $name"
 
         when:
-        def fileCreated = file.createNewFile()
+        def fileWasDeleted = file.delete()
 
         then:
-        fileCreated
-        file.exists()
-
-        where:
-        readable | _
-        true     | _
-        false    | _
+        fileWasDeleted
+        !file.exists()
     }
 
 }
