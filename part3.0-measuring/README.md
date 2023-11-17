@@ -79,21 +79,21 @@ report your build times.
 
 - uncomment plugin configuration in [build.gradle](build.gradle) (at the beginning and at the end of the file)
 
-```groovy
-plugins {
-    id "net.rdrei.android.buildtimetracker" version "0.11.0"
-}
-
-buildtimetracker {
-    reporters {
-        csv {
-            append true
-            header true
-            output ".build-time.csv"
-        }
-    }
-}
-```
+   ```groovy
+   plugins {
+       id "net.rdrei.android.buildtimetracker" version "0.11.0"
+   }
+   
+   buildtimetracker {
+       reporters {
+           csv {
+               append true
+               header true
+               output ".build-time.csv"
+           }
+       }
+   }
+   ```
 
 - run tests `./gradlew :part3.0-measuring:test --rerun`
 - show check results in [.build-time.csv](.build-time.csv)
@@ -138,12 +138,23 @@ mean: 999
 count: 5
 ```
 
-### Exercise
+### Exercise - measuring test speed-up
 
 1. Check execution time of `test` task with parallel execution disabled.
 2. Enable parallel execution in [SpockConfig.groovy](src/test/resources/SpockConfig.groovy) and remove `.build-time.csv`
    file.
 3. Check execution time of `test` task with parallel execution enabled and compare results with previous results.
+
+### Speed-up limits
+
+1. Enable parallel execution in [SpockConfig.groovy](src/test/resources/SpockConfig.groovy).
+2. Run
+   tests `./gradlew --rerun-tasks :part3.0-measuring:test :part3.0-measuring:createTestsExecutionReport`
+3. Check [reports](build/reports/tests-execution/html/test.html)
+4. Run
+   tests `./gradlew --rerun-tasks :part3.0-measuring:test :part3.0-measuring:createTestsExecutionReport -PdisplaySuites=true`.
+   Report includes execution time of tests (methods/features), suites (classes/specs) and Gradle executors and tasks.
+5. Check [reports](build/reports/tests-execution/html/test.html)
 
 ---
 
