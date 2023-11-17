@@ -35,6 +35,11 @@ createTestsExecutionReport {
         }
     }
     shiftTimestampsToStartOfDay = true
+    components {
+        suites {
+            enabled = Boolean.parseBoolean(project.properties.getOrDefault('displaySuites', 'false') as String)
+        }
+    }
 }
 
 
