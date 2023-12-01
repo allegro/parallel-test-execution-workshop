@@ -26,6 +26,11 @@ runner {
 - Run tests `./gradlew --rerun-tasks :part1.0-introduction:test :part1.0-introduction:createTestsExecutionReport`
 - Check [reports](build/reports/tests-execution/html/test.html)
 
+Check other reports created by Gradle:
+
+- [HTML report](build/reports/tests/test)
+- [XML report](build/test-results/test)
+
 ## Execution modes
 
 - two execution modes
