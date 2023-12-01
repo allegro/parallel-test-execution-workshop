@@ -6,6 +6,11 @@ import pl.allegro.tech.workshops.testsparallelexecution.books.Book
 import static org.springframework.http.HttpStatus.OK
 import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY
 
+/**
+ * Hints
+ *
+ * <p>Use other methods from {@link pl.allegro.tech.workshops.testsparallelexecution.support.DatabaseHelper}.
+ */
 class BooksPostResourceTest extends BaseBookResourceTest {
 
     private String title

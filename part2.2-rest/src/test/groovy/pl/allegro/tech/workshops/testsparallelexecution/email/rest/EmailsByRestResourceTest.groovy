@@ -8,6 +8,7 @@ import spock.lang.Shared
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse
 import static com.github.tomakehurst.wiremock.client.WireMock.equalTo
+import static com.github.tomakehurst.wiremock.client.WireMock.matchingJsonPath
 import static com.github.tomakehurst.wiremock.client.WireMock.post
 import static com.github.tomakehurst.wiremock.client.WireMock.postRequestedFor
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo
@@ -22,16 +23,21 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE
 
 /**
  * Hints:
- * - https://wiremock.org/docs/request-matching/#json-path
- * and https://javadoc.io/doc/com.github.tomakehurst/wiremock/latest/com/github/tomakehurst/wiremock/client/WireMock.html#equalTo(java.lang.String)
- * can be used to match request body in stubs and in verifications
  *
- * - An example payload send to /external-api-service/emails resource:
+ * <p>{@link com.github.tomakehurst.wiremock.client.MappingBuilder#withRequestBody(com.github.tomakehurst.wiremock.matching.ContentPattern <?>)},
+ * {@link com.github.tomakehurst.wiremock.client.WireMock#matchingJsonPath(String, com.github.tomakehurst.wiremock.matching.StringValuePattern)}
+ * and {@link com.github.tomakehurst.wiremock.client.WireMock#equalTo(java.lang.String)} (<a href="https://wiremock.org/docs/request-matching/#nested-value-matching">docs</a>)
+ * can be used to match request body in stubs and in verifications.
+ * <p>Sample usage: <code>.withRequestBody(matchingJsonPath('$.my-json-path', equalTo(...)))</code>
+ *
+ * <p>An example payload send to /external-api-service/emails resource:
+ * <pre>
  {
  "subject": "New workshops!",
  "sender": "from@example.com",
  "recipient": "to@example.com"
  }
+ </pre>
  */
 class EmailsByRestResourceTest extends BaseTestWithRest {
 
