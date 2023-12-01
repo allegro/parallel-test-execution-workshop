@@ -6,6 +6,11 @@ import pl.allegro.tech.workshops.testsparallelexecution.books.Book
 import static org.springframework.http.HttpStatus.NOT_FOUND
 import static org.springframework.http.HttpStatus.OK
 
+/**
+ * Hints
+ *
+ * <p>Use other methods from {@link pl.allegro.tech.workshops.testsparallelexecution.support.DatabaseHelper}.
+ */
 class BooksDeleteResourceTest extends BaseBookResourceTest {
 
     private String title

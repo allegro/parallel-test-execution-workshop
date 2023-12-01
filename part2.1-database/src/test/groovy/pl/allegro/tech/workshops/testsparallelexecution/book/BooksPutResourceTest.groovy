@@ -7,6 +7,11 @@ import static org.springframework.http.HttpStatus.NOT_FOUND
 import static org.springframework.http.HttpStatus.OK
 import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY
 
+/**
+ * Hints
+ *
+ * <p>Use other methods from {@link pl.allegro.tech.workshops.testsparallelexecution.support.DatabaseHelper}.
+ */
 class BooksPutResourceTest extends BaseBookResourceTest {
 
     private String title
