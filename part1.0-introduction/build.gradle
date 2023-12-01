@@ -16,6 +16,11 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    reports {
+        junitXml {
+            required = true
+        }
+    }
 }
 
 createTestsExecutionReport {
