@@ -1,8 +1,7 @@
 package pl.allegro.tech.workshops.testsparallelexecution.email.messagebroker
 
-import org.junit.ClassRule
 import org.springframework.beans.factory.annotation.Value
-import pl.allegro.tech.hermes.mock.HermesMockRule
+import pl.allegro.tech.hermes.mock.HermesMock
 import pl.allegro.tech.workshops.testsparallelexecution.BaseTestWithRest
 import spock.lang.Shared
 
@@ -17,9 +16,16 @@ class EmailsByMessageBrokerResourceTest extends BaseTestWithRest {
     @Value('${application.services.message-broker.topic}')
     private String topic
 
-    @ClassRule
     @Shared
-    private HermesMockRule hermesMock = new HermesMockRule(8089)
+    private HermesMock hermesMock = new HermesMock.Builder().withPort(8089).build()
+
+    def setupSpec() {
+        hermesMock.start()
+    }
+
+    def cleanupSpec() {
+        hermesMock.stop()
+    }
 
     private String subject = "New workshops!"
 
