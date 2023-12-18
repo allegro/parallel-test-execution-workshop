@@ -1,8 +1,10 @@
 package pl.allegro.tech.workshops.testsparallelexecution.email.messagebroker
 
-import org.junit.ClassRule
+import org.spockframework.spring.EnableSharedInjection
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
-import pl.allegro.tech.hermes.mock.HermesMockRule
+import org.springframework.context.annotation.Import
+import pl.allegro.tech.hermes.mock.HermesMock
 import pl.allegro.tech.workshops.testsparallelexecution.BaseTestWithRest
 import spock.lang.Shared
 
@@ -12,14 +14,24 @@ import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import static org.springframework.http.HttpStatus.OK
 import static pl.allegro.tech.hermes.mock.exchange.Response.Builder.aResponse
 
-class EmailsByMessageBrokerResourceTest extends BaseTestWithRest {
+@EnableSharedInjection
+@Import(HermesMockConfig)
+class EmailsByMessageBrokerResourceTest extends BaseTestWithRest implements HermesMockPortSupport {
 
     @Value('${application.services.message-broker.topic}')
     private String topic
 
-    @ClassRule
     @Shared
-    private HermesMockRule hermesMock = new HermesMockRule(8089)
+    @Autowired
+    private HermesMock hermesMock
+
+    def setupSpec() {
+        hermesMock.start()
+    }
+
+    def cleanupSpec() {
+        hermesMock.stop()
+    }
 
     private String subject = "New workshops!"
 
