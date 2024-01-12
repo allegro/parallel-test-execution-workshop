@@ -20,6 +20,12 @@
 |----------|------------------|--------------------|------------|--------------|
 | unitTest | 1.6s             | 1.3s               | -0.3s      | -19%         |
 
+## Project D (Spark SQL with BigQuery)
+
+| Task  | Serial execution | Parallel execution | Difference      | % Difference |
+|-------|------------------|--------------------|-----------------|--------------|
+| tests | 26 min 44 sec    | 4 min 23 sec       | -22 min 21 secs | -84%         |
+
 ---
 
 [home](../README.md)
