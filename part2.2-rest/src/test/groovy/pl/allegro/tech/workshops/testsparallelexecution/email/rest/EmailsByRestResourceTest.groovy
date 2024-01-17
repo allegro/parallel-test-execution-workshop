@@ -122,7 +122,7 @@ class EmailsByRestResourceTest extends BaseTestWithRest {
         errorResponse                                             || expectedDetail
         aResponse().withStatus(400)                               || "400 Bad Request"
         aResponse().withStatus(500)                               || "500 Server Error"
-        aResponse().withFault(EMPTY_RESPONSE)                     || "failed to respond"
+        aResponse().withFault(EMPTY_RESPONSE)                     || "Unexpected end of file from server"
         aResponse().withFault(CONNECTION_RESET_BY_PEER)           || "Connection reset"
         aResponse().withFixedDelay(1000)
                 .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
