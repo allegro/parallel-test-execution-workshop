@@ -15,6 +15,11 @@ dependencies {
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation 'org.spockframework:spock-core:2.4-M1-groovy-4.0'
+    constraints {
+        testImplementation('org.apache.groovy:groovy:4.0.18') {
+            because 'version 4.0.6 pulled from spock-core causes "BUG! exception in phase [...] Unsupported class file major version 65"'
+        }
+    }
 }
 
 test {
