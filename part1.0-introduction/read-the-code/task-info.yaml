@@ -1,0 +1,9 @@
+type: edu
+custom_name: Read the code
+files:
+  - name: src/test/groovy/A.groovy
+    visible: true
+  - name: src/test/groovy/B.groovy
+    visible: true
+  - name: build.gradle
+    visible: false

@@ -1,0 +1,11 @@
+type: marketplace
+title: Parallel test execution
+language: English
+summary: "This is parallel execution workshop. Examples are based on parallel execution\
+  \ feature for Spock, but concepts shown here can be used with other testing frameworks\
+  \ (JVM or non-JVM)."
+programming_language: Java
+content:
+  - part1.0-introduction
+environment_settings:
+  jvm_language_level: JDK_17
