@@ -1,3 +1,4 @@
 custom_name: Introduction
 content:
   - read-the-code
+  - no-parallelization

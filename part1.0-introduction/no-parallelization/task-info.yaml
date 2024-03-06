@@ -1,5 +1,5 @@
-type: theory
-custom_name: Read the code
+type: edu
+custom_name: No parallelization
 files:
   - name: src/test/groovy/A.groovy
     visible: true

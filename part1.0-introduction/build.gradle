@@ -14,6 +14,15 @@ dependencies {
     testImplementation 'org.spockframework:spock-core:2.4-M1-groovy-4.0'
 }
 
+sourceSets {
+    main {
+        java.srcDir 'src'
+    }
+    test {
+        java.srcDir 'test'
+    }
+}
+
 test {
     useJUnitPlatform()
     reports {
@@ -37,5 +46,11 @@ createTestsExecutionReport {
         totalTimeOfAllTests {
             enabled = Boolean.parseBoolean(project.properties.getOrDefault('totalTimeOfAllTests', 'true') as String)
         }
+    }
+}
+
+tasks {
+    test.finalizedBy {
+        tasks.named('createTestsExecutionReport')
     }
 }
