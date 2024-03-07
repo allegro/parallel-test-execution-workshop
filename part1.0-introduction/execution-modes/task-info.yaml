@@ -1,0 +1,5 @@
+type: edu
+custom_name: Execution modes
+files:
+  - name: build.gradle
+    visible: true

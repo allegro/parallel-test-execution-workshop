@@ -1,0 +1,5 @@
+type: edu
+custom_name: Parallel execution
+files:
+  - name: build.gradle
+    visible: true

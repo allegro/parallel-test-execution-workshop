@@ -1,0 +1,5 @@
+type: edu
+custom_name: Parallel thread pool
+files:
+  - name: build.gradle
+    visible: true

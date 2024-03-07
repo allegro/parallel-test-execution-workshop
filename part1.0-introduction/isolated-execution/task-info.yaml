@@ -1,0 +1,5 @@
+type: edu
+custom_name: Isolated execution
+files:
+  - name: build.gradle
+    visible: true

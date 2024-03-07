@@ -2,3 +2,7 @@ custom_name: Introduction
 content:
   - read-the-code
   - no-parallelization
+  - parallel-execution
+  - execution-modes
+  - isolated-execution
+  - parallel-thread-pool

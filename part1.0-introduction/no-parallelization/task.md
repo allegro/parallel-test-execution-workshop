@@ -1,1 +1,2 @@
-Click `Check` to run tests. By default, all tests are run sequentially. Now check [report](file://part1.0-introduction/no-parallelization/build/reports/tests-execution/html/test.html) with visualization of test execution schedule. 
+## Default execution mode
+By default, all tests are run sequentially. Click `Check` to run tests. Now check [report](file://part1.0-introduction/no-parallelization/build/reports/tests-execution/html/test.html) with visualization of test execution schedule. 
