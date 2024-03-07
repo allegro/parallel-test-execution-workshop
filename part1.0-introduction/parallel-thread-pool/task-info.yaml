@@ -2,4 +2,12 @@ type: edu
 custom_name: Parallel thread pool
 files:
   - name: build.gradle
+    visible: false
+  - name: src/test/resources/SpockConfig.groovy
+    visible: false
+  - name: src/test/groovy/A.groovy
     visible: true
+  - name: src/test/groovy/B.groovy
+    visible: true
+  - name: test/empty
+    visible: false

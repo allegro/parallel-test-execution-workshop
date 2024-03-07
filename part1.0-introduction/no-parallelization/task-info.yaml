@@ -5,5 +5,7 @@ files:
     visible: true
   - name: src/test/groovy/B.groovy
     visible: true
+  - name: test/empty
+    visible: false
   - name: build.gradle
     visible: false

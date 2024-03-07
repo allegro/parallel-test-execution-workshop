@@ -25,7 +25,7 @@ runner {
 
 ### Sequential Execution (SAME_THREAD Specifications, SAME_THREAD Features)
 
-![diagram](../.readme/README-SAME_THREAD-Specifications-SAME_THREAD-Features.svg)
+![diagram](.readme/README-SAME_THREAD-Specifications-SAME_THREAD-Features.svg)
 
 - Set
 
@@ -53,7 +53,7 @@ runner {
 
 ### CONCURRENT Specifications, CONCURRENT Features
 
-![diagram](../.readme/README-CONCURRENT-Specifications-CONCURRENT-Features.svg)
+![diagram](.readme/README-CONCURRENT-Specifications-CONCURRENT-Features.svg)
 
 - Set
 
@@ -85,7 +85,7 @@ runner {
 
 ### CONCURRENT Specifications, SAME_THREAD Features
 
-![diagram](../.readme/README-CONCURRENT-Specifications-SAME_THREAD-Features.svg)
+![diagram](.readme/README-CONCURRENT-Specifications-SAME_THREAD-Features.svg)
 
 - Set
 
@@ -104,7 +104,7 @@ runner {
 
 ### SAME_THREAD Specifications, CONCURRENT Features
 
-![diagram](../.readme/README-SAME_THREAD-Specifications-CONCURRENT-Features.svg)
+![diagram](.readme/README-SAME_THREAD-Specifications-CONCURRENT-Features.svg)
 
 - Set
 

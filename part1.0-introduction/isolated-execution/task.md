@@ -1,6 +1,6 @@
 ## Isolated execution
 
-![diagram](../.readme/README-Isolated.svg)
+![diagram](.readme/README-Isolated.svg)
 
 - Enable parallel execution (concurrent features, concurrent specifications)
 - Create a copy of class `A` and name it `C`

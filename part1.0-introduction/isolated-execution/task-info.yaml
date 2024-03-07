@@ -2,4 +2,14 @@ type: edu
 custom_name: Isolated execution
 files:
   - name: build.gradle
+    visible: false
+  - name: src/test/resources/SpockConfig.groovy
     visible: true
+  - name: src/test/groovy/A.groovy
+    visible: true
+  - name: src/test/groovy/B.groovy
+    visible: true
+  - name: test/empty
+    visible: false
+  - name: .readme/README-Isolated.svg
+    visible: false

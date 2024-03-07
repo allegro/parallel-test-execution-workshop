@@ -2,4 +2,20 @@ type: edu
 custom_name: Execution modes
 files:
   - name: build.gradle
+    visible: false
+  - name: src/test/resources/SpockConfig.groovy
     visible: true
+  - name: src/test/groovy/A.groovy
+    visible: true
+  - name: src/test/groovy/B.groovy
+    visible: true
+  - name: test/empty
+    visible: false
+  - name: .readme/README-CONCURRENT-Specifications-CONCURRENT-Features.svg
+    visible: false
+  - name: .readme/README-CONCURRENT-Specifications-SAME_THREAD-Features.svg
+    visible: false
+  - name: .readme/README-SAME_THREAD-Specifications-CONCURRENT-Features.svg
+    visible: false
+  - name: .readme/README-SAME_THREAD-Specifications-SAME_THREAD-Features.svg
+    visible: false
