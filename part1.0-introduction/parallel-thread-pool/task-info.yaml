@@ -4,7 +4,7 @@ files:
   - name: build.gradle
     visible: false
   - name: src/test/resources/SpockConfig.groovy
-    visible: false
+    visible: true
   - name: src/test/groovy/A.groovy
     visible: true
   - name: src/test/groovy/B.groovy

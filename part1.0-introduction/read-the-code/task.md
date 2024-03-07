@@ -1,1 +1,1 @@
-First, familiarize yourself with [tests](file://part1.0-introduction/read-the-code/src/test/groovy/A.groovy) in this module.
+First, familiarize yourself with test ([A.groovy](file://part1.0-introduction/read-the-code/src/test/groovy/A.groovy), [B.groovy](file://part1.0-introduction/read-the-code/src/test/groovy/B.groovy)) in this module.
