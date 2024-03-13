@@ -10,4 +10,4 @@ runner {
 }
 ```
 
-Click `Check` to run tests. Now check [report](file://part1.0-introduction/no-parallelization/build/reports/tests-execution/html/test.html) with visualization of test execution schedule. 
+Click `Check` to run tests. Now check [report](file://part1.0-introduction/parallel-execution/build/reports/tests-execution/html/test.html) with visualization of test execution schedule. 

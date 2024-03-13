@@ -48,5 +48,5 @@ def "test 3"() {
 }
 ```
 
-- Click `Check` to run tests. Now check [report](file://part1.0-introduction/no-parallelization/build/reports/tests-execution/html/test.html) with visualization of test execution schedule.
+- Click `Check` to run tests. Now check [report](file://part1.0-introduction/parallel-thread-pool/build/reports/tests-execution/html/test.html) with visualization of test execution schedule.
 - Configure a thread pool of your choice, run tests and check reports
