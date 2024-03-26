@@ -17,7 +17,7 @@ dependencies {
     api 'org.springframework.boot:spring-boot-starter-web'
 
     api 'org.springframework.boot:spring-boot-starter-test'
-    api 'org.spockframework:spock-core:2.4-M2-groovy-4.0'
+    api 'org.spockframework:spock-core:2.4-M4-groovy-4.0'
 }
 
 bootJar {
