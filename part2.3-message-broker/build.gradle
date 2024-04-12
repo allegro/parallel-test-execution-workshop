@@ -19,7 +19,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework:spring-webflux'
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.4.0'
-    implementation 'pl.allegro.tech.hermes:hermes-client:2.6.1'
+    implementation 'pl.allegro.tech.hermes:hermes-client:2.6.3'
     implementation 'org.eclipse.jetty:jetty-reactive-httpclient:4.0.3'
     implementation 'io.projectreactor.netty:reactor-netty:1.1.17'
 
