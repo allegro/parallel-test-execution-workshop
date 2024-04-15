@@ -26,4 +26,8 @@ public class EmailService {
                     e);
         }
     }
+
+    public EmailRequest getEmail(String id) {
+        return emailClient.read(id);
+    }
 }

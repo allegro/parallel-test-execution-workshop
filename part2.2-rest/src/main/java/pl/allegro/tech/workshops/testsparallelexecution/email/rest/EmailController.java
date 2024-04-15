@@ -1,6 +1,8 @@
 package pl.allegro.tech.workshops.testsparallelexecution.email.rest;
 
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +15,11 @@ public class EmailController {
 
     public EmailController(EmailService emailService) {
         this.emailService = emailService;
+    }
+
+    @GetMapping("/{id}")
+    public EmailRequest createEmail(@PathVariable String id) {
+        return emailService.getEmail(id);
     }
 
     @PostMapping()
