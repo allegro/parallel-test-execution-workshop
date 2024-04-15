@@ -28,6 +28,14 @@ public class EmailService {
     }
 
     public EmailRequest getEmail(String id) {
-        return emailClient.read(id);
+        try {
+            return emailClient.read(id);
+        } catch (Exception e) {
+            throw new ErrorResponseException(
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, "Email service communication error. " + e.getMessage()),
+                    e);
+        }
+
     }
 }

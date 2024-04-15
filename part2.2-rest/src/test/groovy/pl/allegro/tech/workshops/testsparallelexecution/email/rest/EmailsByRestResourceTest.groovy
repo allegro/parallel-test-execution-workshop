@@ -106,6 +106,7 @@ class EmailsByRestResourceTest extends BaseTestWithRest {
     }
 
     def "handle email service errors (status=#errorResponse.status, fault=#errorResponse.fault, delay=#errorResponse.fixedDelayMilliseconds)"() {
+        given:
         def email = EmailRequest.of(subject, "from@example.com", "to@example.com")
         wiremockServer.stubFor(post(urlEqualTo("/external-api-service/emails"))
                 .willReturn(errorResponse)
@@ -130,6 +131,7 @@ class EmailsByRestResourceTest extends BaseTestWithRest {
     }
 
     def "retry email sending after error response (status=#errorResponse.status, fault=#errorResponse.fault, delay=#errorResponse.fixedDelayMilliseconds)"() {
+        given:
         def email = EmailRequest.of(subject, "from@example.com", "to@example.com")
         wiremockServer.stubFor(post(urlEqualTo("/external-api-service/emails"))
                 .willReturn(errorResponse)
