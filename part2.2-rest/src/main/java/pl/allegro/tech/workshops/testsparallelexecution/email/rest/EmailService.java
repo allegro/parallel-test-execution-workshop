@@ -27,7 +27,7 @@ public class EmailService {
         }
     }
 
-    public Email getEmail(String id) {
+    public Email readEmail(String id) {
         try {
             return emailClient.read(id);
         } catch (Exception e) {

@@ -18,8 +18,8 @@ public class EmailController {
     }
 
     @GetMapping("/{id}")
-    public Email createEmail(@PathVariable String id) {
-        return emailService.getEmail(id);
+    public Email readEmail(@PathVariable String id) {
+        return emailService.readEmail(id);
     }
 
     @PostMapping()
