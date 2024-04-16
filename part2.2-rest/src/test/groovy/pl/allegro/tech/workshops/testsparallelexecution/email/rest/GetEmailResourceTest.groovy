@@ -2,9 +2,10 @@ package pl.allegro.tech.workshops.testsparallelexecution.email.rest
 
 import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.stubbing.Scenario
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.annotation.Import
 import org.springframework.http.ProblemDetail
 import pl.allegro.tech.workshops.testsparallelexecution.BaseTestWithRest
-import spock.lang.Shared
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse
 import static com.github.tomakehurst.wiremock.client.WireMock.get
@@ -16,23 +17,15 @@ import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR
 import static org.springframework.http.HttpStatus.OK
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE
 
-class GetEmailResourceTest extends BaseTestWithRest {
+@Import(WiremockConfig)
+class GetEmailResourceTest extends BaseTestWithRest implements WiremockPortSupport {
+
+    @Autowired
+    private WireMockServer wiremockServer
 
     private static final String VALID_BODY = """{"subject": "test subject", "sender": "from@example.com", "recipient": "to@example.com"}"""
 
-    @Shared
-    WireMockServer wiremockServer
-
     private String emailId = "2"
-
-    def setupSpec() {
-        wiremockServer = new WireMockServer(8099)
-        wiremockServer.start()
-    }
-
-    def cleanupSpec() {
-        wiremockServer.stop()
-    }
 
     def cleanup() {
         wiremockServer.resetAll()

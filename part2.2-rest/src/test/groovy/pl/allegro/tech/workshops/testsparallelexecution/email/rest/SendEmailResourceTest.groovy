@@ -2,9 +2,10 @@ package pl.allegro.tech.workshops.testsparallelexecution.email.rest
 
 import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.stubbing.Scenario
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.annotation.Import
 import org.springframework.http.ProblemDetail
 import pl.allegro.tech.workshops.testsparallelexecution.BaseTestWithRest
-import spock.lang.Shared
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse
 import static com.github.tomakehurst.wiremock.client.WireMock.equalTo
@@ -38,21 +39,13 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE
  }
  </pre>
  */
-class SendEmailResourceTest extends BaseTestWithRest {
+@Import(WiremockConfig)
+class SendEmailResourceTest extends BaseTestWithRest implements WiremockPortSupport {
 
-    @Shared
-    WireMockServer wiremockServer
+    @Autowired
+    private WireMockServer wiremockServer
 
     private String subject = "New workshops!"
-
-    def setupSpec() {
-        wiremockServer = new WireMockServer(8099)
-        wiremockServer.start()
-    }
-
-    def cleanupSpec() {
-        wiremockServer.stop()
-    }
 
     def cleanup() {
         wiremockServer.resetAll()
