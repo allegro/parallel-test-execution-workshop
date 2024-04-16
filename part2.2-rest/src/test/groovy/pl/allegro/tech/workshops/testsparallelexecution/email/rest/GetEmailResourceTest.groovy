@@ -50,11 +50,11 @@ class GetEmailResourceTest extends BaseTestWithRest {
         )
 
         when:
-        def result = restClient.get("/emails/$emailId", EmailRequest)
+        def result = restClient.get("/emails/$emailId", Email)
 
         then:
         result.statusCode == OK
-        result.body == EmailRequest.of("test subject", "from@example.com", "to@example.com")
+        result.body == Email.of("test subject", "from@example.com", "to@example.com")
     }
 
     def "handle email service errors (status=#errorResponse.status, fault=#errorResponse.fault, delay=#errorResponse.fixedDelayMilliseconds)"() {
@@ -102,11 +102,11 @@ class GetEmailResourceTest extends BaseTestWithRest {
         )
 
         when:
-        def result = restClient.get("/emails/$emailId", EmailRequest)
+        def result = restClient.get("/emails/$emailId", Email)
 
         then:
         result.statusCode == OK
-        result.body == EmailRequest.of("test subject", "from@example.com", "to@example.com")
+        result.body == Email.of("test subject", "from@example.com", "to@example.com")
 
         where:
         errorResponse << [

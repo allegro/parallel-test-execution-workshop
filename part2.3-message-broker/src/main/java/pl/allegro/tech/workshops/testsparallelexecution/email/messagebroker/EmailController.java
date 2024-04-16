@@ -16,7 +16,7 @@ public class EmailController {
     }
 
     @PostMapping()
-    public void createEmail(@Valid @RequestBody EmailRequest email) {
+    public void createEmail(@Valid @RequestBody Email email) {
         emailService.sendEmail(email);
     }
 

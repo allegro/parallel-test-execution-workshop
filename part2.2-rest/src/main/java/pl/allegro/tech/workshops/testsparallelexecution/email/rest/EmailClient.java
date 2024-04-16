@@ -1,7 +1,7 @@
 package pl.allegro.tech.workshops.testsparallelexecution.email.rest;
 
 public interface EmailClient {
-    void send(EmailRequest email);
+    void send(Email email);
 
-    EmailRequest read(String id);
+    Email read(String id);
 }

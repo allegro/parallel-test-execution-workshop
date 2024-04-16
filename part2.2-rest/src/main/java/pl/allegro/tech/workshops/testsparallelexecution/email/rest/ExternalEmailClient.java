@@ -27,13 +27,13 @@ public class ExternalEmailClient implements EmailClient {
     }
 
     @Override
-    public void send(EmailRequest email) {
+    public void send(Email email) {
         retryTemplate.execute(context -> restTemplate.postForEntity("/external-api-service/emails", email, Void.class));
     }
 
     @Override
-    public EmailRequest read(String id) {
-        return retryTemplate.execute(context -> restTemplate.getForEntity("/external-api-service/emails/" + id, EmailRequest.class).getBody());
+    public Email read(String id) {
+        return retryTemplate.execute(context -> restTemplate.getForEntity("/external-api-service/emails/" + id, Email.class).getBody());
     }
 
 }

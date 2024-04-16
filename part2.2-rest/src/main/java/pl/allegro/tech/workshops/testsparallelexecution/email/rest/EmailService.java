@@ -16,7 +16,7 @@ public class EmailService {
         this.emailClient = emailClient;
     }
 
-    public void sendEmail(EmailRequest email) {
+    public void sendEmail(Email email) {
         try {
             emailClient.send(email);
         } catch (Exception e) {
@@ -27,7 +27,7 @@ public class EmailService {
         }
     }
 
-    public EmailRequest getEmail(String id) {
+    public Email getEmail(String id) {
         try {
             return emailClient.read(id);
         } catch (Exception e) {

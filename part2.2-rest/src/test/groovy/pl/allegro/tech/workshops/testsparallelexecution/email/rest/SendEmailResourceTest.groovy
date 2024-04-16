@@ -61,7 +61,7 @@ class SendEmailResourceTest extends BaseTestWithRest {
 
     def "send e-mail"() {
         given:
-        def email = EmailRequest.of(subject, "from@example.com", "to@example.com")
+        def email = Email.of(subject, "from@example.com", "to@example.com")
         wiremockServer.stubFor(post(urlEqualTo("/external-api-service/emails"))
                 .willReturn(aResponse()
                         .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
@@ -81,7 +81,7 @@ class SendEmailResourceTest extends BaseTestWithRest {
 
     def "do not sent email without sender"() {
         given:
-        def email = EmailRequest.of(subject, sender, "to@example.com")
+        def email = Email.of(subject, sender, "to@example.com")
         wiremockServer.stubFor(post(urlEqualTo("/external-api-service/emails"))
                 .willReturn(aResponse()
                         .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
@@ -106,7 +106,7 @@ class SendEmailResourceTest extends BaseTestWithRest {
 
     def "handle email service errors (status=#errorResponse.status, fault=#errorResponse.fault, delay=#errorResponse.fixedDelayMilliseconds)"() {
         given:
-        def email = EmailRequest.of(subject, "from@example.com", "to@example.com")
+        def email = Email.of(subject, "from@example.com", "to@example.com")
         wiremockServer.stubFor(post(urlEqualTo("/external-api-service/emails"))
                 .willReturn(errorResponse)
         )
@@ -131,7 +131,7 @@ class SendEmailResourceTest extends BaseTestWithRest {
 
     def "retry email sending after error response (status=#errorResponse.status, fault=#errorResponse.fault, delay=#errorResponse.fixedDelayMilliseconds)"() {
         given:
-        def email = EmailRequest.of(subject, "from@example.com", "to@example.com")
+        def email = Email.of(subject, "from@example.com", "to@example.com")
         wiremockServer.stubFor(post(urlEqualTo("/external-api-service/emails"))
                 .willReturn(errorResponse)
                 .inScenario("retry scenario")
