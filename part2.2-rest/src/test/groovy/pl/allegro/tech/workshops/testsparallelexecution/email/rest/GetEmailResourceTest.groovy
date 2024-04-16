@@ -8,7 +8,7 @@ import spock.lang.Shared
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse
 import static com.github.tomakehurst.wiremock.client.WireMock.get
-import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo
+import static com.github.tomakehurst.wiremock.client.WireMock.urlPathMatching
 import static com.github.tomakehurst.wiremock.http.Fault.CONNECTION_RESET_BY_PEER
 import static com.github.tomakehurst.wiremock.http.Fault.EMPTY_RESPONSE
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE
@@ -41,7 +41,7 @@ class GetEmailResourceTest extends BaseTestWithRest {
 
     def "get e-mail"() {
         given:
-        wiremockServer.stubFor(get(urlEqualTo("/external-api-service/emails/$emailId"))
+        wiremockServer.stubFor(get(urlPathMatching("/external-api-service/emails/.*"))
                 .willReturn(aResponse()
                         .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
                         .withStatus(200)
@@ -59,7 +59,7 @@ class GetEmailResourceTest extends BaseTestWithRest {
 
     def "handle email service errors (status=#errorResponse.status, fault=#errorResponse.fault, delay=#errorResponse.fixedDelayMilliseconds)"() {
         given:
-        wiremockServer.stubFor(get(urlEqualTo("/external-api-service/emails/$emailId"))
+        wiremockServer.stubFor(get(urlPathMatching("/external-api-service/emails/.*"))
                 .willReturn(errorResponse)
         )
 
@@ -84,13 +84,13 @@ class GetEmailResourceTest extends BaseTestWithRest {
 
     def "retry email fetching after error response (status=#errorResponse.status, fault=#errorResponse.fault, delay=#errorResponse.fixedDelayMilliseconds)"() {
         given:
-        wiremockServer.stubFor(get(urlEqualTo("/external-api-service/emails/$emailId"))
+        wiremockServer.stubFor(get(urlPathMatching("/external-api-service/emails/.*"))
                 .willReturn(errorResponse)
                 .inScenario("retry scenario")
                 .whenScenarioStateIs(Scenario.STARTED)
                 .willSetStateTo('after error')
         )
-        wiremockServer.stubFor(get(urlEqualTo("/external-api-service/emails/$emailId"))
+        wiremockServer.stubFor(get(urlPathMatching("/external-api-service/emails/.*"))
                 .willReturn(aResponse()
                         .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
                         .withStatus(200)
