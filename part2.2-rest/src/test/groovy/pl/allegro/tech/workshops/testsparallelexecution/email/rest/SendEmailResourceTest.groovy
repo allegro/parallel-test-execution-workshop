@@ -8,7 +8,6 @@ import spock.lang.Shared
 
 import static com.github.tomakehurst.wiremock.client.WireMock.aResponse
 import static com.github.tomakehurst.wiremock.client.WireMock.equalTo
-import static com.github.tomakehurst.wiremock.client.WireMock.matchingJsonPath
 import static com.github.tomakehurst.wiremock.client.WireMock.post
 import static com.github.tomakehurst.wiremock.client.WireMock.postRequestedFor
 import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo
@@ -39,7 +38,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE
  }
  </pre>
  */
-class EmailsByRestResourceTest extends BaseTestWithRest {
+class SendEmailResourceTest extends BaseTestWithRest {
 
     @Shared
     WireMockServer wiremockServer
