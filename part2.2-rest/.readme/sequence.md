@@ -18,5 +18,5 @@ sequenceDiagram
 Convert to svg format
 
 ```shell
-npx @mermaid-js/mermaid-cli mmdc -i part2.2-rest/.readme/sequence.md -o part2.2-rest/.readme/sequence.svg -b transparent --cssFile .readme/diagrams.css
+npx @mermaid-js/mermaid-cli mmdc -i part2.2-rest/.readme/sequence.md -o part2.2-rest/.readme/sequence.svg -t dark -b "" --cssFile .readme/diagrams.css
 ```
