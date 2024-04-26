@@ -14,7 +14,8 @@ Check [`tests`](src/test/groovy).
 4. Run tests `./gradlew --rerun-tasks :part2.2-rest:test :part2.2-rest:createTestsExecutionReport --continue`
 5. Temporarily disable test `retry email sending after error response ...` - add `@Ignore` annotation to method
    containing this test.
-6. Determine and remove shared state.
+6. Temporarily disable tests in `SendEmailResourceTest` class - add `@Ignore` annotation this class.
+7. Determine and remove shared state.
 
 #### Shared state
 

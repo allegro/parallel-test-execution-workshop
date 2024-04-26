@@ -41,7 +41,7 @@ class EmailsByMessageBrokerResourceTest extends BaseTestWithRest implements Herm
 
     def "send e-mail"() {
         given:
-        def email = EmailRequest.of(subject, "from@example.com", "to@example.com")
+        def email = Email.of(subject, "from@example.com", "to@example.com")
         /**
          * Hints:
          * - Replace `jsonTopic` with {@link pl.allegro.tech.hermes.mock.HermesMockDefine#jsonTopic(java.lang.String, pl.allegro.tech.hermes.mock.exchange.Response, java.lang.Class, java.util.function.Predicate)}
@@ -51,7 +51,7 @@ class EmailsByMessageBrokerResourceTest extends BaseTestWithRest implements Herm
         hermesMock.define().jsonTopic(topic, aResponse().build())
 
         when:
-        def result = restClient.post("/emails", email, EmailRequest)
+        def result = restClient.post("/emails", email, Email)
 
         then:
         result.statusCode == OK
@@ -64,13 +64,13 @@ class EmailsByMessageBrokerResourceTest extends BaseTestWithRest implements Herm
 
     def "do not sent email without sender"() {
         given:
-        def email = EmailRequest.of(subject, sender, "to@example.com")
+        def email = Email.of(subject, sender, "to@example.com")
         hermesMock.define().jsonTopic(topic, aResponse().build())
         // sleep to simulate long response
         sleep 500
 
         when:
-        def result = restClient.post("/emails", email, EmailRequest)
+        def result = restClient.post("/emails", email, Email)
 
         then:
         result.statusCode == BAD_REQUEST
@@ -81,11 +81,11 @@ class EmailsByMessageBrokerResourceTest extends BaseTestWithRest implements Herm
     }
 
     def "handle email service errors"() {
-        def email = EmailRequest.of(subject, "from@example.com", "to@example.com")
+        def email = Email.of(subject, "from@example.com", "to@example.com")
         hermesMock.define().jsonTopic(topic, errorResponse)
 
         when:
-        def result = restClient.post("/emails", email, EmailRequest)
+        def result = restClient.post("/emails", email, Email)
 
         then:
         result.statusCode == INTERNAL_SERVER_ERROR

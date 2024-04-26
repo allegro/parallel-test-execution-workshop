@@ -16,7 +16,7 @@ public class EmailService {
         this.emailClient = emailClient;
     }
 
-    public void sendEmail(EmailRequest email) {
+    public void sendEmail(Email email) {
         try {
             emailClient.send(email);
         } catch (Exception e) {
@@ -25,5 +25,17 @@ public class EmailService {
                     ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, "Email service communication error. " + e.getMessage()),
                     e);
         }
+    }
+
+    public Email readEmail(String id) {
+        try {
+            return emailClient.read(id);
+        } catch (Exception e) {
+            throw new ErrorResponseException(
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                    ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, "Email service communication error. " + e.getMessage()),
+                    e);
+        }
+
     }
 }

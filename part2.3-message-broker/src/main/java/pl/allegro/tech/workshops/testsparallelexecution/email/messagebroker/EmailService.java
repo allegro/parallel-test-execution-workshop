@@ -12,7 +12,7 @@ public class EmailService {
     public EmailService(EmailClient emailClient) {
         this.emailClient = emailClient;
     }
-    public void sendEmail(EmailRequest email) {
+    public void sendEmail(Email email) {
         emailClient.send(email);
     }
 }

@@ -1,1 +1,1 @@
-application.services.email.url: http://localhost:8099
+application.services.email.url: http://localhost:${wiremock.port}
