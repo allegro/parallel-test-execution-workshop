@@ -47,13 +47,16 @@ public class ExternalEmailClient implements EmailClient {
     }
 
     private static class PassRequestIdHeaderRequestInterceptor implements ClientHttpRequestInterceptor {
+
+        private static final String REQUEST_ID_HEADER_NAME = "X-request-id";
+
         @Override
         public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
             RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
-            if (requestAttributes != null && requestAttributes instanceof ServletRequestAttributes) {
-                String requestId = ((ServletRequestAttributes) requestAttributes).getRequest().getHeader("X-request-id");
+            if (requestAttributes instanceof ServletRequestAttributes) {
+                String requestId = ((ServletRequestAttributes) requestAttributes).getRequest().getHeader(REQUEST_ID_HEADER_NAME);
                 HttpHeaders headers = request.getHeaders();
-                headers.set("X-request-id", requestId);
+                headers.set(REQUEST_ID_HEADER_NAME, requestId);
             }
             return execution.execute(request, body);
         }
