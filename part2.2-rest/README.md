@@ -12,10 +12,15 @@ Check [`tests`](src/test/groovy).
 2. Check [reports](build/reports/tests-execution/html/test.html)
 3. Enable parallel execution (in [SpockConfig.groovy](src/test/resources/SpockConfig.groovy))
 4. Run tests `./gradlew --rerun-tasks :part2.2-rest:test :part2.2-rest:createTestsExecutionReport --continue`
-5. Temporarily disable test `retry email sending after error response ...` - add `@Ignore` annotation to method
+5. Temporarily disable test `retry email fetching after error response ...` - add `@Ignore` annotation to method
    containing this test.
-6. Temporarily disable tests in `SendEmailResourceTest` class - add `@Ignore` annotation this class.
-7. Determine and remove shared state.
+6. Temporarily disable test `retry email sending after error response ...` - add `@Ignore` annotation to method
+   containing this test.
+7. Temporarily disable tests in `SendEmailResourceTest` class - add `@Ignore` annotation this class.
+8. Determine and remove shared state.
+9. Remove `@Ignore` from `retry email fetching after error response ...` and fix tests.
+10. Remove `@Ignore` from `retry email sending after error response ...` and fix tests.
+11. Remove `@Ignore` from `SendEmailResourceTest` class and fix tests.
 
 #### Shared state
 
