@@ -26,7 +26,7 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation project(':commons')
     testImplementation project(':commons-rest')
-    testImplementation 'pl.allegro.tech.hermes:hermes-mock:2.7.1'
+    testImplementation 'pl.allegro.tech.hermes:hermes-mock:2.10.0'
     testImplementation 'org.spockframework:spock-spring:2.4-M4-groovy-4.0'
 }
 
