@@ -68,7 +68,7 @@ class SendEmailResourceTest extends BaseTestWithRest implements WiremockPortSupp
         then:
         result.statusCode == OK
         wiremockServer.verify(1, postRequestedFor(urlPathEqualTo("/external-api-service/emails"))
-                .withHeader(ACCEPT, equalTo("application/json, application/*+json"))
+                .withHeader(ACCEPT, equalTo("application/json, application/yaml, application/*+json"))
         )
     }
 
@@ -114,12 +114,12 @@ class SendEmailResourceTest extends BaseTestWithRest implements WiremockPortSupp
         where:
         errorResponse                                             || expectedDetail
         aResponse().withStatus(400)                               || "400 Bad Request"
-        aResponse().withStatus(500)                               || "500 Server Error"
-        aResponse().withFault(EMPTY_RESPONSE)                     || "Unexpected end of file from server"
-        aResponse().withFault(CONNECTION_RESET_BY_PEER)           || "Connection reset"
+        aResponse().withStatus(500)                               || "500 Internal Server Error"
+        aResponse().withFault(EMPTY_RESPONSE)                     || "HTTP/1.1 header parser received no bytes"
+        aResponse().withFault(CONNECTION_RESET_BY_PEER)           || "HTTP/1.1 header parser received no bytes"
         aResponse().withFixedDelay(1000)
                 .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
-                .withStatus(200)                                  || "Read timed out"
+                .withStatus(200)                                  || "Request timed out"
     }
 
     def "retry email sending after error response (status=#errorResponse.status, fault=#errorResponse.fault, delay=#errorResponse.fixedDelayMilliseconds)"() {

@@ -66,13 +66,13 @@ class GetEmailResourceTest extends BaseTestWithRest implements WiremockPortSuppo
         where:
         errorResponse                                             || expectedDetail
         aResponse().withStatus(400)                               || "400 Bad Request"
-        aResponse().withStatus(500)                               || "500 Server Error"
-        aResponse().withFault(EMPTY_RESPONSE)                     || "Unexpected end of file from server"
+        aResponse().withStatus(500)                               || "500 Internal Server Error"
+        aResponse().withFault(EMPTY_RESPONSE)                     || "EOF reached while reading"
         aResponse().withFault(CONNECTION_RESET_BY_PEER)           || "Connection reset"
-        aResponse().withFixedDelay(1000)
+        aResponse().withFixedDelay(600)
                 .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
                 .withStatus(200)
-                .withBody(VALID_BODY)                             || "Read timed out"
+                .withBody(VALID_BODY)                             || "Request timed out"
     }
 
     def "retry email fetching after error response (status=#errorResponse.status, fault=#errorResponse.fault, delay=#errorResponse.fixedDelayMilliseconds)"() {
@@ -107,7 +107,7 @@ class GetEmailResourceTest extends BaseTestWithRest implements WiremockPortSuppo
                 aResponse().withStatus(500),
                 aResponse().withFault(EMPTY_RESPONSE),
                 aResponse().withFault(CONNECTION_RESET_BY_PEER),
-                aResponse().withFixedDelay(1000)
+                aResponse().withFixedDelay(600)
                         .withHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
                         .withStatus(200)
                         .withBody(VALID_BODY)
