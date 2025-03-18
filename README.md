@@ -34,7 +34,7 @@ non-JVM).
 
 ### Requirements (to build/run this project)
 
-- JDK 17
+- JDK 21
 - Docker
 
 Sample applications and tests are written using:
