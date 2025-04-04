@@ -55,8 +55,10 @@ public class ExternalEmailClient implements EmailClient {
             RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
             if (requestAttributes instanceof ServletRequestAttributes) {
                 String requestId = ((ServletRequestAttributes) requestAttributes).getRequest().getHeader(REQUEST_ID_HEADER_NAME);
-                HttpHeaders headers = request.getHeaders();
-                headers.set(REQUEST_ID_HEADER_NAME, requestId);
+                if (requestId != null) {
+                    HttpHeaders headers = request.getHeaders();
+                    headers.set(REQUEST_ID_HEADER_NAME, requestId);
+                }
             }
             return execution.execute(request, body);
         }
