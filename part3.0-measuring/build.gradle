@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'commons-cli:commons-cli:1.9.0'
+    implementation 'commons-cli:commons-cli:1.10.0'
     implementation 'org.apache.commons:commons-csv:1.14.0'
 
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
